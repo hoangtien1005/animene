@@ -1,0 +1,17 @@
+@import '../../styles/config';
+
+.header {
+    background-color: $color-bg-dark !important;
+}
+
+.btnLogin, .btnRegister {
+    align-self: center;
+    height: fit-content;
+    margin-left: 16px;
+
+    &.btnMobile {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+

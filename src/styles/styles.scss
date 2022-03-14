@@ -1,0 +1,32 @@
+@import './config';
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: $color-pr-2;
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: $color-pr-1;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  a {
+    color: inherit;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    height: 100% !important;
+    color: rgb(237,241,245);
+  }
