@@ -1,6 +1,7 @@
 @import '../../styles/config';
 
 .card {
+    background-color: transparent !important;
     height: 100%;
     box-shadow: none !important;
     cursor: pointer;
@@ -8,10 +9,6 @@
         .title {
             color: $color-pr-5;
         }
-    }
-
-    @include breakpoint(lg) {
-        padding: 0 6px;
     }
 
     .cardImage {

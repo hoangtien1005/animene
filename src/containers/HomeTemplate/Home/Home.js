@@ -3,6 +3,7 @@ import { useEffect } from "react"
 
 import styles from "./styles.module.scss"
 import AnimeCardList from "../../../components/AnimeCardList"
+import Filters from "../../../components/Filters"
 import { selectAnime, fetchAllAnimes } from "../../../features/anime/animeSlice"
 import Pagination from "../../../components/Pagination"
 import Loading from "../../../components/Loading"
@@ -22,6 +23,7 @@ const Home = ({}) => {
       {loading && <Loading />}
       {data && data.status_code === 200 && (
         <>
+          <Filters />
           <AnimeCardList animes={data.data.documents} />
           <Pagination total={data.data.count} />
         </>

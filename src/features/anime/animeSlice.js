@@ -8,27 +8,27 @@ const initialState = {
   data: null,
   searchConfig: {
     title: {
-      content: null,
+      value: null,
       multiple: false
     },
     formats: {
-      content: null,
+      value: null,
       multiple: true
     },
     status: {
-      content: null,
+      value: null,
       multiple: false
     },
     year: {
-      content: null,
+      value: null,
       multiple: false
     },
     season: {
-      content: null,
+      value: null,
       multiple: false
     },
     genres: {
-      content: null,
+      value: null,
       multiple: true
     },
     page: 1
@@ -45,16 +45,6 @@ export const fetchAllAnimes = createAsyncThunk(
     return { data, searchConfig }
   }
 )
-
-// export const fetchAllAnimes = createAsyncThunk(
-//     "anime-list",
-//     async () => {
-//         const { data } = await callAnimeApi({
-//             endpoint: `anime`
-//         })
-//         return { data }
-//     }
-// )
 
 const animeSlice = createSlice({
   name: "anime",
