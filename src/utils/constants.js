@@ -1,8 +1,8 @@
-export const animeApi = "https://api.aniapi.com/v1"
-export const serverApi = "http://localhost:5000"
+export const ANIME_BASE_URL = "https://api.aniapi.com/v1"
+export const SERVER_BASE_URL = "http://localhost:5000"
 
 export const ANIME_CONSTANTS = {
-  FORMAT: {
+  FORMATS: {
     0: "TV Show",
     1: "TV Short",
     2: "Movie",

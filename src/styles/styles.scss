@@ -5,12 +5,12 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    background-color: $color-pr-2;
+    background-color: $color-pr-1;
     border-radius: 5px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: $color-pr-1;
+    background: $color-pr-3;
   }
   html {
     scroll-behavior: smooth;

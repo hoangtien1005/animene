@@ -1,0 +1,39 @@
+@import '../../styles/config';
+
+.card {
+    height: 100%;
+    box-shadow: none !important;
+    cursor: pointer;
+    &:hover {
+        .title {
+            color: $color-pr-5;
+        }
+    }
+
+    @include breakpoint(lg) {
+        padding: 0 6px;
+    }
+
+    .cardImage {
+        height: 196px;
+        @include breakpoint(md) {
+            height: 265px;
+        }
+    }
+
+    .title {
+        margin-top: 8px;
+        text-align: left !important;
+        font-size: $fs-sm;
+        font-weight: 500;
+        color: $color-text-md;
+        transition: 0.1s ease-in;
+        display: block; /* Fallback for non-webkit */
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* if you change this, make sure to change the fallback line-height and height */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+

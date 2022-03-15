@@ -1,13 +1,21 @@
 import clsx from "clsx"
+import { Link } from "react-router-dom"
+
 import "./styles.scss"
 
-const Button = ({ children, className, ...props }) => {
-  let Component = "button"
-  if (props.href) Component = "a"
+const Button = ({ children, className, href, ...props }) => {
+  if (href) {
+    return (
+      <Link to={href} className={clsx("btn", className)} {...props}>
+        {children}
+      </Link>
+    )
+  }
+
   return (
-    <Component className={clsx("btn", className)} {...props}>
+    <button className={clsx("btn", className)} {...props}>
       {children}
-    </Component>
+    </button>
   )
 }
 export default Button

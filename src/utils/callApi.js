@@ -1,4 +1,4 @@
-import { animeApi, serverApi } from "./constants"
+import { ANIME_BASE_URL, SERVER_BASE_URL } from "./constants"
 
 import axios from "axios"
 
@@ -9,7 +9,7 @@ export const callAnimeApi = async ({
 }) => {
   return await axios({
     method,
-    url: animeApi + "/" + endpoint,
+    url: ANIME_BASE_URL + "/" + endpoint,
     data: payload,
     headers: {}
   })
@@ -23,7 +23,7 @@ export const callServerApi = async ({
 }) => {
   return await axios({
     method,
-    url: serverApi + "/" + endpoint,
+    url: SERVER_BASE_URL + "/" + endpoint,
     data: payload,
     headers: {
       Authorization: "Bearer " + accessToken
