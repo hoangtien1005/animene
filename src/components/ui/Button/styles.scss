@@ -14,7 +14,7 @@
     text-decoration: none;
     text-align: center;
     cursor: pointer;
-    transition: 0.2s ease-in;
+    transition: 0.15s ease-in;
 
     &.secondary {
         background-color: $color-pr-2;
@@ -32,7 +32,7 @@
     }
 
     &:hover {
-        opacity: 0.8;
+        opacity: 0.9;
         
     }
 }

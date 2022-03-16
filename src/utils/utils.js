@@ -2,29 +2,37 @@ import { ANIME_CONSTANTS } from "./constants"
 
 const { GENRES, SEASON, FORMATS, STATUS } = ANIME_CONSTANTS
 
-export const generateApiParameters = (searchConfig) => {
-  if (!searchConfig) {
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+export const generateApiParameters = (searchString) => {
+  if (!searchString) {
     return ""
   }
 
-  let paramsString = ""
-  Object.keys(searchConfig).forEach((key) => {
-    const param = searchConfig[key]
-
-    if (param.content) {
-      // genres, formats
-      if (param.multiple) {
-        paramsString += `${key}=${param.content.join(",")}`
-        // status, season, year, title
-      } else {
-        paramsString += `${key}=${param.content}`
-      }
-      // page
-    } else if (key === "page") {
-      if (param > 1) paramsString += `page=${param}`
+  const res = []
+  const rawParamsStrings = searchString.slice(1).split("&")
+  rawParamsStrings.forEach((string) => {
+    const [type, value] = string.split("=")
+    if (type === "year" || type === "page") {
+      res.push(string)
+    } else if (type === "genres") {
+      const standardValue = value
+        .split(",")
+        .map((genre) => capitalizeFirstLetter(genre))
+        .join(",")
+      res.push([type, standardValue].join("="))
+    } else {
+      const standardValue = getAnimeConstantsKey(
+        type,
+        capitalizeFirstLetter(value)
+      )
+      res.push([type, standardValue].join("="))
     }
   })
-  return paramsString
+  if (res.length > 0) return res.join("&")
+  return ""
 }
 
 export const getAnimeConstantsValue = (type, key) => {
@@ -44,7 +52,13 @@ export const getAnimeConstantsValue = (type, key) => {
 
 export const getAnimeConstantsKey = (type, value) => {
   const getKeyByValue = (obj, value) => {
-    return Object.keys(obj).find((key) => obj[key] === value)
+    return Object.keys(obj).find((key) => {
+      return (
+        obj[key] === value ||
+        obj[key] === capitalizeFirstLetter(value) ||
+        obj[key] === value.toUpperCase()
+      )
+    })
   }
 
   switch (type) {
