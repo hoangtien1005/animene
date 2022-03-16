@@ -1,7 +1,6 @@
 import Grid from "@mui/material/Grid"
 import Lazyload from "react-lazyload"
-import Skeleton from "@mui/material/Skeleton"
-import Stack from "@mui/material/Stack"
+import CardSkeleton from "../ui/CardSkeleton"
 
 import styles from "./styles.module.scss"
 
@@ -12,14 +11,7 @@ const AnimeCardList = ({ animes }) => {
     <>
       {animes.map((anime) => (
         <Grid item xs={4} sm={3} md={2.4} key={anime.id}>
-          <Lazyload
-            placeholder={
-              <Stack>
-                <Skeleton variant="rectangular" height={240} />
-                <Skeleton variant="text" />
-              </Stack>
-            }
-          >
+          <Lazyload height={200} offset={50} placeholder={<CardSkeleton />}>
             <AnimeCard anime={anime} />
           </Lazyload>
         </Grid>

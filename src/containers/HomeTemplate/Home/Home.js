@@ -23,12 +23,13 @@ const Home = ({}) => {
     // console.log(generateApiParameters(location.search))
 
     dispatch(fetchAllAnimes(location.search))
+    window.scrollTo(0, 0)
   }, [dispatch, location.search])
 
   return (
     <>
-      {loading && <Loading />}
       <Filters />
+      {loading && <Loading />}
       {data && data.status_code === 200 && (
         <>
           <AnimeCardList animes={data.data.documents} />

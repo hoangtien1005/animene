@@ -18,8 +18,6 @@ export default function CustomPagination({ total }) {
 
   console.log(query.toString(), location.search)
 
-  // const linkTo = `${newSearch}${item.page > 1 ? '&page=' + item.page : ''}`
-
   return (
     <Stack className={styles.paginationContainer} spacing={2}>
       <Pagination
