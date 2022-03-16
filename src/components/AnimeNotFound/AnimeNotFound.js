@@ -1,5 +1,4 @@
 import styles from "./styles.module.scss"
-import Button from "../ui/Button"
 
 const AnimeNotFound = ({ message }) => {
   return (

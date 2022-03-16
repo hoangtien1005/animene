@@ -2,7 +2,9 @@ import Grid from "@mui/material/Grid"
 import { useMemo } from "react"
 
 import styles from "./styles.module.scss"
+
 import Filter from "../Filter"
+
 import { ANIME_CONSTANTS } from "../../utils/constants"
 
 const Filters = ({}) => {

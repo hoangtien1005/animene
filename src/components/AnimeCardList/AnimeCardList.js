@@ -4,6 +4,7 @@ import Skeleton from "@mui/material/Skeleton"
 import Stack from "@mui/material/Stack"
 
 import styles from "./styles.module.scss"
+
 import AnimeCard from "../AnimeCard"
 
 const AnimeCardList = ({ animes }) => {

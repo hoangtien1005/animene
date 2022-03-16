@@ -1,7 +1,7 @@
-import styles from "./styles.module.scss"
 import Box from "@mui/material/Box"
-import * as React from "react"
 import LinearProgress from "@mui/material/LinearProgress"
+
+import styles from "./styles.module.scss"
 
 export default function Loading() {
   console.log("Loading")

@@ -1,10 +1,10 @@
-import * as React from "react"
 import Pagination from "@mui/material/Pagination"
+import PaginationItem from "@mui/material/PaginationItem"
 import Stack from "@mui/material/Stack"
+
 import { Link, useLocation } from "react-router-dom"
 
 import styles from "./styles.module.scss"
-import PaginationItem from "@mui/material/PaginationItem"
 
 export default function CustomPagination({ total }) {
   const location = useLocation()

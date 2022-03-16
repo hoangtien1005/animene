@@ -1,9 +1,8 @@
-import styles from "./styles.module.scss"
-import * as React from "react"
 import Card from "@mui/material/Card"
 import CardMedia from "@mui/material/CardMedia"
 import Typography from "@mui/material/Typography"
-import Chip from "../ui/Chip"
+
+import styles from "./styles.module.scss"
 
 const AnimeCard = ({ anime }) => {
   return (

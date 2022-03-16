@@ -3,13 +3,14 @@ import { useEffect, useMemo } from "react"
 import { useLocation } from "react-router-dom"
 
 import styles from "./styles.module.scss"
+
 import AnimeCardList from "../../../components/AnimeCardList"
 import Filters from "../../../components/Filters"
 import AnimeNotFound from "../../../components/AnimeNotFound"
-import { selectAnime, fetchAllAnimes } from "../../../features/anime/animeSlice"
-import Pagination from "../../../components/Pagination"
 import Loading from "../../../components/Loading"
-import { generateApiParameters } from "../../../utils/utils"
+import Pagination from "../../../components/Pagination"
+
+import { selectAnime, fetchAllAnimes } from "../../../features/anime/animeSlice"
 
 const Home = ({}) => {
   const { loading, data, error } = useSelector(selectAnime)
