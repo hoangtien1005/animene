@@ -15,20 +15,35 @@ export const generateApiParameters = (searchString) => {
   const rawParamsStrings = searchString.slice(1).split("&")
   rawParamsStrings.forEach((string) => {
     const [type, value] = string.split("=")
-    if (type === "year" || type === "page") {
-      res.push(string)
-    } else if (type === "genres") {
-      const standardValue = value
-        .split(",")
-        .map((genre) => capitalizeFirstLetter(genre))
-        .join(",")
-      res.push([type, standardValue].join("="))
-    } else {
-      const standardValue = getAnimeConstantsKey(
-        type,
-        capitalizeFirstLetter(value)
-      )
-      res.push([type, standardValue].join("="))
+    switch (type) {
+      case "year":
+      case "page":
+        res.push(string)
+        break
+
+      case "genres":
+        {
+          const genresValue = value
+            .split(",")
+            .map((genre) => capitalizeFirstLetter(genre))
+            .join(",")
+          res.push([type, genresValue].join("="))
+        }
+        break
+
+      case "formats":
+      case "season":
+      case "status":
+        {
+          const standardValue = getAnimeConstantsKey(
+            type,
+            capitalizeFirstLetter(value)
+          )
+          res.push([type, standardValue].join("="))
+        }
+        break
+      default:
+        throw new Error("Invalid search parameters.")
     }
   })
   if (res.length > 0) return res.join("&")

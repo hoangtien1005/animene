@@ -1,0 +1,12 @@
+@import '../../styles/config';
+
+.container {
+   text-align: center;
+   width: 100%;
+   margin-top: 40px;
+}
+
+.animeNotFound {
+  font-size: $fs-md-lg;
+  color: $color-text-md;
+}

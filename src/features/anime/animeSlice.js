@@ -64,10 +64,10 @@ const animeSlice = createSlice({
         state.data = action.payload.data
         state.error = null
       })
-      .addCase(fetchAllAnimes.rejected, (state) => {
+      .addCase(fetchAllAnimes.rejected, (state, action) => {
         state.loading = null
         state.data = null
-        state.error = "Fetch failed"
+        state.error = action.error
       })
   }
 })

@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom"
 import styles from "./styles.module.scss"
 import AnimeCardList from "../../../components/AnimeCardList"
 import Filters from "../../../components/Filters"
+import AnimeNotFound from "../../../components/AnimeNotFound"
 import { selectAnime, fetchAllAnimes } from "../../../features/anime/animeSlice"
 import Pagination from "../../../components/Pagination"
 import Loading from "../../../components/Loading"
@@ -33,7 +34,10 @@ const Home = ({}) => {
           <Pagination total={data.data.count} />
         </>
       )}
-      {error && <p>Error</p>}
+      {data && data.status_code === 404 && (
+        <AnimeNotFound message="No Results" />
+      )}
+      {error && <AnimeNotFound message={error.message} />}
     </>
   )
 }
