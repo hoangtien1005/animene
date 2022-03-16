@@ -10,7 +10,6 @@ import Loading from "../../../components/Loading"
 
 const Home = ({}) => {
   const { loading, data, error, searchConfig } = useSelector(selectAnime)
-  console.log(loading, data, error, searchConfig)
 
   const dispatch = useDispatch()
 

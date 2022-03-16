@@ -1,5 +1,11 @@
 @import './config';
 
+
+.MuiPaginationItem-root.Mui-selected {
+  color: $color-white !important;
+  background-color: $color-pr-1 !important;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
   }

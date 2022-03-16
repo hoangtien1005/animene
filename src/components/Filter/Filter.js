@@ -15,11 +15,14 @@ const customStyles = {
   indicatorSeparator: (provided) => ({
     display: "none"
   }),
-  option: (provided, state) => ({
-    ...provided,
-    color: state.isSelected ? "#18c1f0" : "black",
-    backgroundColor: "white"
-  }),
+
+  option: (provided, state) => {
+    let color = state.isSelected ? "#18c1f0" : "#748899"
+    let backgroundColor = provided.backgroundColor
+    backgroundColor = state.isSelected ? "#EDF1F5" : "white"
+    if (state.isFocused) color = "#18c1f0"
+    return { ...provided, color, backgroundColor }
+  },
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1
     const transition = "opacity 300ms"
@@ -27,13 +30,7 @@ const customStyles = {
   }
 }
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" }
-]
-
-const Component = () => {
+const Component = ({ title, options, type, multiple }) => {
   const handleChange = (selectedOptions) => {
     console.log(selectedOptions)
   }
@@ -41,10 +38,11 @@ const Component = () => {
     <Select
       isClearable
       isSearchable
+      closeMenuOnSelect={!multiple}
       onChange={handleChange}
       hideSelectedOptions={false}
-      placeholder="any"
-      isMulti
+      placeholder="Any"
+      isMulti={multiple}
       styles={customStyles}
       options={options}
     />

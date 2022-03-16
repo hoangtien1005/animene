@@ -1,1 +1,12 @@
 @import '../../styles/config';
+
+.separator {
+    width: 100%;
+}
+
+.filterTitle {
+    color: $color-text-bold;
+    text-transform: capitalize;
+    margin-bottom: 8px;
+    font-size: $fs-md-sm;
+}
