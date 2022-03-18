@@ -1,0 +1,47 @@
+@import '../../styles/config';
+
+.dialogInfo{
+    padding: 16px;
+    position: absolute;
+    width: 300px;
+    left: calc(100% + 16px);
+    top: 10px;
+    z-index: 10;
+    color: $color-text-bold !important;
+    font-size: $fs-md-sm;
+    font-weight: 500;
+    animation: popup 0.15s;
+
+    .infoContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+
+        .status {
+            color: $color-bg-dark;
+        }
+    }
+
+    .infoContainer.first {
+        font-size: 16px;
+    }
+
+
+    .ratingContainer {
+        display: flex;
+        align-items: center;
+        span {
+            margin-left: 4px;
+        }
+    }
+
+    .chip {
+        margin-right: 4px;
+    }
+}
+
+.dialogInfo.left {
+    right: calc(100% + 16px) !important;
+    left: unset;
+}

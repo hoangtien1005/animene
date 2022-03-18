@@ -14,6 +14,8 @@ export const generateApiParameters = (searchString) => {
   const res = []
   const rawParamsStrings = searchString.slice(1).split("&")
   rawParamsStrings.forEach((string) => {
+    if (string.includes("+")) string = string.split("+").join(" ")
+    console.log(string)
     const [type, value] = string.split("=")
     switch (type) {
       case "year":
@@ -24,7 +26,7 @@ export const generateApiParameters = (searchString) => {
       case "genres":
         {
           const genresValue = value
-            .split(",")
+            .split("%2C")
             .map((genre) => capitalizeFirstLetter(genre))
             .join(",")
           res.push([type, genresValue].join("="))
@@ -32,6 +34,12 @@ export const generateApiParameters = (searchString) => {
         break
 
       case "formats":
+        const formatsValue = value
+          .split("%2C")
+          .map((format) => getAnimeConstantsKey(type, format))
+          .join(",")
+        res.push([type, formatsValue].join("="))
+        break
       case "season":
       case "status":
         {
@@ -71,7 +79,8 @@ export const getAnimeConstantsKey = (type, value) => {
       return (
         obj[key] === value ||
         obj[key] === capitalizeFirstLetter(value) ||
-        obj[key] === value.toUpperCase()
+        obj[key] === value.toUpperCase() ||
+        obj[key].toLowerCase() === value.toLowerCase()
       )
     })
   }
@@ -89,6 +98,8 @@ export const getAnimeConstantsKey = (type, value) => {
       return null
   }
 }
+
+const generateSearch = (currentSearch, type, value) => {}
 
 // get the current season
 export const getCurrentSeason = (d = new Date()) => {

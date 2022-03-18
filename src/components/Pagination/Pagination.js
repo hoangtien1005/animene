@@ -16,8 +16,6 @@ export default function CustomPagination({ total }) {
     newSearch = location.search.split("&page")[0]
   }
 
-  console.log(query.toString(), location.search)
-
   return (
     <Stack className={styles.paginationContainer} spacing={2}>
       <Pagination

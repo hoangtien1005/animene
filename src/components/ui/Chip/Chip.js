@@ -4,9 +4,9 @@ import "./styles.scss"
 
 const Chip = ({ children, className, ...props }) => {
   return (
-    <Link {...props} className={clsx("chip", className)}>
+    <span {...props} className={clsx("chip", className)}>
       {children}
-    </Link>
+    </span>
   )
 }
 export default Chip

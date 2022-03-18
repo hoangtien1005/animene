@@ -1,5 +1,9 @@
 @import '../../styles/config';
 
+.cardContainer {
+    position: relative;
+}
+
 .card {
     background-color: transparent !important;
     height: 100%;

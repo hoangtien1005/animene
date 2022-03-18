@@ -1,7 +1,6 @@
 import { useMemo, memo } from "react"
 import Select from "react-select"
-import { useLocation } from "react-router-dom"
-
+import { useHistory, useLocation } from "react-router-dom"
 const customTextStyles = {
   fontSize: "15px",
   fontWeight: "500"
@@ -62,6 +61,7 @@ const customStyles = {
 
 const Component = ({ title, options, type, multiple }) => {
   const location = useLocation()
+  const history = useHistory()
   const query = useMemo(() => {
     return new URLSearchParams(location.search)
   }, [location.search])
@@ -80,10 +80,19 @@ const Component = ({ title, options, type, multiple }) => {
     }
   }, [multiple, options, query, type])
 
-  console.log(title, "render")
-
   const handleChange = (selectedOptions) => {
-    console.log(selectedOptions)
+    let value = ""
+    if (multiple) {
+      value = selectedOptions
+        .map((option) => option.label.toLowerCase())
+        .join(",")
+    } else {
+      value = selectedOptions ? selectedOptions.label.toLowerCase() : ""
+    }
+    const params = new URLSearchParams(location.search)
+    if (value === "") params.delete(type)
+    else params.set(type, value)
+    history.replace({ pathname: location.pathname, search: params.toString() })
   }
   return (
     <Select

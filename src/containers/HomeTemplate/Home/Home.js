@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect, useMemo } from "react"
+import { useEffect } from "react"
 import { useLocation } from "react-router-dom"
 
 import styles from "./styles.module.scss"
@@ -10,6 +10,7 @@ import AnimeNotFound from "../../../components/AnimeNotFound"
 import Loading from "../../../components/Loading"
 import Pagination from "../../../components/Pagination"
 
+import { generateApiParameters } from "../../../utils/utils"
 import { selectAnime, fetchAllAnimes } from "../../../features/anime/animeSlice"
 
 const Home = ({}) => {
