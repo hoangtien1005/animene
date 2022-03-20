@@ -56,8 +56,16 @@
 
     .title {
         color: $color-text-bold;
+        font-weight: 500;
         margin-bottom: 8px;
         font-size: $fs-sm;
+
+        text-decoration: none;
+        display: block;
+
+        &:hover {
+            color: $color-pr-5;
+        }
     }
     
     .chip {

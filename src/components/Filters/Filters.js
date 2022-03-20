@@ -7,20 +7,21 @@ import Filter from "../Filter"
 
 import { ANIME_CONSTANTS } from "../../utils/constants"
 
-const Filters = ({}) => {
+const Filters = () => {
   const [genres, formats, ...filters] = useMemo(() => {
     const { SEASON, FORMATS, STATUS, GENRES, LATEST_YEAR } = ANIME_CONSTANTS
-    const seasons = Object.values(SEASON).map((item, index) => ({
-      label: item,
-      value: index
+
+    const seasons = Object.keys(SEASON).map((key) => ({
+      label: SEASON[key],
+      value: key
     }))
-    const formats = Object.values(FORMATS).map((item, index) => ({
-      label: item,
-      value: index
+    const formats = Object.keys(FORMATS).map((key) => ({
+      label: FORMATS[key],
+      value: key
     }))
-    const statuses = Object.values(STATUS).map((item, index) => ({
-      label: item,
-      value: index
+    const statuses = Object.keys(STATUS).map((key) => ({
+      label: STATUS[key],
+      value: key
     }))
     const years = [...Array(LATEST_YEAR - 1940 + 1).keys()]
       .reverse()

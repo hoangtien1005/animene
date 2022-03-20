@@ -73,30 +73,24 @@ const Component = ({ title, options, type, multiple }) => {
     if (multiple && paramsValue) {
       const res = []
       for (const value of paramsValue.split(",")) {
-        res.push(options.find((option) => option.label.toLowerCase() === value))
+        res.push(options.find((option) => option.value === value))
       }
       return res
       // single value filters
     } else if (paramsValue) {
-      return options.find(
-        (option) => option.label.toLowerCase() === paramsValue
-      )
+      return options.find((option) => option.value === paramsValue)
     }
   }, [multiple, options, params, type])
 
   const handleChange = (selectedOptions) => {
     let value = ""
     if (multiple) {
-      value = selectedOptions
-        .map((option) => option.label.toLowerCase())
-        .join(",")
+      value = selectedOptions.map((option) => option.value).join(",")
     } else {
-      value = selectedOptions ? selectedOptions.label.toLowerCase() : ""
+      value = selectedOptions ? selectedOptions.value : ""
     }
     const params = new URLSearchParams(location.search)
-    if (value === "") {
-      params.delete(type)
-    } else params.set(type, value)
+    value === "" ? params.delete(type) : params.set(type, value)
     params.delete("page")
     history.replace({ pathname: location.pathname, search: params.toString() })
   }

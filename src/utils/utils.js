@@ -1,112 +1,12 @@
-import { ANIME_CONSTANTS } from "./constants"
+import { ANIME_CONSTANTS, ENUMS } from "./constants"
 
 const { GENRES, SEASON, FORMATS, STATUS } = ANIME_CONSTANTS
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-export const generateApiParameters = (searchString) => {
-  if (!searchString) {
-    return ""
-  }
-
-  const res = []
-  const rawParamsStrings = searchString.slice(1).split("&")
-  rawParamsStrings.forEach((string) => {
-    if (string.includes("+")) string = string.split("+").join(" ")
-    console.log(string)
-    const [type, value] = string.split("=")
-    switch (type) {
-      case "year":
-      case "page":
-        res.push(string)
-        break
-
-      case "genres":
-        {
-          const genresValue = value
-            .split("%2C")
-            .map((genre) => getAnimeConstantsKey(type, genre))
-            .join(",")
-          res.push([type, genresValue].join("="))
-        }
-        break
-
-      case "formats":
-        const formatsValue = value
-          .split("%2C")
-          .map((format) => getAnimeConstantsKey(type, format))
-          .join(",")
-        res.push([type, formatsValue].join("="))
-        break
-      case "season":
-      case "status":
-        {
-          const standardValue = getAnimeConstantsKey(
-            type,
-            capitalizeFirstLetter(value)
-          )
-          res.push([type, standardValue].join("="))
-        }
-        break
-      default:
-        throw new Error("Invalid search parameters.")
-    }
-  })
-  if (res.length > 0) return res.join("&")
-  return ""
-}
-
-export const getAnimeConstantsValue = (type, key) => {
-  switch (type) {
-    case "genres":
-      return GENRES.find((genre) => genre === key)
-    case "season":
-      return SEASON[parseInt(key)]
-    case "formats":
-      return FORMATS[parseInt(key)]
-    case "status":
-      return STATUS[parseInt(key)]
-    default:
-      return null
-  }
-}
-
-export const getAnimeConstantsKey = (type, value) => {
-  const getKeyByValue = (obj, value) => {
-    return Object.keys(obj).find((key) => {
-      return (
-        obj[key] === value ||
-        obj[key] === capitalizeFirstLetter(value) ||
-        obj[key] === value.toUpperCase() ||
-        obj[key].toLowerCase() === value.toLowerCase()
-      )
-    })
-  }
-
-  switch (type) {
-    case "genres":
-      return GENRES.find(
-        (genre) =>
-          genre === value || genre.toLowerCase() === value.toLowerCase()
-      )
-    case "season":
-      return getKeyByValue(SEASON, value)
-    case "formats":
-      return getKeyByValue(FORMATS, value)
-    case "status":
-      return getKeyByValue(STATUS, value)
-    default:
-      return null
-  }
-}
 
 // get the current season
 export const getCurrentSeason = (d = new Date()) => {
   const seasonArray = [
     {
-      value: 0,
+      value: "WINTER",
       label: "Winter",
       date: new Date(
         d.getFullYear(),
@@ -115,7 +15,7 @@ export const getCurrentSeason = (d = new Date()) => {
       ).getTime()
     },
     {
-      value: 1,
+      value: "SPRING",
       label: "Spring",
       date: new Date(
         d.getFullYear(),
@@ -124,7 +24,7 @@ export const getCurrentSeason = (d = new Date()) => {
       ).getTime()
     },
     {
-      value: 2,
+      value: "SUMMER",
       label: "Summer",
       date: new Date(
         d.getFullYear(),
@@ -133,7 +33,7 @@ export const getCurrentSeason = (d = new Date()) => {
       ).getTime()
     },
     {
-      value: 3,
+      value: "FALL",
       label: "Fall",
       date: new Date(
         d.getFullYear(),
@@ -144,7 +44,7 @@ export const getCurrentSeason = (d = new Date()) => {
   ]
 
   const season = seasonArray.filter(({ date }) => date <= d).slice(-1)[0] || {
-    value: 0,
+    value: "WINTER",
     label: "Winter"
   }
   return season

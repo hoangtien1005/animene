@@ -3,6 +3,7 @@ import CardMedia from "@mui/material/CardMedia"
 import Typography from "@mui/material/Typography"
 
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 import DialogAnimeInfo from "../DialogAnimeInfo"
 
@@ -15,6 +16,8 @@ const AnimeCard = ({ anime }) => {
     window.innerWidth ||
     document.documentElement.clientWidth ||
     document.body.clientWidth
+
+  const linkTo = `/anime/${anime.id}`
 
   const handleMouseEnter = (e) => {
     setShowDialog(true)
@@ -32,17 +35,20 @@ const AnimeCard = ({ anime }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <CardMedia
-          className={styles.cardImage}
-          component="img"
-          image={anime.cover_image}
-          alt={anime.titles.en || anime.titles.rj}
-        />
+        <Link to={linkTo}>
+          <CardMedia
+            className={styles.cardImage}
+            component="img"
+            image={anime.cover_image}
+            alt={anime.titles.en || anime.titles.rj}
+          />
+        </Link>
         <Typography
           className={styles.title}
           gutterBottom
           variant="h5"
-          component="div"
+          component={Link}
+          to={linkTo}
         >
           {anime.titles.en || anime.titles.rj}
         </Typography>

@@ -1,11 +1,14 @@
 import Card from "@mui/material/Card"
-import Chip from "../ui/Chip"
-import styles from "./styles.module.scss"
-import SentimentSatisfiedAltOutlinedIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined"
-import SentimentNeutralIcon from "@mui/icons-material/SentimentNeutral"
-import RatingIcon from "../ui/RatingIcon"
-import { ANIME_CONSTANTS } from "../../utils/constants"
+
 import { useLayoutEffect, useRef } from "react"
+
+import Chip from "../ui/Chip"
+import RatingIcon from "../ui/RatingIcon"
+
+import styles from "./styles.module.scss"
+
+import { ENUMS, ANIME_CONSTANTS } from "../../utils/constants"
+
 const DialogAnimeInfo = ({ anime }) => {
   const { STATUS, SEASON, FORMATS } = ANIME_CONSTANTS
 
@@ -29,10 +32,10 @@ const DialogAnimeInfo = ({ anime }) => {
   }
 
   return (
-    <Card className={`${styles.dialogInfo}`} ref={ref}>
+    <Card className={styles.dialogInfo} ref={ref}>
       <div className={`${styles.infoContainer} ${styles.first}`}>
         <span>
-          {SEASON[anime.season_period]} {anime.season_year}{" "}
+          {SEASON[ENUMS.SEASON[anime.season_period]]} {anime.season_year}{" "}
         </span>
         <div className={styles.ratingContainer}>
           <RatingIcon score={anime.score} />
@@ -40,10 +43,12 @@ const DialogAnimeInfo = ({ anime }) => {
         </div>
       </div>
       <div className={styles.infoContainer}>
-        <span className={styles.status}>{STATUS[anime.status]}</span>
+        <span className={styles.status}>
+          {STATUS[ENUMS.STATUS[anime.status]]}
+        </span>
       </div>
       <div className={styles.infoContainer}>
-        <span>{FORMATS[anime.format]}</span>
+        <span>{FORMATS[ENUMS.FORMATS[anime.format]]}</span>
         <span>{anime.episodes_count} episodes</span>
       </div>
       <div className={styles.chipContainer}>

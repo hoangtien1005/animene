@@ -22,7 +22,7 @@ const Home = ({}) => {
 
   useEffect(() => {
     // console.log('search', generateApiParameters(location.search))
-
+    console.log(location.search)
     dispatch(fetchAllAnimes(location.search))
     window.scrollTo(0, 0)
   }, [dispatch, location.search])
@@ -30,10 +30,10 @@ const Home = ({}) => {
   return (
     <>
       <Filters />
-      {loading && <Loading type="horizontal" />}
+      {loading && <Loading type="default" />}
       {data && data.status_code === 200 && (
         <>
-          <AnimeCardList animes={data.data.documents} type="horizontal" />
+          <AnimeCardList animes={data.data.documents} type="default" />
           <Pagination total={data.data.count} />
         </>
       )}

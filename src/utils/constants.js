@@ -1,27 +1,42 @@
 export const ANIME_BASE_URL = "https://api.aniapi.com/v1"
 export const SERVER_BASE_URL = "http://localhost:5000"
 
+export const ENUMS = {
+  FORMATS: ["TV", "TV_SHORT", "MOVIE", "SPECIAL", "OVA", "ONA", "MUSIC"],
+  STATUS: ["FINISHED", "RELEASING", "NOT_YET_RELEASED", "CANCELLED"],
+  SEASON: ["WINTER", "SPRING", "SUMMER", "FALL", "UNKNOWN"],
+  DAY: [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ]
+}
+
 export const ANIME_CONSTANTS = {
   FORMATS: {
-    0: "TV Show",
-    1: "TV Short",
-    2: "Movie",
-    3: "Special",
-    4: "OVA",
-    5: "ONA",
-    6: "Music"
+    TV: "TV Show",
+    TV_SHORT: "TV Short",
+    MOVIE: "Movie",
+    SPECIAL: "Special",
+    OVA: "OVA",
+    ONA: "ONA",
+    MUSIC: "Music"
   },
   STATUS: {
-    0: "Finished",
-    1: "Releasing",
-    2: "Not released yet",
-    3: "Cancelled"
+    FINISHED: "Finished",
+    RELEASING: "Releasing",
+    NOT_YET_RELEASED: "Not released yet",
+    CANCELLED: "Cancelled"
   },
   SEASON: {
-    0: "Winter",
-    1: "Spring",
-    2: "Summer",
-    3: "Fall"
+    WINTER: "Winter",
+    SPRING: "Spring",
+    SUMMER: "Summer",
+    FALL: "Fall"
   },
   GENRES: [
     "Action",

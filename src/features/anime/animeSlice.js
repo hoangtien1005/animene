@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { callAnimeApi } from "../../utils/callApi"
-import { generateApiParameters } from "../../utils/utils"
 
 const initialState = {
   loading: null,
@@ -11,9 +10,9 @@ const initialState = {
 export const fetchAllAnimes = createAsyncThunk(
   "anime-list",
   async (searchString) => {
-    const paramsString = generateApiParameters(searchString)
+    const paramsString = searchString
     const { data } = await callAnimeApi({
-      endpoint: `anime?${paramsString}`
+      endpoint: `anime${paramsString}`
     })
     return { data }
   }
