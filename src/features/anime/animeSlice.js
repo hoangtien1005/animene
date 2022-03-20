@@ -2,39 +2,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { callAnimeApi } from "../../utils/callApi"
 import { generateApiParameters } from "../../utils/utils"
 
-const initialSearchConfig = {
-  title: {
-    value: null,
-    multiple: false
-  },
-  formats: {
-    value: null,
-    multiple: true
-  },
-  status: {
-    value: null,
-    multiple: false
-  },
-  year: {
-    value: null,
-    multiple: false
-  },
-  season: {
-    value: null,
-    multiple: false
-  },
-  genres: {
-    value: null,
-    multiple: true
-  },
-  page: 1
-}
-
 const initialState = {
   loading: null,
   error: null,
-  data: null,
-  searchConfig: initialSearchConfig
+  data: null
 }
 
 export const fetchAllAnimes = createAsyncThunk(

@@ -62,23 +62,27 @@ const customStyles = {
 const Component = ({ title, options, type, multiple }) => {
   const location = useLocation()
   const history = useHistory()
-  const query = useMemo(() => {
+  const params = useMemo(() => {
     return new URLSearchParams(location.search)
   }, [location.search])
 
+  // calculate the default value for the filters
   const defaultValue = useMemo(() => {
-    const temp = query.get(type)
-
-    if (multiple && temp) {
+    const paramsValue = params.get(type)
+    // multiple value filters
+    if (multiple && paramsValue) {
       const res = []
-      for (const value of temp.split(",")) {
+      for (const value of paramsValue.split(",")) {
         res.push(options.find((option) => option.label.toLowerCase() === value))
       }
       return res
-    } else if (temp) {
-      return options.find((option) => option.label.toLowerCase() === temp)
+      // single value filters
+    } else if (paramsValue) {
+      return options.find(
+        (option) => option.label.toLowerCase() === paramsValue
+      )
     }
-  }, [multiple, options, query, type])
+  }, [multiple, options, params, type])
 
   const handleChange = (selectedOptions) => {
     let value = ""
@@ -90,8 +94,10 @@ const Component = ({ title, options, type, multiple }) => {
       value = selectedOptions ? selectedOptions.label.toLowerCase() : ""
     }
     const params = new URLSearchParams(location.search)
-    if (value === "") params.delete(type)
-    else params.set(type, value)
+    if (value === "") {
+      params.delete(type)
+    } else params.set(type, value)
+    params.delete("page")
     history.replace({ pathname: location.pathname, search: params.toString() })
   }
   return (

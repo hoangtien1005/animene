@@ -3,10 +3,15 @@ import { Link } from "react-router-dom"
 import "./styles.scss"
 
 const Chip = ({ children, className, ...props }) => {
+  const linkTo = `anime-list?genres=${children
+    .toLowerCase()
+    .split(" ")
+    .join("+")}`
+
   return (
-    <span {...props} className={clsx("chip", className)}>
+    <Link {...props} to={linkTo} className={clsx("chip", className)}>
       {children}
-    </span>
+    </Link>
   )
 }
 export default Chip

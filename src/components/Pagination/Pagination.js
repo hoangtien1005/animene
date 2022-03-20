@@ -2,18 +2,22 @@ import Pagination from "@mui/material/Pagination"
 import PaginationItem from "@mui/material/PaginationItem"
 import Stack from "@mui/material/Stack"
 
-import { Link, useLocation } from "react-router-dom"
+import { useLocation, useHistory } from "react-router-dom"
 
 import styles from "./styles.module.scss"
 
-export default function CustomPagination({ total }) {
+export default function CustomPagination({ total: totalPages }) {
   const location = useLocation()
-  const query = new URLSearchParams(location.search)
-  const page = parseInt(query.get("page") || "1", 10)
-  const pages = Math.ceil(total / 100)
-  let newSearch = ""
-  if (page !== "1") {
-    newSearch = location.search.split("&page")[0]
+  const history = useHistory()
+  const params = new URLSearchParams(location.search)
+  const page = parseInt(params.get("page") || "1", 10)
+  const pages = Math.ceil(totalPages / 100)
+
+  const handleChange = (e, value) => {
+    if (value === 1 || value === "1") {
+      params.delete("page")
+    } else params.set("page", value)
+    history.replace({ pathname: location.pathname, search: params.toString() })
   }
 
   return (
@@ -22,19 +26,8 @@ export default function CustomPagination({ total }) {
         className={styles.pagination}
         page={page}
         count={pages}
-        renderItem={(item) => {
-          if (item.page !== page) {
-            return (
-              <PaginationItem
-                component={Link}
-                to={`${newSearch}${item.page > 1 ? "&page=" + item.page : ""}`}
-                {...item}
-              />
-            )
-          } else {
-            return <PaginationItem {...item} />
-          }
-        }}
+        onChange={handleChange}
+        renderItem={(item) => <PaginationItem {...item} />}
       />
     </Stack>
   )

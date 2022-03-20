@@ -10,7 +10,7 @@ import AnimeNotFound from "../../../components/AnimeNotFound"
 import Loading from "../../../components/Loading"
 import Pagination from "../../../components/Pagination"
 
-import { generateApiParameters } from "../../../utils/utils"
+// import { generateApiParameters } from "../../../utils/utils"
 import { selectAnime, fetchAllAnimes } from "../../../features/anime/animeSlice"
 
 const Home = ({}) => {
@@ -21,7 +21,7 @@ const Home = ({}) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    // console.log(generateApiParameters(location.search))
+    // console.log('search', generateApiParameters(location.search))
 
     dispatch(fetchAllAnimes(location.search))
     window.scrollTo(0, 0)
@@ -30,10 +30,10 @@ const Home = ({}) => {
   return (
     <>
       <Filters />
-      {loading && <Loading />}
+      {loading && <Loading type="horizontal" />}
       {data && data.status_code === 200 && (
         <>
-          <AnimeCardList animes={data.data.documents} />
+          <AnimeCardList animes={data.data.documents} type="horizontal" />
           <Pagination total={data.data.count} />
         </>
       )}

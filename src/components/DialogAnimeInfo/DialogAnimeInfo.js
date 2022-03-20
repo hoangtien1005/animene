@@ -3,6 +3,7 @@ import Chip from "../ui/Chip"
 import styles from "./styles.module.scss"
 import SentimentSatisfiedAltOutlinedIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined"
 import SentimentNeutralIcon from "@mui/icons-material/SentimentNeutral"
+import RatingIcon from "../ui/RatingIcon"
 import { ANIME_CONSTANTS } from "../../utils/constants"
 import { useLayoutEffect, useRef } from "react"
 const DialogAnimeInfo = ({ anime }) => {
@@ -34,12 +35,7 @@ const DialogAnimeInfo = ({ anime }) => {
           {SEASON[anime.season_period]} {anime.season_year}{" "}
         </span>
         <div className={styles.ratingContainer}>
-          {anime.score >= 75 && (
-            <SentimentSatisfiedAltOutlinedIcon style={{ color: "#7FD65B" }} />
-          )}
-          {anime.score < 75 && (
-            <SentimentNeutralIcon style={{ color: "#F6B791" }} />
-          )}
+          <RatingIcon score={anime.score} />
           <span>{anime.score}%</span>
         </div>
       </div>

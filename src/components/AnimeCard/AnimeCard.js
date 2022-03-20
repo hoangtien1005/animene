@@ -36,7 +36,7 @@ const AnimeCard = ({ anime }) => {
           className={styles.cardImage}
           component="img"
           image={anime.cover_image}
-          alt="cover image"
+          alt={anime.titles.en || anime.titles.rj}
         />
         <Typography
           className={styles.title}

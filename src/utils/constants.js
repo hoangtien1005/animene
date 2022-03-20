@@ -38,7 +38,7 @@ export const ANIME_CONSTANTS = {
     "Psychological",
     "Romance",
     "Sci-Fi",
-    "Slice Of Life",
+    "Slice of Life",
     "Sports",
     "Supernatural",
     "Thriller",
