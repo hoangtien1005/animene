@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-
+import { useState, useEffect } from "react"
 import styles from "./styles.module.scss"
 
 import Chip from "../ui/Chip"

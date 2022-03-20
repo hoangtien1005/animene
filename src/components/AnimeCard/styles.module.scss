@@ -18,6 +18,7 @@
 
     .cardImage {
         height: 196px;
+        animation: opacity 0.3s linear;
         @include breakpoint(md) {
             height: 265px;
         }

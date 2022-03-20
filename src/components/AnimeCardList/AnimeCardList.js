@@ -17,7 +17,6 @@ const AnimeCardList = ({ animes, type }) => {
             <Lazyload
               key={anime.id}
               height={200}
-              debounce={100}
               offset={50}
               placeholder={<CardSkeleton type={type} />}
             >
@@ -34,7 +33,6 @@ const AnimeCardList = ({ animes, type }) => {
         <Grid item xs={4} sm={3} md={2.4} key={anime.id}>
           <Lazyload
             height={200}
-            debounce={100}
             offset={50}
             placeholder={<CardSkeleton type={type} />}
           >

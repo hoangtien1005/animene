@@ -6,3 +6,11 @@
     background-color: $color-white;
     padding: 8px;
 }
+
+.card-horizontal,
+.card-default,
+.card-square {
+    &[animation="1"] {
+        animation: scaleUpCenter 0.2s linear;
+    }
+}
