@@ -19,7 +19,7 @@
         margin-bottom: 12px;
 
         .status {
-            color: $color-bg-dark;
+            color: $color-pr-5;
         }
     }
 
@@ -39,9 +39,25 @@
     .chip {
         margin-right: 4px;
     }
+
+    
 }
 
 .dialogInfo.left {
     right: calc(100% + 16px) !important;
     left: unset;
+}
+
+.formatEpisodeContainer {
+    margin-bottom: 12px;
+
+    .format {
+        margin-right: 8px;
+    }
+
+    .format,
+    .episode {
+        font-size: 13px;
+        color: $color-text-md;
+    }
 }

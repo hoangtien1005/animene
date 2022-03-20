@@ -47,9 +47,11 @@ const DialogAnimeInfo = ({ anime }) => {
           {STATUS[ENUMS.STATUS[anime.status]]}
         </span>
       </div>
-      <div className={styles.infoContainer}>
-        <span>{FORMATS[ENUMS.FORMATS[anime.format]]}</span>
-        <span>{anime.episodes_count} episodes</span>
+      <div className={styles.formatEpisodeContainer}>
+        <span className={styles.format}>
+          {FORMATS[ENUMS.FORMATS[anime.format]]}
+        </span>
+        <span className={styles.episode}>{anime.episodes_count} episodes</span>
       </div>
       <div className={styles.chipContainer}>
         {genres.map((genre) => (
