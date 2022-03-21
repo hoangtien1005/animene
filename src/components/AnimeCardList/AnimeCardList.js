@@ -7,6 +7,7 @@ import styles from "./styles.module.scss"
 import AnimeCard from "../AnimeCard"
 
 import AnimeCardHorizontal from "../AnimeCardHorizontal"
+import AnimeCardSquare from "../AnimeCardSquare"
 
 const AnimeCardList = ({ animes, type }) => {
   if (type === "horizontal") {
@@ -21,6 +22,24 @@ const AnimeCardList = ({ animes, type }) => {
               placeholder={<CardSkeleton type={type} />}
             >
               <AnimeCardHorizontal anime={anime} />
+            </Lazyload>
+          </Grid>
+        ))}
+      </>
+    )
+  }
+  if (type === "square") {
+    return (
+      <>
+        {animes.map((anime) => (
+          <Grid item xs={12} md={6} key={anime.id}>
+            <Lazyload
+              key={anime.id}
+              height={200}
+              offset={50}
+              placeholder={<CardSkeleton type={type} />}
+            >
+              <AnimeCardSquare anime={anime} />
             </Lazyload>
           </Grid>
         ))}

@@ -1,14 +1,24 @@
 import Grid from "@mui/material/Grid"
-import { useMemo } from "react"
+import { useMemo, useState, useCallback } from "react"
 
 import styles from "./styles.module.scss"
+import clsx from "clsx"
 
 import Filter from "../Filter"
 import SearchBar from "../SearchBar"
+import FilterAltIcon from "@mui/icons-material/FilterAlt"
 
 import { ANIME_CONSTANTS } from "../../utils/constants"
 
 const Filters = () => {
+  const [showFilters, setShowFilters] = useState(true)
+
+  console.log("filters render")
+
+  const handleShowFilters = useCallback(() => {
+    setShowFilters((prevState) => !prevState)
+  }, [])
+
   const [genres, formats, ...filters] = useMemo(() => {
     const { SEASON, FORMATS, STATUS, GENRES, LATEST_YEAR } = ANIME_CONSTANTS
 
@@ -42,23 +52,35 @@ const Filters = () => {
 
   return (
     <>
-      <Grid item xs={12}>
+      <Grid item xs={10} sm={11}>
         <h5 className={styles.filterTitle}>Search</h5>
         <SearchBar />
       </Grid>
-      {[genres, formats].map((filter) => (
-        <Grid item xs={12} sm={6} key={filter.type}>
-          <h5 className={styles.filterTitle}>{filter.title}</h5>
-          <Filter {...filter} />
-        </Grid>
-      ))}
+      <Grid item xs={2} sm={1}>
+        <div className={styles.filterIconContainer}>
+          <FilterAltIcon
+            onClick={handleShowFilters}
+            className={clsx(styles.filterIcon, {
+              [styles.active]: showFilters
+            })}
+          />
+        </div>
+      </Grid>
+      {showFilters &&
+        [genres, formats].map((filter) => (
+          <Grid item xs={12} sm={6} key={filter.type}>
+            <h5 className={styles.filterTitle}>{filter.title}</h5>
+            <Filter {...filter} />
+          </Grid>
+        ))}
 
-      {filters.map((filter) => (
-        <Grid item xs={12} sm={4} key={filter.type}>
-          <h5 className={styles.filterTitle}>{filter.title}</h5>
-          <Filter {...filter} />
-        </Grid>
-      ))}
+      {showFilters &&
+        filters.map((filter) => (
+          <Grid item xs={12} sm={4} key={filter.type}>
+            <h5 className={styles.filterTitle}>{filter.title}</h5>
+            <Filter {...filter} />
+          </Grid>
+        ))}
       <div className={styles.separator}></div>
     </>
   )

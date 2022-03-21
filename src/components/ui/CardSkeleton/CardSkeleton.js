@@ -33,6 +33,38 @@ const Component = ({ children, className, type, ...props }) => {
       </Stack>
     )
   }
+  if (type === "square") {
+    return (
+      <Stack
+        className="card-square"
+        direction="row"
+        height={265}
+        animation={animation}
+      >
+        <Skeleton variant="rectangular" height={265} width={200} />
+        <Stack style={{ width: "100%" }}>
+          <Skeleton
+            style={{ margin: "12px" }}
+            variant="text"
+            width="70%"
+            height={28}
+          />
+          <Skeleton
+            style={{ marginLeft: "8px", marginBottom: "12px" }}
+            variant="text"
+            width="40%"
+            height={20}
+          />
+          <Skeleton
+            style={{ marginLeft: "8px", marginBottom: "12px" }}
+            variant="text"
+            width="40%"
+            height={20}
+          />
+        </Stack>
+      </Stack>
+    )
+  }
 
   return (
     <Stack className="card-default" animation={animation}>
