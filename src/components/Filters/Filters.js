@@ -4,6 +4,7 @@ import { useMemo } from "react"
 import styles from "./styles.module.scss"
 
 import Filter from "../Filter"
+import SearchBar from "../SearchBar"
 
 import { ANIME_CONSTANTS } from "../../utils/constants"
 
@@ -41,6 +42,10 @@ const Filters = () => {
 
   return (
     <>
+      <Grid item xs={12}>
+        <h5 className={styles.filterTitle}>Search</h5>
+        <SearchBar />
+      </Grid>
       {[genres, formats].map((filter) => (
         <Grid item xs={12} sm={6} key={filter.type}>
           <h5 className={styles.filterTitle}>{filter.title}</h5>
