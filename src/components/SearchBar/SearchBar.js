@@ -37,7 +37,6 @@ const Component = () => {
       return () => clearTimeout(timer)
     } else {
       params.delete("title")
-      params.delete("page")
       history.replace({
         pathname: location.pathname,
         search: params.toString()
