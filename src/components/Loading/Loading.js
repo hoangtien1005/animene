@@ -6,8 +6,6 @@ import Grid from "@mui/material/Grid"
 import CardSkeleton from "../ui/CardSkeleton"
 
 export default function Loading({ type }) {
-  console.log("Loading")
-
   let config = {
     default: {
       xs: 4,

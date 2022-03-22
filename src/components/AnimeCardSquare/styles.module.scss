@@ -20,12 +20,35 @@
 }
 
 .coverImageContainer {
+    width: 188px;
     display: flex;
+    position: relative;
 }
 
 .coverImage {
+    width: 188px;
     height: 100%;
     animation: opacity 0.3s linear;
+}
+
+.titleContainer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+    padding: 12px;
+    background-color: rgba($color-overlay, 0.9);
+    &:hover {
+        .title {
+            color: $color-pr-4;
+        }
+    }
+
+    .title {
+        color: $color-white;
+        transition: all 0.2s;
+    }
 }
 
 .cardContainer {
@@ -72,7 +95,7 @@
     display: -webkit-box;
     text-overflow: ellipsis;
     overflow: hidden;
-    transition: all .2s;
+    transition: all .5s;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 7;
     padding: 0 16px;

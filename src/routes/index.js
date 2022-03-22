@@ -1,10 +1,16 @@
-import Home from "../containers/HomeTemplate/Home/Home.js"
+import Home from "../containers/HomeTemplate/Home"
+import AnimeList from "../containers/HomeTemplate/AnimeList"
 
 const routeHome = [
   {
     exact: true,
     path: "/",
     component: Home
+  },
+  {
+    exact: false,
+    path: "/anime-list",
+    component: AnimeList
   }
   // {
   //     exact: false,

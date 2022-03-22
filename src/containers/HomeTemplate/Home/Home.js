@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState, useCallback } from "react"
-import { useLocation } from "react-router-dom"
+import { useLocation, useHistory } from "react-router-dom"
 
 import styles from "./styles.module.scss"
 
@@ -28,10 +28,6 @@ const Home = ({}) => {
     window.scrollTo(0, 0)
   }, [dispatch, location.search])
 
-  const handleSortChange = useCallback((option) => {
-    console.log(option)
-  }, [])
-
   const handleViewChange = useCallback((option) => {
     setView(option)
     localStorage.setItem("view", option)
@@ -42,11 +38,7 @@ const Home = ({}) => {
   return (
     <>
       <Filters />
-      <SubFilters
-        view={view}
-        handleSortChange={handleSortChange}
-        handleViewChange={handleViewChange}
-      />
+      <SubFilters view={view} handleViewChange={handleViewChange} />
       {loading && <Loading type={view} />}
       {data && data.status_code === 200 && (
         <>

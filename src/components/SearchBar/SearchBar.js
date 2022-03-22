@@ -22,15 +22,13 @@ const Component = () => {
   const [value, setValue] = useState("")
   const inputRef = useRef()
 
-  console.log("search bar render")
-
   useEffect(() => {
     if (value.trim() !== "") {
       const timer = setTimeout(() => {
         params.set("title", value)
         params.delete("page")
         history.replace({
-          pathname: location.pathname,
+          pathname: "/anime-list",
           search: params.toString()
         })
       }, 500)

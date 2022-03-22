@@ -90,10 +90,9 @@ const Component = ({ title, options, type, multiple }) => {
     } else {
       value = selectedOptions ? selectedOptions.value : ""
     }
-    const params = new URLSearchParams(location.search)
     value === "" ? params.delete(type) : params.set(type, value)
     params.delete("page")
-    history.replace({ pathname: location.pathname, search: params.toString() })
+    history.replace({ pathname: "/anime-list", search: params.toString() })
   }
   return (
     <Select

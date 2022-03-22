@@ -6,7 +6,8 @@ import ViewComfyIcon from "@mui/icons-material/ViewComfy"
 import GridViewSharpIcon from "@mui/icons-material/GridViewSharp"
 import VerticalSplitIcon from "@mui/icons-material/VerticalSplit"
 
-import { memo } from "react"
+import { memo, useMemo } from "react"
+import { useHistory, useLocation } from "react-router-dom"
 
 import styles from "./styles.module.scss"
 import clsx from "clsx"
@@ -71,10 +72,33 @@ const customStyles = {
   })
 }
 
-const SubFilters = ({ view, handleViewChange, handleSortChange }) => {
+const SubFilters = ({ view, handleViewChange }) => {
+  const history = useHistory()
+  const location = useLocation()
   const { SORTS } = ANIME_CONSTANTS
 
+  const params = useMemo(() => {
+    return new URLSearchParams(location.search)
+  }, [location.search])
+
+  // calculate the default value for the filters
+  const defaultValue = useMemo(() => {
+    const paramsValue = params.get("sort_fields")
+    // multiple value filters
+    return paramsValue && SORTS.find((option) => option.value === paramsValue)
+  }, [SORTS, params])
+
   console.log("sub-filter render")
+
+  const handleSortChange = (option) => {
+    params.set("sort_fields", option.value)
+    params.set("sort_directions", option.direction)
+    params.delete("page")
+    history.push({
+      pathname: location.pathname,
+      search: params.toString()
+    })
+  }
 
   return (
     <Grid item xs={12}>
@@ -91,7 +115,7 @@ const SubFilters = ({ view, handleViewChange, handleSortChange }) => {
           hideSelectedOptions={false}
           styles={customStyles}
           options={SORTS}
-          defaultValue={SORTS[1]}
+          defaultValue={defaultValue || SORTS[1]}
         />
         <Divider orientation="vertical" variant="middle" flexItem />
         <Stack direction="row" spacing={1} alignItems="center">

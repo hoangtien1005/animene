@@ -27,6 +27,11 @@ const AnimeCardSquare = ({ anime }) => {
             src={anime.cover_image}
             alt={anime.titles.en || anime.titles.rj}
           />
+          <div className={styles.titleContainer}>
+            <h5 className={styles.title}>
+              {anime.titles.en || anime.titles.rj}
+            </h5>
+          </div>
         </Link>
       </div>
       <Stack className={styles.cardContainer} justifyContent="space-between">
@@ -58,7 +63,8 @@ const AnimeCardSquare = ({ anime }) => {
         <div
           className={styles.descriptionContainer}
           dangerouslySetInnerHTML={{
-            __html: anime.descriptions.en || anime.descriptions.jp
+            __html:
+              anime.descriptions.en || anime.descriptions.jp || "No Description"
           }}
         ></div>
         <Stack

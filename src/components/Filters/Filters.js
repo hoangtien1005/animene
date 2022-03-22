@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid"
-import { useMemo, useState, useCallback } from "react"
+import { useMemo, useState, useCallback, memo } from "react"
 
 import styles from "./styles.module.scss"
 import clsx from "clsx"
@@ -85,4 +85,4 @@ const Filters = () => {
     </>
   )
 }
-export default Filters
+export default memo(Filters)

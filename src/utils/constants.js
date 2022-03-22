@@ -309,11 +309,11 @@ export const ANIME_CONSTANTS = {
   ],
 
   SORTS: [
-    { value: "titles.en", label: "Title", direction: -1 },
-    { value: "score", label: "Average Score", direction: 1 },
-    { value: "id", label: "Date Added", direction: 1 },
-    { value: "start_date", label: "Start Date", direction: 1 },
-    { value: "update_date", label: "Update Date", direction: 1 }
+    { value: "titles.en", label: "Title", direction: 1 },
+    { value: "score", label: "Average Score", direction: -1 },
+    { value: "id", label: "Date Added", direction: -1 },
+    { value: "start_date", label: "Start Date", direction: -1 },
+    { value: "update_date", label: "Update Date", direction: -1 }
   ],
 
   LATEST_YEAR: new Date().getFullYear() + 1
