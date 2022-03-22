@@ -1,7 +1,6 @@
 import Stack from "@mui/material/Stack"
 
 import { Link } from "react-router-dom"
-import { useState, useEffect } from "react"
 
 import styles from "./styles.module.scss"
 
@@ -11,7 +10,7 @@ import RatingIcon from "../ui/RatingIcon"
 import { ENUMS, ANIME_CONSTANTS } from "../../utils/constants"
 
 const AnimeCardSquare = ({ anime }) => {
-  const { STATUS, SEASON, FORMATS } = ANIME_CONSTANTS
+  const { SEASON, FORMATS } = ANIME_CONSTANTS
   const genres = []
   const linkTo = `/anime/${anime.id}`
   //   get 3 genres

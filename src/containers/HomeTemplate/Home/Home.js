@@ -12,7 +12,7 @@ import Loading from "../../../components/Loading"
 
 import { selectHome, fetchHomeAnimes } from "../../../features/home/homeSlice"
 
-const Home = ({}) => {
+const Home = () => {
   const { loading, data, error } = useSelector(selectHome)
 
   let trending, topThisSeason, upcoming, topAnimes

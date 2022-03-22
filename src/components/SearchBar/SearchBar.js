@@ -1,14 +1,7 @@
 import CloseIcon from "@mui/icons-material/Close"
 
 import { useHistory, useLocation } from "react-router-dom"
-import {
-  useState,
-  useRef,
-  useMemo,
-  useLayoutEffect,
-  useEffect,
-  memo
-} from "react"
+import { useState, useRef, useMemo, useEffect, memo } from "react"
 
 import styles from "./styles.module.scss"
 
