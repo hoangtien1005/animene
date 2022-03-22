@@ -39,7 +39,7 @@ export const callServerApi = async ({
 
 const getTopAnilistAnimesSortBy = (sortBy = "TRENDING_DESC") => {
   // the number of animes to be fetched
-  const perPage = 10
+  const perPage = 8
 
   var query = `
     query ($sortBy: [MediaSort]) {

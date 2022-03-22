@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { getHomeAnimes } from "../../utils/callApi"
+import { dateInPast } from "../../utils/utils"
 
 const initialState = {
   loading: null,
@@ -7,8 +8,24 @@ const initialState = {
   data: null
 }
 
+// TODO: store home data in personal server instead of local storage
 export const fetchHomeAnimes = createAsyncThunk("home", async () => {
-  const data = await getHomeAnimes()
+  let data
+  const homeStorage = JSON.parse(localStorage.getItem("homeStorage"))
+  const isExpired = homeStorage?.expired <= new Date()
+  if (!homeStorage || isExpired) {
+    let tomorrow = new Date()
+    tomorrow.setHours(7)
+    tomorrow.setMinutes(0)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    data = await getHomeAnimes()
+    const newHomeStorage = await { expired: tomorrow, data: data }
+    localStorage.setItem("homeStorage", JSON.stringify(newHomeStorage))
+  } else {
+    data = homeStorage.data
+    console.log(new Date(homeStorage.expired))
+  }
+
   return { data }
 })
 
