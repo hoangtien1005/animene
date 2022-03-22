@@ -1,0 +1,21 @@
+@import '../../styles/config';
+
+.footer {
+    min-height: 280px;
+    margin-top: 60px;
+    text-decoration: none;
+    background-color: $color-bg-footer;
+    color: $color-text-light;
+    padding-bottom: 16px;
+    a {
+        color: $color-text-light;
+        font-size: $fs-sm;
+        letter-spacing: 1px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.1s;
+        &:hover {
+            color: $color-pr-1;
+        }
+    }
+}
