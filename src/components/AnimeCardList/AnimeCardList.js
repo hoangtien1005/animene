@@ -2,21 +2,20 @@ import Grid from "@mui/material/Grid"
 import Lazyload from "react-lazyload"
 import CardSkeleton from "../ui/CardSkeleton"
 
-import styles from "./styles.module.scss"
+import { CARD_TYPES } from "../../utils/constants"
 
 import AnimeCard from "../AnimeCard"
-
 import AnimeCardHorizontal from "../AnimeCardHorizontal"
 import AnimeCardSquare from "../AnimeCardSquare"
 
 const AnimeCardList = ({ animes, type }) => {
-  if (type === "horizontal") {
+  if (type === CARD_TYPES.HORIZONTAL) {
     return (
       <>
         {animes.map((anime) => (
           <Grid item xs={12} key={anime.id}>
             <Lazyload
-              key={anime.id}
+              key={type}
               height={200}
               offset={50}
               placeholder={<CardSkeleton type={type} />}
@@ -28,13 +27,13 @@ const AnimeCardList = ({ animes, type }) => {
       </>
     )
   }
-  if (type === "square") {
+  if (type === CARD_TYPES.SQUARE) {
     return (
       <>
         {animes.map((anime) => (
           <Grid item xs={12} md={6} key={anime.id}>
             <Lazyload
-              key={anime.id}
+              key={type}
               height={200}
               offset={50}
               placeholder={<CardSkeleton type={type} />}

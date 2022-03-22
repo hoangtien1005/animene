@@ -10,9 +10,7 @@
 .card-horizontal,
 .card-default,
 .card-square {
-    &[animation="1"] {
-        animation: scaleUpCenter 0.2s linear;
-    }
+    animation: scaleUpCenter 0.2s linear;
 }
 
 .card-square {

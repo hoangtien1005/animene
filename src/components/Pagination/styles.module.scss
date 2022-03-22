@@ -2,9 +2,12 @@
 
 .paginationContainer {
     width: 100%;
-    display: block;
+    align-items: center;
+    @include breakpoint(md) {
+        align-items: unset;
+    }
 }
 
 .pagination {
-    margin-top: 20px;
+    margin-top: 36px;
 }

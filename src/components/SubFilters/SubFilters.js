@@ -12,7 +12,7 @@ import { useHistory, useLocation } from "react-router-dom"
 import styles from "./styles.module.scss"
 import clsx from "clsx"
 
-import { ANIME_CONSTANTS } from "../../utils/constants"
+import { ANIME_CONSTANTS, CARD_TYPES } from "../../utils/constants"
 
 const customTextStyles = {
   fontSize: "14px",
@@ -120,21 +120,21 @@ const SubFilters = ({ view, handleViewChange }) => {
         <Divider orientation="vertical" variant="middle" flexItem />
         <Stack direction="row" spacing={1} alignItems="center">
           <ViewComfyIcon
-            onClick={() => handleViewChange("default")}
+            onClick={() => handleViewChange(CARD_TYPES.DEFAULT)}
             className={clsx(styles.icon, {
-              [styles.active]: view === "default"
+              [styles.active]: view === CARD_TYPES.DEFAULT
             })}
           />
           <GridViewSharpIcon
-            onClick={() => handleViewChange("square")}
+            onClick={() => handleViewChange(CARD_TYPES.SQUARE)}
             className={clsx(styles.icon, {
-              [styles.active]: view === "square"
+              [styles.active]: view === CARD_TYPES.SQUARE
             })}
           />
           <VerticalSplitIcon
-            onClick={() => handleViewChange("horizontal")}
+            onClick={() => handleViewChange(CARD_TYPES.HORIZONTAL)}
             className={clsx(styles.icon, {
-              [styles.active]: view === "horizontal"
+              [styles.active]: view === CARD_TYPES.HORIZONTAL
             })}
           />
         </Stack>

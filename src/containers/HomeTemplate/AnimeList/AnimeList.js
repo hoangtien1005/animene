@@ -11,24 +11,24 @@ import AnimeNotFound from "../../../components/AnimeNotFound"
 import Loading from "../../../components/Loading"
 import Pagination from "../../../components/Pagination"
 
+import { CARD_TYPES } from "../../../utils/constants"
+
 import { selectAnime, fetchAllAnimes } from "../../../features/anime/animeSlice"
 
 const AnimeList = ({}) => {
   const { loading, data, error } = useSelector(selectAnime)
 
-  const [view, setView] = useState("default")
-
+  const [view, setView] = useState(CARD_TYPES.DEFAULT)
+  console.log("view", view)
   const location = useLocation()
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    setView(localStorage.getItem("view") || "default")
+    setView(localStorage.getItem("view") || CARD_TYPES.DEFAULT)
     dispatch(fetchAllAnimes(location.search))
     window.scrollTo(0, 0)
   }, [dispatch, location.search])
-
-  const handleSortChange = useCallback((option) => {}, [])
 
   const handleViewChange = useCallback((option) => {
     setView(option)
@@ -40,11 +40,7 @@ const AnimeList = ({}) => {
   return (
     <>
       <Filters />
-      <SubFilters
-        view={view}
-        handleSortChange={handleSortChange}
-        handleViewChange={handleViewChange}
-      />
+      <SubFilters view={view} handleViewChange={handleViewChange} />
       {loading && <Loading type={view} />}
       {data && data.status_code === 200 && (
         <>

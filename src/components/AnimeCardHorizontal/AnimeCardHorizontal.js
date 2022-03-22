@@ -36,11 +36,13 @@ const AnimeCardHorizontal = ({ anime }) => {
             <Link to={linkTo} className={styles.title}>
               {anime.titles.en || anime.titles.rj}
             </Link>
-            {genres.map((genre) => (
-              <Chip key={genre} className={styles.chip}>
-                {genre}
-              </Chip>
-            ))}
+            <div className={styles.genresContainer}>
+              {genres.map((genre) => (
+                <Chip key={genre} className={styles.chip}>
+                  {genre}
+                </Chip>
+              ))}
+            </div>
           </div>
         </div>
         <div className={styles.infoContainer}>

@@ -71,6 +71,10 @@
             color: $color-pr-5;
         }
     }
+    .genresContainer {
+        height: 20px;
+        overflow-y: hidden;
+    }
     
     .chip {
         margin-right: 6px;

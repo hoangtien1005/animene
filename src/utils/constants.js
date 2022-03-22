@@ -16,11 +16,13 @@ export const ENUMS = {
   ]
 }
 
-export const ANIME_CONSTANTS = {
-  POPULARITY_DESC: "POPULARITY_DESC",
-  TRENDING_DESC: "TRENDING_DESC",
-  FAVOURITES_DESC: "FAVOURITES_DESC",
+export const CARD_TYPES = {
+  DEFAULT: "default",
+  SQUARE: "square",
+  HORIZONTAL: "horizontal"
+}
 
+export const ANIME_CONSTANTS = {
   FORMATS: {
     TV: "TV Show",
     TV_SHORT: "TV Short",
