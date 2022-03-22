@@ -1,49 +1,56 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect, useState, useCallback } from "react"
-import { useLocation, useHistory } from "react-router-dom"
+import { useEffect, Fragment } from "react"
+
+import Grid from "@mui/material/Grid"
 
 import styles from "./styles.module.scss"
 
 import AnimeCardList from "../../../components/AnimeCardList"
 import Filters from "../../../components/Filters"
-import SubFilters from "../../../components/SubFilters"
 import AnimeNotFound from "../../../components/AnimeNotFound"
 import Loading from "../../../components/Loading"
-import Pagination from "../../../components/Pagination"
 
-import { selectAnime, fetchAllAnimes } from "../../../features/anime/animeSlice"
+import { selectHome, fetchHomeAnimes } from "../../../features/home/homeSlice"
 
 const Home = ({}) => {
-  const { loading, data, error } = useSelector(selectAnime)
+  const { loading, data, error } = useSelector(selectHome)
 
-  const [view, setView] = useState("default")
+  let trending, topThisSeason, upcoming, topAnimes
 
-  const location = useLocation()
+  if (data) [trending, topThisSeason, upcoming, topAnimes] = data
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    setView(localStorage.getItem("view") || "default")
-    dispatch(fetchAllAnimes(location.search))
+    dispatch(fetchHomeAnimes())
     window.scrollTo(0, 0)
-  }, [dispatch, location.search])
-
-  const handleViewChange = useCallback((option) => {
-    setView(option)
-    localStorage.setItem("view", option)
-  }, [])
+  }, [dispatch])
 
   console.log("home render")
 
   return (
     <>
       <Filters />
-      <SubFilters view={view} handleViewChange={handleViewChange} />
-      {loading && <Loading type={view} />}
-      {data && data.status_code === 200 && (
+      {loading && <Loading />}
+
+      {trending &&
+        topThisSeason &&
+        upcoming &&
+        [trending, topThisSeason, upcoming].map((animes) => (
+          <Fragment key={animes.title}>
+            <Grid item xs={12} className={styles.titleContainer}>
+              <h4 className={styles.title}>{animes.title.toUpperCase()}</h4>
+            </Grid>
+            <AnimeCardList animes={animes.data} />
+          </Fragment>
+        ))}
+
+      {topAnimes && (
         <>
-          <AnimeCardList animes={data.data.documents} type={view} />
-          <Pagination total={data.data.count} />
+          <Grid item xs={12} className={styles.titleContainer}>
+            <h4 className={styles.title}>{topAnimes.title.toUpperCase()}</h4>
+          </Grid>
+          <AnimeCardList type="horizontal" animes={topAnimes.data} />
         </>
       )}
       {data && data.status_code === 404 && (

@@ -17,6 +17,10 @@ export const ENUMS = {
 }
 
 export const ANIME_CONSTANTS = {
+  POPULARITY_DESC: "POPULARITY_DESC",
+  TRENDING_DESC: "TRENDING_DESC",
+  FAVOURITES_DESC: "FAVOURITES_DESC",
+
   FORMATS: {
     TV: "TV Show",
     TV_SHORT: "TV Short",

@@ -19,7 +19,7 @@ const Component = () => {
     return new URLSearchParams(location.search)
   }, [location.search])
 
-  const [value, setValue] = useState("")
+  const [value, setValue] = useState(params.get("title") || "")
   const inputRef = useRef()
 
   useEffect(() => {

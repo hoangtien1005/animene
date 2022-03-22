@@ -49,3 +49,18 @@ export const getCurrentSeason = (d = new Date()) => {
   }
   return season
 }
+
+export const getNextSeason = () => {
+  const { value: currentSeason } = getCurrentSeason()
+
+  const seasons = Object.keys(SEASON).map((key, idx) => {
+    return { value: key, label: SEASON[key], idx }
+  })
+  return seasons[
+    seasons.find((season) => season.value === currentSeason).idx + 1
+  ]
+}
+
+export const getCurrentYear = () => {
+  return new Date().getFullYear()
+}
