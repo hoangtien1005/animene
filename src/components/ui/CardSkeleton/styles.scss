@@ -5,6 +5,7 @@
     height: 80px;
     background-color: $color-white;
     padding: 8px;
+    box-shadow: 0 14px 30px rgba($color-box-shadow,.15),0 4px 4px rgba($color-box-shadow,.05);
 }
 
 .card-horizontal,
@@ -15,4 +16,5 @@
 
 .card-square {
     background-color: $color-white;
+    box-shadow: 0 14px 30px rgba($color-box-shadow,.15),0 4px 4px rgba($color-box-shadow,.05);
 }
