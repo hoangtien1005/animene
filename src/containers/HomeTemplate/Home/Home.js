@@ -30,6 +30,7 @@ const Home = () => {
 
   return (
     <>
+      <div style={{ marginTop: "80px", width: "100%" }}></div>
       <Filters />
       {loading && <Loading />}
 

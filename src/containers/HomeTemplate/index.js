@@ -3,6 +3,7 @@ import { Route } from "react-router"
 import { Redirect } from "react-router-dom"
 
 import Header from "../../components/Header"
+import LandingSlider from "../../components/LandingSlider"
 import Footer from "../../components/Footer"
 import ScrollToTop from "../../components/ScrollToTop"
 
@@ -24,6 +25,7 @@ const LayoutHome = (props) => {
   return (
     <>
       <Header />
+      {/* <LandingSlider /> */}
       <Container>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={spacing}>
