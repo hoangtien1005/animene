@@ -7,7 +7,10 @@ import Wallpaper2 from "../../assets/img/wallpaper/wallpaper2.jpeg"
 import Wallpaper3 from "../../assets/img/wallpaper/wallpaper3.jpg"
 
 // Import Swiper styles
-import "swiper/css"
+// import "swiper/css"
+import "swiper/swiper-bundle.min.css"
+import "swiper/swiper.min.css"
+
 const Component = () => {
   return (
     <Swiper
