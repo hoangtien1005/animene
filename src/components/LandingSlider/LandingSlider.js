@@ -1,13 +1,16 @@
 import styles from "./styles.module.scss"
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react"
+import { Swiper, SwiperSlide } from "swiper/react"
 import { Scrollbar, Autoplay } from "swiper"
 import Wallpaper1 from "../../assets/img/wallpaper/wallpaper1.jpg"
 import Wallpaper2 from "../../assets/img/wallpaper/wallpaper2.jpeg"
 import Wallpaper3 from "../../assets/img/wallpaper/wallpaper3.jpg"
 
 // Import Swiper styles
-import "swiper/css"
+// import "swiper/css"
+import "swiper/swiper-bundle.min.css"
+import "swiper/swiper.min.css"
+
 const Component = () => {
   return (
     <Swiper
