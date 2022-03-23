@@ -9,52 +9,35 @@ import AnimeCardHorizontal from "../AnimeCardHorizontal"
 import AnimeCardSquare from "../AnimeCardSquare"
 
 const AnimeCardList = ({ animes, type }) => {
+  let Card
+  let breakpoints
   if (type === CARD_TYPES.HORIZONTAL) {
-    return (
-      <>
-        {animes.map((anime) => (
-          <Grid item xs={12} key={anime.id}>
-            <Lazyload
-              key={type}
-              height={200}
-              offset={50}
-              placeholder={<CardSkeleton type={type} />}
-            >
-              <AnimeCardHorizontal anime={anime} />
-            </Lazyload>
-          </Grid>
-        ))}
-      </>
-    )
-  }
-  if (type === CARD_TYPES.SQUARE) {
-    return (
-      <>
-        {animes.map((anime) => (
-          <Grid item xs={12} md={6} key={anime.id}>
-            <Lazyload
-              key={type}
-              height={200}
-              offset={50}
-              placeholder={<CardSkeleton type={type} />}
-            >
-              <AnimeCardSquare anime={anime} />
-            </Lazyload>
-          </Grid>
-        ))}
-      </>
-    )
+    Card = AnimeCardHorizontal
+    breakpoints = { xs: 12, sm: 12, md: 12 }
+  } else if (type === CARD_TYPES.SQUARE) {
+    Card = AnimeCardSquare
+    breakpoints = { xs: 12, sm: 12, md: 6 }
+  } else {
+    Card = AnimeCard
+    breakpoints = { xs: 4, sm: 3, md: 2.4 }
   }
   return (
     <>
       {animes.map((anime) => (
-        <Grid item xs={4} sm={3} md={2.4} key={anime.id}>
+        <Grid
+          item
+          xs={breakpoints.xs}
+          sm={breakpoints.sm}
+          md={breakpoints.md}
+          key={anime.id}
+        >
           <Lazyload
+            key={type}
             height={200}
             offset={50}
             placeholder={<CardSkeleton type={type} />}
           >
-            <AnimeCard anime={anime} />
+            <Card anime={anime} />
           </Lazyload>
         </Grid>
       ))}

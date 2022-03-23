@@ -109,6 +109,11 @@
     padding: 16px;
     background-color: #eef0f1;
 
+    .genresContainer {
+        height: 20px;
+        overflow-y: hidden;
+    }
+
     .chip {
         margin-right: 8px;
     }

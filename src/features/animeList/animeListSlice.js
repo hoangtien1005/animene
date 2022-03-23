@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import { callAnimeApi } from "../../utils/callApi"
+import { callAnilistApi } from "../../utils/callApi"
+import { SEARCH_ANIMES_QUERY } from "../../utils/queries"
+import { ANIME_CONSTANTS } from "../../utils/constants"
 
 const initialState = {
   loading: null,
@@ -7,14 +9,45 @@ const initialState = {
   data: null
 }
 
+const generateVariables = (searchString, page) => {
+  const variables = {}
+  const { PARAMETERS } = ANIME_CONSTANTS
+  const rawParams = searchString.slice(1).split("&")
+  rawParams.forEach((rawParam) => {
+    const [rawType, rawValue] = rawParam.split("=")
+    let value
+    let type = PARAMETERS[rawType]
+    switch (rawType) {
+      case "genres":
+      case "formats":
+        value = rawValue.split("%2C")
+        variables[type] = value
+        break
+      case "year":
+        value = parseInt(rawValue)
+        break
+      default:
+        value = rawValue
+        break
+    }
+    variables[type] = value
+  })
+  variables.page = page || 1
+  console.log(variables)
+  return variables
+}
+
+const getAllAnimes = async (searchString, page) => {
+  const variables = generateVariables(searchString, page)
+  const { data } = await callAnilistApi(SEARCH_ANIMES_QUERY, variables)
+  return { data }
+}
+
 export const fetchAllAnimes = createAsyncThunk(
   "anime-list",
-  async (searchString) => {
-    const paramsString = searchString
-    const { data } = await callAnimeApi({
-      endpoint: `anime${paramsString}`
-    })
-    return { data }
+  async ({ searchString, page }) => {
+    const { data } = await getAllAnimes(searchString, page)
+    return { data: data.data.media }
   }
 )
 
@@ -30,8 +63,10 @@ const animeListSlice = createSlice({
         state.error = null
       })
       .addCase(fetchAllAnimes.fulfilled, (state, action) => {
+        const prevData = state.data || []
+        const newData = [...prevData, ...action.payload.data]
         state.loading = null
-        state.data = action.payload.data
+        state.data = newData
         state.error = null
       })
       .addCase(fetchAllAnimes.rejected, (state, action) => {

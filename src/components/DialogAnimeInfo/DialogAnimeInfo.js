@@ -7,12 +7,11 @@ import RatingIcon from "../ui/RatingIcon"
 
 import styles from "./styles.module.scss"
 
-import { ENUMS, ANIME_CONSTANTS } from "../../utils/constants"
+import { ANIME_CONSTANTS } from "../../utils/constants"
 
 const DialogAnimeInfo = ({ anime }) => {
   const { STATUS, SEASON, FORMATS } = ANIME_CONSTANTS
 
-  const genres = []
   const windowWidth =
     window.innerWidth ||
     document.documentElement.clientWidth ||
@@ -26,35 +25,29 @@ const DialogAnimeInfo = ({ anime }) => {
     }
   }, [windowWidth])
 
-  //   get 3 genres
-  for (let i = 0; i < 3; i++) {
-    if (anime.genres[i]) genres.push(anime.genres[i])
-  }
-
   return (
     <Card className={styles.dialogInfo} ref={ref}>
       <div className={`${styles.infoContainer} ${styles.first}`}>
         <span>
-          {SEASON[ENUMS.SEASON[anime.season_period]]} {anime.season_year}{" "}
+          {SEASON[anime.season]} {anime.seasonYear}{" "}
         </span>
         <div className={styles.ratingContainer}>
-          <RatingIcon score={anime.score} />
-          <span>{anime.score}%</span>
+          <RatingIcon score={anime.meanScore} />
+          <span>
+            {anime.meanScore}
+            {anime.meanScore && "%"}
+          </span>
         </div>
       </div>
       <div className={styles.infoContainer}>
-        <span className={styles.status}>
-          {STATUS[ENUMS.STATUS[anime.status]]}
-        </span>
+        <span className={styles.status}>{STATUS[anime.status]}</span>
       </div>
       <div className={styles.formatEpisodeContainer}>
-        <span className={styles.format}>
-          {FORMATS[ENUMS.FORMATS[anime.format]]}
-        </span>
-        <span className={styles.episode}>{anime.episodes_count} episodes</span>
+        <span className={styles.format}>{FORMATS[anime.format]}</span>
+        <span className={styles.episode}>{anime.episodes} episodes</span>
       </div>
       <div className={styles.chipContainer}>
-        {genres.map((genre) => (
+        {anime.genres.map((genre) => (
           <Chip className={styles.chip} key={genre}>
             {genre}
           </Chip>

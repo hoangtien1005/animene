@@ -12,14 +12,13 @@ const Component = () => {
     return new URLSearchParams(location.search)
   }, [location.search])
 
-  const [value, setValue] = useState(params.get("title") || "")
+  const [value, setValue] = useState(params.get("search") || "")
   const inputRef = useRef()
 
   useEffect(() => {
     if (value.trim() !== "") {
       const timer = setTimeout(() => {
-        params.set("title", value)
-        params.delete("page")
+        params.set("search", value)
         history.replace({
           pathname: "/anime-list",
           search: params.toString()
@@ -27,7 +26,7 @@ const Component = () => {
       }, 500)
       return () => clearTimeout(timer)
     } else {
-      params.delete("title")
+      params.delete("search")
       history.replace({
         pathname: location.pathname,
         search: params.toString()

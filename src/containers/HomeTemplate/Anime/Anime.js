@@ -23,14 +23,14 @@ const Component = ({}) => {
 
   return (
     <>
-      {loading && <Loading single />}
+      {/* {loading && <Loading single />}
       <div className={styles.bannerSpacer}></div>
       {data && data.status_code === 200 && (
         <div
           className={styles.banner}
           style={{ backgroundImage: `url(${data.data.banner_image})` }}
         ></div>
-      )}
+      )} */}
       {console.log(data)}
     </>
   )

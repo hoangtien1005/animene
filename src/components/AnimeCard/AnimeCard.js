@@ -39,8 +39,10 @@ const AnimeCard = ({ anime }) => {
           <CardMedia
             className={styles.cardImage}
             component="img"
-            image={anime.cover_image}
-            alt={anime.titles.en || anime.titles.rj}
+            image={anime.coverImage.large}
+            alt={
+              anime.title.romaji || anime.title.english || anime.title.native
+            }
           />
         </Link>
         <Typography
@@ -50,7 +52,7 @@ const AnimeCard = ({ anime }) => {
           component={Link}
           to={linkTo}
         >
-          {anime.titles.en || anime.titles.rj}
+          {anime.title.romaji || anime.title.english || anime.title.native}
         </Typography>
       </Card>
       {windowWidth > 890 && showDialog && <DialogAnimeInfo anime={anime} />}

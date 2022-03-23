@@ -24,6 +24,16 @@ export const CARD_TYPES = {
 }
 
 export const ANIME_CONSTANTS = {
+  PARAMETERS: {
+    genres: "genre_in",
+    formats: "format_in",
+    year: "seasonYear",
+    season: "season",
+    status: "status",
+    search: "search",
+    sort: "sort"
+  },
+
   FORMATS: {
     TV: "TV Show",
     TV_SHORT: "TV Short",
@@ -316,11 +326,13 @@ export const ANIME_CONSTANTS = {
   ],
 
   SORTS: [
-    { value: "titles.en", label: "Title", direction: 1 },
-    { value: "score", label: "Average Score", direction: -1 },
-    { value: "id", label: "Date Added", direction: -1 },
-    { value: "start_date", label: "Start Date", direction: -1 },
-    { value: "update_date", label: "Update Date", direction: -1 }
+    { value: "TITLE_ROMAJI", label: "Title" },
+    { value: "POPULARITY_DESC", label: "Popularity" },
+    { value: "SCORE_DESC", label: "Average Score" },
+    { value: "TRENDING_DESC", label: "Trending" },
+    { value: "FAVOURITES_DESC", label: "Favourites" },
+    { value: "ID_DESC", label: "Date Added" },
+    { value: "START_DATE_DESC", label: "Release Date" }
   ],
 
   LATEST_YEAR: new Date().getFullYear() + 1

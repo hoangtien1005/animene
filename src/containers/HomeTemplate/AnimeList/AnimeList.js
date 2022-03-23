@@ -9,7 +9,6 @@ import Filters from "../../../components/Filters"
 import SubFilters from "../../../components/SubFilters"
 import AnimeNotFound from "../../../components/AnimeNotFound"
 import Loading from "../../../components/Loading"
-import Pagination from "../../../components/Pagination"
 
 import { CARD_TYPES } from "../../../utils/constants"
 
@@ -18,10 +17,11 @@ import {
   fetchAllAnimes
 } from "../../../features/animeList/animeListSlice"
 
-const AnimeList = ({}) => {
+const AnimeList = () => {
   const { loading, data, error } = useSelector(selectAnimeList)
 
   const [view, setView] = useState(CARD_TYPES.DEFAULT)
+  const [page, setPage] = useState(1)
   console.log("view", view)
   const location = useLocation()
 
@@ -29,7 +29,7 @@ const AnimeList = ({}) => {
 
   useEffect(() => {
     setView(localStorage.getItem("view") || CARD_TYPES.DEFAULT)
-    dispatch(fetchAllAnimes(location.search))
+    dispatch(fetchAllAnimes({ searchString: location.search, page: 1 }))
     window.scrollTo(0, 0)
   }, [dispatch, location.search])
 
@@ -46,15 +46,13 @@ const AnimeList = ({}) => {
       <Filters />
       <SubFilters view={view} handleViewChange={handleViewChange} />
       {loading && <Loading type={view} />}
-      {data && data.status_code === 200 && (
+      {data && data.length > 0 && (
         <>
-          <AnimeCardList animes={data.data.documents} type={view} />
-          <Pagination total={data.data.count} />
+          <AnimeCardList animes={data} type={view} />
         </>
       )}
-      {data && data.status_code === 404 && (
-        <AnimeNotFound message="No Results" />
-      )}
+      {console.log("data", data)}
+      {data && data.length === 0 && <AnimeNotFound message="No Results" />}
       {error && <AnimeNotFound message={error.message} />}
     </>
   )

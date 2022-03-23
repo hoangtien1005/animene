@@ -83,7 +83,7 @@ const SubFilters = ({ view, handleViewChange }) => {
 
   // calculate the default value for the filters
   const defaultValue = useMemo(() => {
-    const paramsValue = params.get("sort_fields")
+    const paramsValue = params.get("sort")
     // multiple value filters
     return paramsValue && SORTS.find((option) => option.value === paramsValue)
   }, [SORTS, params])
@@ -91,9 +91,7 @@ const SubFilters = ({ view, handleViewChange }) => {
   console.log("sub-filter render")
 
   const handleSortChange = (option) => {
-    params.set("sort_fields", option.value)
-    params.set("sort_directions", option.direction)
-    params.delete("page")
+    params.set("sort", option.value)
     history.push({
       pathname: location.pathname,
       search: params.toString()
