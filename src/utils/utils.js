@@ -1,6 +1,6 @@
-import { ANIME_CONSTANTS, ENUMS } from "./constants"
+import { ANIME_CONSTANTS } from "./constants"
 
-const { GENRES, SEASON, FORMATS, STATUS } = ANIME_CONSTANTS
+const { SEASON } = ANIME_CONSTANTS
 
 // get the current season
 export const getCurrentSeason = (d = new Date()) => {

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { callAnimeApi } from "../../utils/callApi"
+import { ANILIST_BASE_URL } from "../../utils/constants"
 import {
   getCurrentSeason,
   getCurrentYear,
@@ -31,7 +32,7 @@ const getTopAnilistAnimesSortBy = (sortBy = "TRENDING_DESC") => {
     sortBy
   }
   // Define the config we'll need for our Api request
-  var url = "https://graphql.anilist.co",
+  var url = ANILIST_BASE_URL,
     options = {
       method: "POST",
       headers: {
