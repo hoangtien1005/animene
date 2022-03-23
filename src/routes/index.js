@@ -1,5 +1,6 @@
 import Home from "../containers/HomeTemplate/Home"
 import AnimeList from "../containers/HomeTemplate/AnimeList"
+import Anime from "../containers/HomeTemplate/Anime"
 
 const routeHome = [
   {
@@ -11,6 +12,11 @@ const routeHome = [
     exact: false,
     path: "/anime-list",
     component: AnimeList
+  },
+  {
+    exact: false,
+    path: "/anime/:anime_id",
+    component: Anime
   }
   // {
   //     exact: false,

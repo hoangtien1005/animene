@@ -13,10 +13,13 @@ import Pagination from "../../../components/Pagination"
 
 import { CARD_TYPES } from "../../../utils/constants"
 
-import { selectAnime, fetchAllAnimes } from "../../../features/anime/animeSlice"
+import {
+  selectAnimeList,
+  fetchAllAnimes
+} from "../../../features/animeList/animeListSlice"
 
 const AnimeList = ({}) => {
-  const { loading, data, error } = useSelector(selectAnime)
+  const { loading, data, error } = useSelector(selectAnimeList)
 
   const [view, setView] = useState(CARD_TYPES.DEFAULT)
   console.log("view", view)
@@ -39,6 +42,7 @@ const AnimeList = ({}) => {
 
   return (
     <>
+      <div style={{ marginTop: "80px", width: "100%" }}></div>
       <Filters />
       <SubFilters view={view} handleViewChange={handleViewChange} />
       {loading && <Loading type={view} />}

@@ -5,7 +5,7 @@ import styles from "./styles.module.scss"
 import Grid from "@mui/material/Grid"
 import CardSkeleton from "../ui/CardSkeleton"
 
-export default function Loading({ type }) {
+export default function Loading({ type, single }) {
   let config = {
     default: {
       xs: 4,
@@ -33,11 +33,12 @@ export default function Loading({ type }) {
         <LinearProgress color="inherit" />
       </Box>
 
-      {dummy.map((_, idx) => (
-        <Grid item xs={xs} sm={sm} md={md} key={idx}>
-          <CardSkeleton type={type} />
-        </Grid>
-      ))}
+      {!single &&
+        dummy.map((_, idx) => (
+          <Grid item xs={xs} sm={sm} md={md} key={idx}>
+            <CardSkeleton type={type} />
+          </Grid>
+        ))}
     </>
   )
 }

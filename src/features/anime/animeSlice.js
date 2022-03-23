@@ -7,16 +7,12 @@ const initialState = {
   data: null
 }
 
-export const fetchAllAnimes = createAsyncThunk(
-  "anime-list",
-  async (searchString) => {
-    const paramsString = searchString
-    const { data } = await callAnimeApi({
-      endpoint: `anime${paramsString}`
-    })
-    return { data }
-  }
-)
+export const fetchAnimeById = createAsyncThunk("anime", async (anime_id) => {
+  const { data } = await callAnimeApi({
+    endpoint: `anime/${anime_id}`
+  })
+  return { data }
+})
 
 const animeSlice = createSlice({
   name: "anime",
@@ -24,17 +20,17 @@ const animeSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllAnimes.pending, (state) => {
+      .addCase(fetchAnimeById.pending, (state) => {
         state.loading = true
         state.data = null
         state.error = null
       })
-      .addCase(fetchAllAnimes.fulfilled, (state, action) => {
+      .addCase(fetchAnimeById.fulfilled, (state, action) => {
         state.loading = null
         state.data = action.payload.data
         state.error = null
       })
-      .addCase(fetchAllAnimes.rejected, (state, action) => {
+      .addCase(fetchAnimeById.rejected, (state, action) => {
         state.loading = null
         state.data = null
         state.error = action.error
