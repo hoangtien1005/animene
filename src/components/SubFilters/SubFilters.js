@@ -88,8 +88,6 @@ const SubFilters = ({ view, handleViewChange }) => {
     return paramsValue && SORTS.find((option) => option.value === paramsValue)
   }, [SORTS, params])
 
-  console.log("sub-filter render")
-
   const handleSortChange = (option) => {
     params.set("sort", option.value)
     history.push({

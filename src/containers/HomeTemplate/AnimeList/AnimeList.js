@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom"
 
 import styles from "./styles.module.scss"
 
-import AnimeCardList from "../../../components/AnimeCardList"
+import InfiniteCardList from "../../../components/InfiniteCardList"
 import Filters from "../../../components/Filters"
 import SubFilters from "../../../components/SubFilters"
 import AnimeNotFound from "../../../components/AnimeNotFound"
@@ -15,32 +15,32 @@ import { CARD_TYPES } from "../../../utils/constants"
 
 import {
   selectAnimeList,
-  fetchAllAnimes
+  fetchAllAnimes,
+  fetchMoreAnimes
 } from "../../../features/animeList/animeListSlice"
 
 const AnimeList = () => {
-  const { loading, data, error } = useSelector(selectAnimeList)
+  const { loading, data, error, page, allLoaded } = useSelector(selectAnimeList)
 
   const [view, setView] = useState(CARD_TYPES.DEFAULT)
-  const [page, setPage] = useState(1)
-  console.log("view", view)
   const location = useLocation()
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     setView(localStorage.getItem("view") || CARD_TYPES.DEFAULT)
-    dispatch(fetchAllAnimes({ searchString: location.search, page: 1 }))
+    dispatch(fetchAllAnimes({ searchString: location.search }))
     window.scrollTo(0, 0)
   }, [dispatch, location.search])
 
   const handleViewChange = useCallback((option) => {
-    console.log("click")
     setView(option)
     localStorage.setItem("view", option)
   }, [])
 
-  console.log("anime list render")
+  const fetchMoreData = () => {
+    dispatch(fetchMoreAnimes({ searchString: location.search, page: page }))
+  }
 
   return (
     <>
@@ -58,10 +58,14 @@ const AnimeList = () => {
       <div style={{ marginTop: "28px", width: "100%" }}></div>
       {data && data.length > 0 && (
         <>
-          <AnimeCardList animes={data} type={view} />
+          <InfiniteCardList
+            animes={data}
+            allLoaded={allLoaded}
+            type={view}
+            fetchMoreData={fetchMoreData}
+          />
         </>
       )}
-      {console.log("data", data)}
       {data && data.length === 0 && <AnimeNotFound message="No Results" />}
       {error && <AnimeNotFound message={error.message} />}
     </>

@@ -42,8 +42,6 @@ const Home = () => {
     window.scrollTo(0, 0)
   }, [dispatch])
 
-  console.log("home render")
-
   return (
     <>
       <div style={{ marginTop: "80px", width: "100%" }}></div>

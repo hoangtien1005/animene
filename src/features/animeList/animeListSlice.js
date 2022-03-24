@@ -6,7 +6,9 @@ import { ANIME_CONSTANTS } from "../../utils/constants"
 const initialState = {
   loading: null,
   error: null,
-  data: null
+  data: [],
+  page: 1,
+  allLoaded: false
 }
 
 const generateVariables = (searchString, page) => {
@@ -43,6 +45,14 @@ const getAllAnimes = async (searchString, page) => {
 
 export const fetchAllAnimes = createAsyncThunk(
   "anime-list",
+  async ({ searchString }) => {
+    const { data } = await getAllAnimes(searchString, 1)
+    return { data: data.data.media }
+  }
+)
+
+export const fetchMoreAnimes = createAsyncThunk(
+  "more-anime-list",
   async ({ searchString, page }) => {
     const { data } = await getAllAnimes(searchString, page)
     return { data: data.data.media }
@@ -57,19 +67,39 @@ const animeListSlice = createSlice({
     builder
       .addCase(fetchAllAnimes.pending, (state) => {
         state.loading = true
-        state.data = null
+        state.data = []
         state.error = null
       })
       .addCase(fetchAllAnimes.fulfilled, (state, action) => {
-        const prevData = state.data || []
-        const newData = [...prevData, ...action.payload.data]
+        if (action.payload.data.length === 0) state.allLoaded = true
         state.loading = null
-        state.data = newData
+        state.page = 2
+        state.data = action.payload.data
         state.error = null
       })
       .addCase(fetchAllAnimes.rejected, (state, action) => {
         state.loading = null
-        state.data = null
+        state.page = 1
+        state.allLoaded = false
+        state.data = []
+        state.error = action.error
+      })
+      .addCase(fetchMoreAnimes.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(fetchMoreAnimes.fulfilled, (state, action) => {
+        if (action.payload.data.length === 0) state.allLoaded = true
+        state.loading = null
+        ++state.page
+        state.data.push(...action.payload.data)
+        state.error = null
+      })
+      .addCase(fetchMoreAnimes.rejected, (state, action) => {
+        state.loading = null
+        state.page = 1
+        state.allLoaded = false
+        state.data = []
         state.error = action.error
       })
   }
