@@ -1,7 +1,8 @@
-@import '../../styles/config';
+@import '../../../styles/config';
 
 .cardContainer {
     position: relative;
+    
 }
 
 .card {
@@ -11,7 +12,7 @@
     transition: 0.2s ease;
     cursor: pointer;
     &:hover {
-        .title {
+        .cardTitle {
             color: $color-pr-5;
         }
     }
@@ -24,10 +25,10 @@
         }
     }
 
-    .title {
+    .cardTitle {
         margin-top: 8px;
         text-align: left !important;
-        font-size: $fs-sm;
+        font-size: $fs-xs-sm;
         font-weight: 500;
         color: $color-text-md;
         transition: 0.1s ease-in;
@@ -44,4 +45,6 @@
         }
     }
 }
+
+
 

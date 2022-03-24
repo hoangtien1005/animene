@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { callAnimeApi, callAnilistApi } from "../../utils/callApi"
+import { ANIME_DETAILS_QUERY } from "../../utils/queries"
 // import { GET_HOME_DATA } from '../../utils/queries'
 
 const initialState = {
@@ -9,11 +10,8 @@ const initialState = {
 }
 
 export const fetchAnimeById = createAsyncThunk("anime", async (anime_id) => {
-  // const { data } = await callAnilistApi(GET_HOME_DATA)
-  // return { data }
-  // const { data } = await callAnimeApi({
-  //   endpoint: `anime/${anime_id}`
-  // })
+  const { data } = await callAnilistApi(ANIME_DETAILS_QUERY, { id: anime_id })
+  return { data: data.Media }
 })
 
 const animeSlice = createSlice({

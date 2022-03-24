@@ -1,5 +1,7 @@
 import CloseIcon from "@mui/icons-material/Close"
 
+import { PATHS } from "../../utils/constants"
+
 import { useHistory, useLocation } from "react-router-dom"
 import { useState, useRef, useMemo, useEffect, memo } from "react"
 
@@ -17,10 +19,14 @@ const Component = () => {
 
   useEffect(() => {
     if (value.trim() !== "") {
+      // example: '/search/anime' => dataType = anime
+      let dataType
+      if (location.pathname === "/") dataType = "ANIME"
+      else dataType = location.pathname.split("/")[2].toUpperCase()
       const timer = setTimeout(() => {
         params.set("search", value)
         history.replace({
-          pathname: "/anime-list",
+          pathname: PATHS[dataType].SEARCH,
           search: params.toString()
         })
       }, 500)

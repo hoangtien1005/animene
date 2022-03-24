@@ -1,3 +1,4 @@
+import { PATHS } from "../utils/constants"
 import Home from "../containers/HomeTemplate/Home"
 import AnimeList from "../containers/HomeTemplate/AnimeList"
 import Anime from "../containers/HomeTemplate/Anime"
@@ -10,29 +11,44 @@ const routeHome = [
   },
   {
     exact: false,
-    path: "/anime-list",
+    path: PATHS.ANIME.SEARCH,
     component: AnimeList
   },
   {
     exact: false,
-    path: "/anime/:anime_id",
+    path: `${PATHS.ANIME.DETAILS}/:id`,
+    component: Anime
+  },
+  {
+    exact: false,
+    path: PATHS.MANGA.SEARCH,
+    component: AnimeList
+  },
+  {
+    exact: false,
+    path: `${PATHS.MANGA.DETAILS}/:id`,
+    component: Anime
+  },
+  {
+    exact: false,
+    path: PATHS.STAFF.SEARCH,
+    component: AnimeList
+  },
+  {
+    exact: false,
+    path: `${PATHS.STAFF.DETAILS}/:id`,
+    component: Anime
+  },
+  {
+    exact: false,
+    path: PATHS.CHARACTER.SEARCH,
+    component: AnimeList
+  },
+  {
+    exact: false,
+    path: `${PATHS.CHARACTER.DETAILS}/:id`,
     component: Anime
   }
-  // {
-  //     exact: false,
-  //     path: "/calendar",
-  //     component: Calendar
-  // },
-  // {
-  //     exact: false,
-  //     path: "/todo-list",
-  //     component: TodoList
-  // },
-  // {
-  //     exact: false,
-  //     path: "/user-account",
-  //     component: UserAccount
-  // },
 ]
 
 export { routeHome }

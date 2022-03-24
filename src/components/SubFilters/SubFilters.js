@@ -72,7 +72,7 @@ const customStyles = {
   })
 }
 
-const SubFilters = ({ view, handleViewChange }) => {
+const SubFilters = ({ cardType, handleViewChange }) => {
   const history = useHistory()
   const location = useLocation()
   const { SORTS } = ANIME_CONSTANTS
@@ -118,19 +118,19 @@ const SubFilters = ({ view, handleViewChange }) => {
           <ViewComfyIcon
             onClick={() => handleViewChange(CARD_TYPES.DEFAULT)}
             className={clsx(styles.icon, {
-              [styles.active]: view === CARD_TYPES.DEFAULT
+              [styles.active]: cardType === CARD_TYPES.DEFAULT
             })}
           />
           <GridViewSharpIcon
             onClick={() => handleViewChange(CARD_TYPES.SQUARE)}
             className={clsx(styles.icon, {
-              [styles.active]: view === CARD_TYPES.SQUARE
+              [styles.active]: cardType === CARD_TYPES.SQUARE
             })}
           />
           <VerticalSplitIcon
             onClick={() => handleViewChange(CARD_TYPES.HORIZONTAL)}
             className={clsx(styles.icon, {
-              [styles.active]: view === CARD_TYPES.HORIZONTAL
+              [styles.active]: cardType === CARD_TYPES.HORIZONTAL
             })}
           />
         </Stack>

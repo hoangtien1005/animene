@@ -5,57 +5,57 @@ import InfiniteScroll from "react-infinite-scroll-component"
 import { CARD_TYPES } from "../../utils/constants"
 
 import styles from "./styles.module.scss"
-import AnimeCard from "../AnimeCard"
-import AnimeCardHorizontal from "../AnimeCardHorizontal"
-import AnimeCardSquare from "../AnimeCardSquare"
+import DefaultCard from "../cards/DefaultCard"
+import MediaCardHorizontal from "../cards/MediaCardHorizontal"
+import MediaCardSquare from "../cards/MediaCardSquare"
 import LoadingCardSkeleton from "../LoadingCardSkeleton"
 import GridContainer from "../ui/GridContainer"
 import CardSkeleton from "../ui/CardSkeleton"
 
-const InfiniteCardList = ({ animes, type, fetchMoreData, allLoaded }) => {
+const InfiniteCardList = ({ data, cardType, fetchMoreData, allLoaded }) => {
   let Card
   let breakpoints
-  if (type === CARD_TYPES.HORIZONTAL) {
-    Card = AnimeCardHorizontal
+  if (cardType === CARD_TYPES.HORIZONTAL) {
+    Card = MediaCardHorizontal
     breakpoints = { xs: 12, sm: 12, md: 12 }
-  } else if (type === CARD_TYPES.SQUARE) {
-    Card = AnimeCardSquare
+  } else if (cardType === CARD_TYPES.SQUARE) {
+    Card = MediaCardSquare
     breakpoints = { xs: 12, sm: 12, md: 6 }
   } else {
-    Card = AnimeCard
+    Card = DefaultCard
     breakpoints = { xs: 4, sm: 3, md: 2.4 }
   }
 
   return (
     <InfiniteScroll
       className={styles.infiniteScrollContainer}
-      dataLength={animes.length}
+      dataLength={data.length}
       next={fetchMoreData}
       hasMore={!allLoaded}
       scrollThreshold="600px"
       loader={
         <GridContainer>
           <div style={{ marginTop: "28px", width: "100%" }}></div>
-          <LoadingCardSkeleton type={type} />
+          <LoadingCardSkeleton type={cardType} />
         </GridContainer>
       }
     >
-      {animes.map((anime) => (
+      {data.map((dataItem) => (
         <Grid
           className={styles.infiniteScrollItem}
           item
           xs={breakpoints.xs}
           sm={breakpoints.sm}
           md={breakpoints.md}
-          key={anime.id}
+          key={dataItem.id}
         >
           <Lazyload
-            key={type}
+            key={cardType}
             height={200}
             offset={50}
-            placeholder={<CardSkeleton type={type} />}
+            placeholder={<CardSkeleton type={cardType} />}
           >
-            <Card anime={anime} />
+            <Card data={dataItem} />
           </Lazyload>
         </Grid>
       ))}
