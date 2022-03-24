@@ -113,7 +113,7 @@ const SubFilters = ({ view, handleViewChange }) => {
           hideSelectedOptions={false}
           styles={customStyles}
           options={SORTS}
-          defaultValue={defaultValue || SORTS[1]}
+          defaultValue={defaultValue || SORTS[2]}
         />
         <Divider orientation="vertical" variant="middle" flexItem />
         <Stack direction="row" spacing={1} alignItems="center">

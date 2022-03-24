@@ -1,14 +1,20 @@
 import Grid from "@mui/material/Grid"
+import useMediaQuery from "@mui/material/useMediaQuery"
 import Lazyload from "react-lazyload"
-import CardSkeleton from "../ui/CardSkeleton"
 
 import { CARD_TYPES } from "../../utils/constants"
 
 import AnimeCard from "../AnimeCard"
 import AnimeCardHorizontal from "../AnimeCardHorizontal"
 import AnimeCardSquare from "../AnimeCardSquare"
+import GridContainer from "../ui/GridContainer"
+import CardSkeleton from "../ui/CardSkeleton"
 
 const AnimeCardList = ({ animes, type }) => {
+  const isLarge = useMediaQuery("(min-width:1200px)")
+  const isMedium = useMediaQuery("(min-width:950px)")
+  const isSmall = useMediaQuery("(min-width:600px)")
+  const spacing = isLarge ? 4.5 : isMedium ? 3 : isSmall ? 2 : 1.5
   let Card
   let breakpoints
   if (type === CARD_TYPES.HORIZONTAL) {
@@ -22,7 +28,7 @@ const AnimeCardList = ({ animes, type }) => {
     breakpoints = { xs: 4, sm: 3, md: 2.4 }
   }
   return (
-    <>
+    <GridContainer spacing={spacing}>
       {animes.map((anime) => (
         <Grid
           item
@@ -41,7 +47,7 @@ const AnimeCardList = ({ animes, type }) => {
           </Lazyload>
         </Grid>
       ))}
-    </>
+    </GridContainer>
   )
 }
 export default AnimeCardList

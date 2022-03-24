@@ -10,7 +10,7 @@ const initialState = {
 }
 
 const generateVariables = (searchString, page) => {
-  const variables = {}
+  const variables = { sort: "SCORE_DESC", page: page || 1 }
   const { PARAMETERS } = ANIME_CONSTANTS
   const rawParams = searchString.slice(1).split("&")
   rawParams.forEach((rawParam) => {
@@ -32,8 +32,6 @@ const generateVariables = (searchString, page) => {
     }
     variables[type] = value
   })
-  variables.page = page || 1
-  console.log(variables)
   return variables
 }
 

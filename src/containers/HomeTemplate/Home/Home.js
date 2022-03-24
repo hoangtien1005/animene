@@ -9,7 +9,8 @@ import AnimeCardList from "../../../components/AnimeCardList"
 import Filters from "../../../components/Filters"
 import AnimeNotFound from "../../../components/AnimeNotFound"
 import Loading from "../../../components/Loading"
-
+import LoadingCardSkeleton from "../../../components/LoadingCardSkeleton"
+import GridContainer from "../../../components/ui/GridContainer"
 import { CARD_TYPES } from "../../../utils/constants"
 
 import { selectHome, fetchHomeAnimes } from "../../../features/home/homeSlice"
@@ -46,21 +47,28 @@ const Home = () => {
   return (
     <>
       <div style={{ marginTop: "80px", width: "100%" }}></div>
-      <Filters />
-      {loading && <Loading />}
+      <GridContainer>
+        <Filters />
+        {loading && (
+          <>
+            <Loading />
+            <LoadingCardSkeleton />
+          </>
+        )}
+      </GridContainer>
       {trendingNow && (
         <>
-          <Grid item xs={12} className={styles.titleContainer}>
+          <div className={styles.titleContainer}>
             <h4 className={styles.title}>TRENDING NOW</h4>
-          </Grid>
+          </div>
           <AnimeCardList animes={trendingNow.media.slice(0, numberOfCards)} />
         </>
       )}
       {mostPopularThisSeason && (
         <>
-          <Grid item xs={12} className={styles.titleContainer}>
+          <div className={styles.titleContainer}>
             <h4 className={styles.title}>POPULAR THIS SEASON</h4>
-          </Grid>
+          </div>
           <AnimeCardList
             animes={mostPopularThisSeason.media.slice(0, numberOfCards)}
           />
@@ -68,9 +76,9 @@ const Home = () => {
       )}
       {mostPopularNextSeason && (
         <>
-          <Grid item xs={12} className={styles.titleContainer}>
+          <div className={styles.titleContainer}>
             <h4 className={styles.title}>UPCOMING NEXT SEASON</h4>
-          </Grid>
+          </div>
           <AnimeCardList
             animes={mostPopularNextSeason.media.slice(0, numberOfCards)}
           />
@@ -78,17 +86,17 @@ const Home = () => {
       )}
       {mostPopular && (
         <>
-          <Grid item xs={12} className={styles.titleContainer}>
+          <div className={styles.titleContainer}>
             <h4 className={styles.title}>ALL TIME POPULAR</h4>
-          </Grid>
+          </div>
           <AnimeCardList animes={mostPopular.media.slice(0, numberOfCards)} />
         </>
       )}
       {topScore && (
         <>
-          <Grid item xs={12} className={styles.titleContainer}>
+          <div className={styles.titleContainer}>
             <h4 className={styles.title}>TOP 100 ANIMES</h4>
-          </Grid>
+          </div>
           <AnimeCardList type={CARD_TYPES.HORIZONTAL} animes={topScore.media} />
         </>
       )}

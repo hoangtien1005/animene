@@ -9,7 +9,8 @@ import Filters from "../../../components/Filters"
 import SubFilters from "../../../components/SubFilters"
 import AnimeNotFound from "../../../components/AnimeNotFound"
 import Loading from "../../../components/Loading"
-
+import LoadingCardSkeleton from "../../../components/LoadingCardSkeleton"
+import GridContainer from "../../../components/ui/GridContainer"
 import { CARD_TYPES } from "../../../utils/constants"
 
 import {
@@ -34,6 +35,7 @@ const AnimeList = () => {
   }, [dispatch, location.search])
 
   const handleViewChange = useCallback((option) => {
+    console.log("click")
     setView(option)
     localStorage.setItem("view", option)
   }, [])
@@ -43,9 +45,17 @@ const AnimeList = () => {
   return (
     <>
       <div style={{ marginTop: "80px", width: "100%" }}></div>
-      <Filters />
-      <SubFilters view={view} handleViewChange={handleViewChange} />
-      {loading && <Loading type={view} />}
+      <GridContainer>
+        <Filters />
+        <SubFilters view={view} handleViewChange={handleViewChange} />
+        {loading && (
+          <>
+            <Loading type={view} />
+            <LoadingCardSkeleton type={view} />
+          </>
+        )}
+      </GridContainer>
+      <div style={{ marginTop: "28px", width: "100%" }}></div>
       {data && data.length > 0 && (
         <>
           <AnimeCardList animes={data} type={view} />
