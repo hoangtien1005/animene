@@ -17,7 +17,8 @@ const generateVariables = (searchString, page) => {
   const rawParams = searchString.slice(1).split("&")
   rawParams.forEach((rawParam) => {
     let [rawType, rawValue] = rawParam.split("=")
-    if (rawValue.includes("+")) rawValue = rawValue.split("+").join(" ")
+    if (rawValue && rawValue.includes("+"))
+      rawValue = rawValue.split("+").join(" ")
     let value
     let type = PARAMETERS[rawType]
     switch (rawType) {
