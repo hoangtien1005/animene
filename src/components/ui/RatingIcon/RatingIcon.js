@@ -4,6 +4,8 @@ import SentimentNeutralIcon from "@mui/icons-material/SentimentNeutral"
 const RatingIcon = ({ score, className, ...props }) => {
   let Icon
 
+  if (!score) return <></>
+
   if (score >= 75) {
     Icon = { Component: SentimentSatisfiedAltOutlinedIcon, color: "#7FD65B" }
   } else {

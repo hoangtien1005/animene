@@ -1,20 +1,18 @@
 import Grid from "@mui/material/Grid"
-import useMediaQuery from "@mui/material/useMediaQuery"
 import Lazyload from "react-lazyload"
+import InfiniteScroll from "react-infinite-scroll-component"
 
 import { CARD_TYPES } from "../../utils/constants"
 
+import styles from "./styles.module.scss"
 import AnimeCard from "../AnimeCard"
 import AnimeCardHorizontal from "../AnimeCardHorizontal"
 import AnimeCardSquare from "../AnimeCardSquare"
+import LoadingCardSkeleton from "../LoadingCardSkeleton"
 import GridContainer from "../ui/GridContainer"
 import CardSkeleton from "../ui/CardSkeleton"
 
-const AnimeCardList = ({ animes, type }) => {
-  const isLarge = useMediaQuery("(min-width:1200px)")
-  const isMedium = useMediaQuery("(min-width:950px)")
-  const isSmall = useMediaQuery("(min-width:600px)")
-  const spacing = isLarge ? 4.5 : isMedium ? 3 : isSmall ? 2 : 1.5
+const InfiniteCardList = ({ animes, type, fetchMoreData, allLoaded }) => {
   let Card
   let breakpoints
   if (type === CARD_TYPES.HORIZONTAL) {
@@ -27,10 +25,24 @@ const AnimeCardList = ({ animes, type }) => {
     Card = AnimeCard
     breakpoints = { xs: 4, sm: 3, md: 2.4 }
   }
+
   return (
-    <GridContainer spacing={spacing}>
+    <InfiniteScroll
+      className={styles.infiniteScrollContainer}
+      dataLength={animes.length}
+      next={fetchMoreData}
+      hasMore={!allLoaded}
+      scrollThreshold="600px"
+      loader={
+        <GridContainer>
+          <div style={{ marginTop: "28px", width: "100%" }}></div>
+          <LoadingCardSkeleton type={type} />
+        </GridContainer>
+      }
+    >
       {animes.map((anime) => (
         <Grid
+          className={styles.infiniteScrollItem}
           item
           xs={breakpoints.xs}
           sm={breakpoints.sm}
@@ -47,7 +59,7 @@ const AnimeCardList = ({ animes, type }) => {
           </Lazyload>
         </Grid>
       ))}
-    </GridContainer>
+    </InfiniteScroll>
   )
 }
-export default AnimeCardList
+export default InfiniteCardList

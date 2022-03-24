@@ -97,7 +97,6 @@
     overflow: hidden;
     transition: all .5s;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 7;
     padding: 0 16px;
     &:hover {
         overflow: scroll;   
@@ -108,6 +107,11 @@
 .chipContainer {
     padding: 16px;
     background-color: #eef0f1;
+
+    .genresContainer {
+        height: 20px;
+        overflow-y: hidden;
+    }
 
     .chip {
         margin-right: 8px;

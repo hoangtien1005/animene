@@ -7,28 +7,27 @@ import styles from "./styles.module.scss"
 import Chip from "../ui/Chip"
 import RatingIcon from "../ui/RatingIcon"
 
-import { ENUMS, ANIME_CONSTANTS } from "../../utils/constants"
+import { ANIME_CONSTANTS } from "../../utils/constants"
 
 const AnimeCardSquare = ({ anime }) => {
   const { SEASON, FORMATS } = ANIME_CONSTANTS
-  const genres = []
+
   const linkTo = `/anime/${anime.id}`
-  //   get 3 genres
-  for (let i = 0; i < 3; i++) {
-    if (anime.genres[i]) genres.push(anime.genres[i])
-  }
+
   return (
     <Stack className={styles.card} direction="row">
       <div className={styles.coverImageContainer}>
         <Link to={linkTo}>
           <img
             className={styles.coverImage}
-            src={anime.cover_image}
-            alt={anime.titles.en || anime.titles.rj}
+            src={anime.coverImage.large}
+            alt={
+              anime.title.romaji || anime.title.english || anime.title.native
+            }
           />
           <div className={styles.titleContainer}>
             <h5 className={styles.title}>
-              {anime.titles.en || anime.titles.rj}
+              {anime.title.romaji || anime.title.english || anime.title.native}
             </h5>
           </div>
         </Link>
@@ -42,28 +41,23 @@ const AnimeCardSquare = ({ anime }) => {
         >
           <div>
             <span className={styles.season}>
-              {SEASON[ENUMS.SEASON[anime.season_period]]} {anime.season_year}{" "}
+              {SEASON[anime.season]} {anime.seasonYear}{" "}
             </span>
             <div>
-              <span className={styles.format}>
-                {FORMATS[ENUMS.FORMATS[anime.format]]}
-              </span>
+              <span className={styles.format}>{FORMATS[anime.format]}</span>
               <span className={styles.divider}>•</span>
-              <span className={styles.episode}>
-                {anime.episodes_count} episodes
-              </span>
+              <span className={styles.episode}>{anime.episodes} episodes</span>
             </div>
           </div>
           <div className={styles.ratingContainer}>
-            <RatingIcon score={anime.score} />
-            <span className={styles.score}>{anime.score}%</span>
+            <RatingIcon score={anime.meanScore} />
+            <span className={styles.score}>{anime.meanScore}%</span>
           </div>
         </Stack>
         <div
           className={styles.descriptionContainer}
           dangerouslySetInnerHTML={{
-            __html:
-              anime.descriptions.en || anime.descriptions.jp || "No Description"
+            __html: anime.description || anime.description || "No Description"
           }}
         ></div>
         <Stack
@@ -71,11 +65,13 @@ const AnimeCardSquare = ({ anime }) => {
           direction="row"
           alignItems="center"
         >
-          {genres.map((genre) => (
-            <Chip key={genre} className={styles.chip}>
-              {genre}
-            </Chip>
-          ))}
+          <div className={styles.genresContainer}>
+            {anime.genres.map((genre) => (
+              <Chip key={genre} className={styles.chip}>
+                {genre}
+              </Chip>
+            ))}
+          </div>
         </Stack>
       </Stack>
     </Stack>

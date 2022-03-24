@@ -4,32 +4,32 @@ import { useLocation } from "react-router-dom"
 
 import styles from "./styles.module.scss"
 
-import AnimeCardList from "../../../components/AnimeCardList"
+import InfiniteCardList from "../../../components/InfiniteCardList"
 import Filters from "../../../components/Filters"
 import SubFilters from "../../../components/SubFilters"
 import AnimeNotFound from "../../../components/AnimeNotFound"
 import Loading from "../../../components/Loading"
-import Pagination from "../../../components/Pagination"
-
+import LoadingCardSkeleton from "../../../components/LoadingCardSkeleton"
+import GridContainer from "../../../components/ui/GridContainer"
 import { CARD_TYPES } from "../../../utils/constants"
 
 import {
   selectAnimeList,
-  fetchAllAnimes
+  fetchAllAnimes,
+  fetchMoreAnimes
 } from "../../../features/animeList/animeListSlice"
 
-const AnimeList = ({}) => {
-  const { loading, data, error } = useSelector(selectAnimeList)
+const AnimeList = () => {
+  const { loading, data, error, page, allLoaded } = useSelector(selectAnimeList)
 
   const [view, setView] = useState(CARD_TYPES.DEFAULT)
-  console.log("view", view)
   const location = useLocation()
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     setView(localStorage.getItem("view") || CARD_TYPES.DEFAULT)
-    dispatch(fetchAllAnimes(location.search))
+    dispatch(fetchAllAnimes({ searchString: location.search }))
     window.scrollTo(0, 0)
   }, [dispatch, location.search])
 
@@ -38,23 +38,35 @@ const AnimeList = ({}) => {
     localStorage.setItem("view", option)
   }, [])
 
-  console.log("anime list render")
+  const fetchMoreData = () => {
+    dispatch(fetchMoreAnimes({ searchString: location.search, page: page }))
+  }
 
   return (
     <>
       <div style={{ marginTop: "80px", width: "100%" }}></div>
-      <Filters />
-      <SubFilters view={view} handleViewChange={handleViewChange} />
-      {loading && <Loading type={view} />}
-      {data && data.status_code === 200 && (
+      <GridContainer>
+        <Filters />
+        <SubFilters view={view} handleViewChange={handleViewChange} />
+        {loading && (
+          <>
+            <Loading type={view} />
+            <LoadingCardSkeleton type={view} />
+          </>
+        )}
+      </GridContainer>
+      <div style={{ marginTop: "28px", width: "100%" }}></div>
+      {data && data.length > 0 && (
         <>
-          <AnimeCardList animes={data.data.documents} type={view} />
-          <Pagination total={data.data.count} />
+          <InfiniteCardList
+            animes={data}
+            allLoaded={allLoaded}
+            type={view}
+            fetchMoreData={fetchMoreData}
+          />
         </>
       )}
-      {data && data.status_code === 404 && (
-        <AnimeNotFound message="No Results" />
-      )}
+      {data && data.length === 0 && <AnimeNotFound message="No Results" />}
       {error && <AnimeNotFound message={error.message} />}
     </>
   )

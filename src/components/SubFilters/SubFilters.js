@@ -83,17 +83,13 @@ const SubFilters = ({ view, handleViewChange }) => {
 
   // calculate the default value for the filters
   const defaultValue = useMemo(() => {
-    const paramsValue = params.get("sort_fields")
+    const paramsValue = params.get("sort")
     // multiple value filters
     return paramsValue && SORTS.find((option) => option.value === paramsValue)
   }, [SORTS, params])
 
-  console.log("sub-filter render")
-
   const handleSortChange = (option) => {
-    params.set("sort_fields", option.value)
-    params.set("sort_directions", option.direction)
-    params.delete("page")
+    params.set("sort", option.value)
     history.push({
       pathname: location.pathname,
       search: params.toString()
@@ -115,7 +111,7 @@ const SubFilters = ({ view, handleViewChange }) => {
           hideSelectedOptions={false}
           styles={customStyles}
           options={SORTS}
-          defaultValue={defaultValue || SORTS[1]}
+          defaultValue={defaultValue || SORTS[2]}
         />
         <Divider orientation="vertical" variant="middle" flexItem />
         <Stack direction="row" spacing={1} alignItems="center">

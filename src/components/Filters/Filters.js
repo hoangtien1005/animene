@@ -13,8 +13,6 @@ import { ANIME_CONSTANTS } from "../../utils/constants"
 const Filters = () => {
   const [showFilters, setShowFilters] = useState(true)
 
-  console.log("filters render")
-
   const handleShowFilters = useCallback(() => {
     setShowFilters((prevState) => !prevState)
   }, [])
