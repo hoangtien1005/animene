@@ -4,20 +4,19 @@ import Typography from "@mui/material/Typography"
 
 import { useState } from "react"
 import { Link } from "react-router-dom"
-
-import DialogAnimeInfo from "../DialogAnimeInfo"
+import { PATHS } from "../../../utils/constants"
+import MediaDialog from "../../MediaDialog"
 
 import styles from "./styles.module.scss"
 
-const AnimeCard = ({ anime }) => {
+const Component = ({ data }) => {
   const [showDialog, setShowDialog] = useState(false)
-
+  const hasDialog = data.type === "ANIME" || data.type === "MANGA"
   const windowWidth =
     window.innerWidth ||
     document.documentElement.clientWidth ||
     document.body.clientWidth
-
-  const linkTo = `/anime/${anime.id}`
+  const linkTo = `${PATHS[data.type].DETAILS}/${data.id}`
 
   const handleMouseEnter = (e) => {
     setShowDialog(true)
@@ -32,32 +31,38 @@ const AnimeCard = ({ anime }) => {
       <Card
         className={styles.card}
         sx={{ maxWidth: 345 }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onMouseEnter={hasDialog && handleMouseEnter}
+        onMouseLeave={hasDialog && handleMouseLeave}
       >
         <Link to={linkTo}>
           <CardMedia
             className={styles.cardImage}
             component="img"
-            image={anime.coverImage.large}
+            image={data.coverImage?.large || data.image?.large}
             alt={
-              anime.title.romaji || anime.title.english || anime.title.native
+              data.title
+                ? data.title.romaji || data.title.english || data.title.native
+                : data.name.full
             }
           />
         </Link>
         <Typography
-          className={styles.title}
+          className={styles.cardTitle}
           gutterBottom
           variant="h5"
           component={Link}
           to={linkTo}
         >
-          {anime.title.romaji || anime.title.english || anime.title.native}
+          {data.title
+            ? data.title.romaji || data.title.english || data.title.native
+            : data.name.full}
         </Typography>
       </Card>
-      {windowWidth > 890 && showDialog && <DialogAnimeInfo anime={anime} />}
+      {windowWidth > 890 && showDialog && hasDialog && (
+        <MediaDialog data={data} />
+      )}
     </div>
   )
 }
 
-export default AnimeCard
+export default Component

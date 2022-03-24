@@ -1,7 +1,29 @@
+// base urls
 export const ANIME_BASE_URL = process.env.REACT_APP_ANIME_BASE_URL
 export const SERVER_BASE_URL =
   process.env.REACT_APP_SERVER_BASE_URL || "http://localhost:5000"
 export const ANILIST_BASE_URL = process.env.REACT_APP_ANILIST_BASE_URL
+
+// endpoints of the site
+export const PATHS = {
+  ANIME: {
+    SEARCH: "/search/anime",
+    DETAILS: "/anime"
+  },
+  MANGA: {
+    SEARCH: "/search/manga",
+    DETAILS: "/manga"
+  },
+  CHARACTER: {
+    SEARCH: "/search/characters",
+    DETAILS: "/character"
+  },
+  STAFF: {
+    SEARCH: "/search/staff",
+    DETAILS: "/staff"
+  }
+}
+
 export const ENUMS = {
   FORMATS: ["TV", "TV_SHORT", "MOVIE", "SPECIAL", "OVA", "ONA", "MUSIC"],
   STATUS: ["FINISHED", "RELEASING", "NOT_YET_RELEASED", "CANCELLED"],

@@ -5,9 +5,9 @@ import InfiniteScroll from "react-infinite-scroll-component"
 import { CARD_TYPES } from "../../utils/constants"
 
 import styles from "./styles.module.scss"
-import AnimeCard from "../AnimeCard"
-import AnimeCardHorizontal from "../AnimeCardHorizontal"
-import AnimeCardSquare from "../AnimeCardSquare"
+import DefaultCard from "../cards/DefaultCard"
+import MediaCardHorizontal from "../cards/MediaCardHorizontal"
+import MediaCardSquare from "../cards/MediaCardSquare"
 import LoadingCardSkeleton from "../LoadingCardSkeleton"
 import GridContainer from "../ui/GridContainer"
 import CardSkeleton from "../ui/CardSkeleton"
@@ -16,13 +16,13 @@ const InfiniteCardList = ({ animes, type, fetchMoreData, allLoaded }) => {
   let Card
   let breakpoints
   if (type === CARD_TYPES.HORIZONTAL) {
-    Card = AnimeCardHorizontal
+    Card = MediaCardHorizontal
     breakpoints = { xs: 12, sm: 12, md: 12 }
   } else if (type === CARD_TYPES.SQUARE) {
-    Card = AnimeCardSquare
+    Card = MediaCardSquare
     breakpoints = { xs: 12, sm: 12, md: 6 }
   } else {
-    Card = AnimeCard
+    Card = DefaultCard
     breakpoints = { xs: 4, sm: 3, md: 2.4 }
   }
 

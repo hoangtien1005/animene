@@ -41,6 +41,11 @@ export const fetchHomeAnimes = createAsyncThunk("home", async () => {
     tomorrow.setDate(tomorrow.getDate() + 1)
     const res = await getHomeAnimes()
     data = await res.data
+    data.trendingNow.title = "TRENDING NOW"
+    data.mostPopularThisSeason.title = "POPULAR THIS SEASON"
+    data.mostPopularNextSeason.title = "UPCOMING NEXT SEASON"
+    data.mostPopular.title = "ALL TIME POPULAR"
+    data.topScore.title = "TOP 100 ANIME"
     const newHomeStorage = await { expired: tomorrow, data: data }
     localStorage.setItem("homeStorage", JSON.stringify(newHomeStorage))
   } else {
