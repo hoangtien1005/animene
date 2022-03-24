@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom"
 import styles from "./styles.module.scss"
 
 import InfiniteCardList from "../../../components/InfiniteCardList"
-import Filters from "../../../components/Filters"
+import AnimeFilters from "../../../components/AnimeFilters"
 import SubFilters from "../../../components/SubFilters"
 import AnimeNotFound from "../../../components/AnimeNotFound"
 import Loading from "../../../components/Loading"
@@ -22,20 +22,20 @@ import {
 const AnimeList = () => {
   const { loading, data, error, page, allLoaded } = useSelector(selectAnimeList)
 
-  const [view, setView] = useState(CARD_TYPES.DEFAULT)
+  const [cardType, setCardType] = useState(CARD_TYPES.DEFAULT)
   const location = useLocation()
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    setView(localStorage.getItem("view") || CARD_TYPES.DEFAULT)
+    setCardType(localStorage.getItem("cardType") || CARD_TYPES.DEFAULT)
     dispatch(fetchAllAnimes({ searchString: location.search }))
     window.scrollTo(0, 0)
   }, [dispatch, location.search])
 
   const handleViewChange = useCallback((option) => {
-    setView(option)
-    localStorage.setItem("view", option)
+    setCardType(option)
+    localStorage.setItem("cardType", option)
   }, [])
 
   const fetchMoreData = () => {
@@ -46,12 +46,12 @@ const AnimeList = () => {
     <>
       <div style={{ marginTop: "80px", width: "100%" }}></div>
       <GridContainer>
-        <Filters />
-        <SubFilters view={view} handleViewChange={handleViewChange} />
+        <AnimeFilters />
+        <SubFilters cardType={cardType} handleViewChange={handleViewChange} />
         {loading && (
           <>
-            <Loading type={view} />
-            <LoadingCardSkeleton type={view} />
+            <Loading />
+            <LoadingCardSkeleton type={cardType} />
           </>
         )}
       </GridContainer>
@@ -59,9 +59,9 @@ const AnimeList = () => {
       {data && data.length > 0 && (
         <>
           <InfiniteCardList
-            animes={data}
+            data={data}
             allLoaded={allLoaded}
-            type={view}
+            cardType={cardType}
             fetchMoreData={fetchMoreData}
           />
         </>

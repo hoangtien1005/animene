@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, Fragment } from "react"
 import useMediaQuery from "@mui/material/useMediaQuery"
-import Grid from "@mui/material/Grid"
 
 import styles from "./styles.module.scss"
 
 import MediaCardList from "../../../components/MediaCardList"
-import Filters from "../../../components/Filters"
+import AnimeFilters from "../../../components/AnimeFilters"
 import AnimeNotFound from "../../../components/AnimeNotFound"
 import Loading from "../../../components/Loading"
 import LoadingCardSkeleton from "../../../components/LoadingCardSkeleton"
@@ -30,9 +29,8 @@ const Home = () => {
   return (
     <>
       <div style={{ marginTop: "80px", width: "100%" }}></div>
-      {console.log(data)}
       <GridContainer>
-        <Filters />
+        <AnimeFilters />
         {loading && (
           <>
             <Loading />

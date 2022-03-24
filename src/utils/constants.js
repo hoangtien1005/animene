@@ -18,6 +18,10 @@ export const PATHS = {
     SEARCH: "/search/characters",
     DETAILS: "/character"
   },
+  CHARACTERS: {
+    SEARCH: "/search/characters",
+    DETAILS: "/character"
+  },
   STAFF: {
     SEARCH: "/search/staff",
     DETAILS: "/staff"

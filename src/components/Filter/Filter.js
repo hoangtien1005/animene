@@ -1,7 +1,9 @@
 import { useMemo, memo } from "react"
 import Select from "react-select"
-
 import { useHistory, useLocation } from "react-router-dom"
+
+import { PATHS } from "../../utils/constants"
+
 const customTextStyles = {
   fontSize: "15px",
   fontWeight: "500"
@@ -60,7 +62,7 @@ const customStyles = {
   })
 }
 
-const Component = ({ title, options, type, multiple }) => {
+const Component = ({ title, options, type, multiple, dataType }) => {
   const location = useLocation()
   const history = useHistory()
   const params = useMemo(() => {
@@ -91,8 +93,10 @@ const Component = ({ title, options, type, multiple }) => {
       value = selectedOptions ? selectedOptions.value : ""
     }
     value === "" ? params.delete(type) : params.set(type, value)
-    params.delete("page")
-    history.replace({ pathname: "/anime-list", search: params.toString() })
+    history.replace({
+      pathname: PATHS[dataType].SEARCH,
+      search: params.toString()
+    })
   }
   return (
     <Select

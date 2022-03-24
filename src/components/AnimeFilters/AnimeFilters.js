@@ -10,7 +10,7 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt"
 
 import { ANIME_CONSTANTS } from "../../utils/constants"
 
-const Filters = () => {
+const AnimeFilters = () => {
   const [showFilters, setShowFilters] = useState(true)
 
   const handleShowFilters = useCallback(() => {
@@ -68,7 +68,7 @@ const Filters = () => {
         [genres, formats].map((filter) => (
           <Grid item xs={12} sm={6} key={filter.type}>
             <h5 className={styles.filterTitle}>{filter.title}</h5>
-            <Filter {...filter} />
+            <Filter dataType="ANIME" {...filter} />
           </Grid>
         ))}
 
@@ -76,11 +76,11 @@ const Filters = () => {
         filters.map((filter) => (
           <Grid item xs={12} sm={4} key={filter.type}>
             <h5 className={styles.filterTitle}>{filter.title}</h5>
-            <Filter {...filter} />
+            <Filter dataType="ANIME" {...filter} />
           </Grid>
         ))}
       <div className={styles.separator}></div>
     </>
   )
 }
-export default memo(Filters)
+export default memo(AnimeFilters)
