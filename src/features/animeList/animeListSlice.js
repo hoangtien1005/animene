@@ -16,7 +16,8 @@ const generateVariables = (searchString, page) => {
   const { PARAMETERS } = ANIME_CONSTANTS
   const rawParams = searchString.slice(1).split("&")
   rawParams.forEach((rawParam) => {
-    const [rawType, rawValue] = rawParam.split("=")
+    let [rawType, rawValue] = rawParam.split("=")
+    if (rawValue.includes("+")) rawValue = rawValue.split("+").join(" ")
     let value
     let type = PARAMETERS[rawType]
     switch (rawType) {
