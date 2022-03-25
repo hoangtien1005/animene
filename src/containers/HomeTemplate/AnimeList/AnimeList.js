@@ -33,6 +33,8 @@ const AnimeList = () => {
     window.scrollTo(0, 0)
   }, [dispatch, location.search])
 
+  console.log(location.search)
+
   const handleViewChange = useCallback((option) => {
     setCardType(option)
     localStorage.setItem("cardType", option)

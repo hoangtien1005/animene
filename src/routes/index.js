@@ -2,6 +2,7 @@ import { PATHS } from "../utils/constants"
 import Home from "../containers/HomeTemplate/Home"
 import AnimeList from "../containers/HomeTemplate/AnimeList"
 import Anime from "../containers/HomeTemplate/Anime"
+import MangaList from "../containers/HomeTemplate/MangaList"
 
 const routeHome = [
   {
@@ -22,7 +23,7 @@ const routeHome = [
   {
     exact: false,
     path: PATHS.MANGA.SEARCH,
-    component: AnimeList
+    component: MangaList
   },
   {
     exact: false,

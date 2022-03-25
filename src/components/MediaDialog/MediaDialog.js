@@ -7,10 +7,13 @@ import RatingIcon from "../ui/RatingIcon"
 
 import styles from "./styles.module.scss"
 
-import { ANIME_CONSTANTS } from "../../utils/constants"
+import { MEDIA_CONSTANTS } from "../../utils/constants"
 
 const MediaDialog = ({ data }) => {
-  const { SEASON, FORMATS } = ANIME_CONSTANTS
+  const { SEASON, FORMATS } = MEDIA_CONSTANTS
+
+  const MEDIA_SEASON = SEASON[data.type]
+  const MEDIA_FORMATS = FORMATS[data.type]
 
   const windowWidth =
     window.innerWidth ||
@@ -30,7 +33,7 @@ const MediaDialog = ({ data }) => {
       <div className={`${styles.infoContainer} ${styles.first}`}>
         {data.season && (
           <span>
-            {SEASON[data.season]} {data.seasonYear}
+            {MEDIA_SEASON[data.season]} {data.seasonYear}
           </span>
         )}
         {!data.season && (
@@ -55,7 +58,7 @@ const MediaDialog = ({ data }) => {
         </div>
       )}
       <div className={styles.formatEpisodeContainer}>
-        <span className={styles.format}>{FORMATS[data.format] || "Manga"}</span>
+        <span className={styles.format}>{MEDIA_FORMATS[data.format]}</span>
         {data.episodes && (
           <span className={styles.episode}>{data.episodes} episodes</span>
         )}

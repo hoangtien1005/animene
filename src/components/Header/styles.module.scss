@@ -2,16 +2,7 @@
 
 .header {
     background-color: $color-bg-dark !important;
-
-    // background-color: $color-bg-header-opacity !important;
-    // &:hover {
-    //     background-color: $color-bg-dark !important;
-    //     transition: all 0.3s;
-    // }
-    // &:not(:hover) {
-    //     transition: all 0.3s;
-    //     background-color: $color-bg-header-opacity !important;
-    // }
+    padding: 0 calc((100% - 1200px) / 2);
 }
 
 .btnLogin, .btnRegister {

@@ -3,10 +3,14 @@ import styles from "./styles.module.scss"
 
 import Chip from "../../ui/Chip"
 import RatingIcon from "../../ui/RatingIcon"
-import { ANIME_CONSTANTS, PATHS } from "../../../utils/constants"
+import { MEDIA_CONSTANTS, PATHS } from "../../../utils/constants"
 
 const MediaCardHorizontal = ({ data }) => {
-  const { STATUS, SEASON, FORMATS } = ANIME_CONSTANTS
+  const { STATUS, SEASON, FORMATS } = MEDIA_CONSTANTS
+
+  const MEDIA_STATUS = STATUS[data.type]
+  const MEDIA_SEASON = SEASON[data.type]
+  const MEDIA_FORMATS = FORMATS[data.type]
 
   const linkTo = `${PATHS[data.type].DETAILS}/${data.id}`
 
@@ -45,19 +49,19 @@ const MediaCardHorizontal = ({ data }) => {
           </div>
           <div className={styles.subInfoContainer}>
             <span className={styles.textBold}>
-              {FORMATS[data.format] || "Manga"}
+              {MEDIA_FORMATS[data.format]}
             </span>
             {data.episodes && (
               <span className={styles.textLight}>{data.episodes} episodes</span>
             )}
             {data.chapters && (
-              <span className={styles.textLight}>{data.episodes} chapters</span>
+              <span className={styles.textLight}>{data.chapters} chapters</span>
             )}
           </div>
           <div className={styles.subInfoContainer}>
             {data.season && (
               <span className={styles.textBold}>
-                {SEASON[data.season]} {data.seasonYear}
+                {MEDIA_SEASON[data.season]} {data.seasonYear}
               </span>
             )}
             {!data.season && (
@@ -66,7 +70,9 @@ const MediaCardHorizontal = ({ data }) => {
                 {data.endDate?.year && `- ${data.endDate?.year}`}
               </span>
             )}
-            <span className={styles.textLight}>{STATUS[data.status]}</span>
+            <span className={styles.textLight}>
+              {MEDIA_STATUS[data.status]}
+            </span>
           </div>
         </div>
       </div>

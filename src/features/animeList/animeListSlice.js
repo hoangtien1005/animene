@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { callAnilistApi } from "../../utils/callApi"
 import { SEARCH_ANIMES_QUERY } from "../../utils/queries"
-import { ANIME_CONSTANTS } from "../../utils/constants"
+import { MEDIA_CONSTANTS } from "../../utils/constants"
 
 const initialState = {
   loading: null,
@@ -13,7 +13,7 @@ const initialState = {
 
 const generateVariables = (searchString, page) => {
   const variables = { sort: "SCORE_DESC", page: page || 1 }
-  const { PARAMETERS } = ANIME_CONSTANTS
+  const { PARAMETERS } = MEDIA_CONSTANTS
   const rawParams = searchString.slice(1).split("&")
   rawParams.forEach((rawParam) => {
     let [rawType, rawValue] = rawParam.split("=")
