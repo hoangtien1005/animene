@@ -7,7 +7,7 @@ import styles from "./styles.module.scss"
 import InfiniteCardList from "../../../components/InfiniteCardList"
 import AnimeFilters from "../../../components/AnimeFilters"
 import SubFilters from "../../../components/SubFilters"
-import AnimeNotFound from "../../../components/AnimeNotFound"
+import ResultNotFound from "../../../components/ResultNotFound"
 import Loading from "../../../components/Loading"
 import LoadingCardSkeleton from "../../../components/LoadingCardSkeleton"
 import GridContainer from "../../../components/ui/GridContainer"
@@ -32,8 +32,6 @@ const AnimeList = () => {
     dispatch(fetchAllAnimes({ searchString: location.search }))
     window.scrollTo(0, 0)
   }, [dispatch, location.search])
-
-  console.log(location.search)
 
   const handleViewChange = useCallback((option) => {
     setCardType(option)
@@ -68,8 +66,8 @@ const AnimeList = () => {
           />
         </>
       )}
-      {data && data.length === 0 && <AnimeNotFound message="No Results" />}
-      {error && <AnimeNotFound message={error.message} />}
+      {data && data.length === 0 && <ResultNotFound message="No Results" />}
+      {error && <ResultNotFound message={error.message} />}
     </>
   )
 }

@@ -15,10 +15,6 @@ import MenuItem from "@mui/material/MenuItem"
 import Menu from "@mui/material/Menu"
 import MenuIcon from "@mui/icons-material/Menu"
 import NotificationsIcon from "@mui/icons-material/Notifications"
-import AutoStoriesIcon from "@mui/icons-material/AutoStories"
-import AccountBoxIcon from "@mui/icons-material/AccountBox"
-import PersonIcon from "@mui/icons-material/Person"
-import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded"
 import NavBar from "../NavBar"
 
 export default function PrimarySearchAppBar() {
@@ -133,7 +129,7 @@ export default function PrimarySearchAppBar() {
       <AppBar position="static" className={styles.header}>
         <Toolbar>
           <Link to="/">
-            <img style={{ width: "100px" }} src={Logo} alt="Logo" />
+            <img style={{ width: "112px" }} src={Logo} alt="Logo" />
           </Link>
           <Box sx={{ flexGrow: 1 }} />
           <Box
