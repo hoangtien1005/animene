@@ -63,6 +63,12 @@
                 }
             }
         }
+
+        button {
+            width: 100%;
+            height: 39px;
+        }
+
         .error-message {
             font-size: 13px;
             color: $color-danger;
