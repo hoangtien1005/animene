@@ -61,7 +61,7 @@ const MediaCardSquare = ({ data }) => {
                 <span className={styles.episode}>{data.episodes} episodes</span>
               )}
               {data.chapters && (
-                <span className={styles.episode}>{data.episodes} chapters</span>
+                <span className={styles.episode}>{data.chapters} chapters</span>
               )}
             </div>
           </div>
