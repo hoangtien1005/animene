@@ -31,8 +31,8 @@ const Component = ({ data }) => {
       <Card
         className={styles.card}
         sx={{ maxWidth: 345 }}
-        onMouseEnter={hasDialog && handleMouseEnter}
-        onMouseLeave={hasDialog && handleMouseLeave}
+        onMouseEnter={hasDialog ? handleMouseEnter : undefined}
+        onMouseLeave={hasDialog ? handleMouseLeave : undefined}
       >
         <Link to={linkTo}>
           <CardMedia

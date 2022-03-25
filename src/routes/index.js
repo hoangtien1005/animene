@@ -3,6 +3,8 @@ import Home from "../containers/HomeTemplate/Home"
 import AnimeList from "../containers/HomeTemplate/AnimeList"
 import Anime from "../containers/HomeTemplate/Anime"
 import MangaList from "../containers/HomeTemplate/MangaList"
+import StaffList from "../containers/HomeTemplate/StaffList"
+import CharacterList from "../containers/HomeTemplate/CharacterList"
 
 const routeHome = [
   {
@@ -33,7 +35,7 @@ const routeHome = [
   {
     exact: false,
     path: PATHS.STAFF.SEARCH,
-    component: AnimeList
+    component: StaffList
   },
   {
     exact: false,
@@ -43,7 +45,7 @@ const routeHome = [
   {
     exact: false,
     path: PATHS.CHARACTER.SEARCH,
-    component: AnimeList
+    component: CharacterList
   },
   {
     exact: false,

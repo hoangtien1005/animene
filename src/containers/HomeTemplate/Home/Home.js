@@ -6,7 +6,7 @@ import styles from "./styles.module.scss"
 
 import MediaCardList from "../../../components/MediaCardList"
 import AnimeFilters from "../../../components/AnimeFilters"
-import AnimeNotFound from "../../../components/AnimeNotFound"
+import ResultNotFound from "../../../components/ResultNotFound"
 import Loading from "../../../components/Loading"
 import LoadingCardSkeleton from "../../../components/LoadingCardSkeleton"
 import GridContainer from "../../../components/ui/GridContainer"
@@ -63,9 +63,9 @@ const Home = () => {
           )
         })}
       {data && data.status_code === 404 && (
-        <AnimeNotFound message="No Results" />
+        <ResultNotFound message="No Results" />
       )}
-      {error && <AnimeNotFound message={error.message} />}
+      {error && <ResultNotFound message={error.message} />}
     </>
   )
 }
