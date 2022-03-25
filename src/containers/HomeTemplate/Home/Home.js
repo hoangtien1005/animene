@@ -48,7 +48,7 @@ const Home = () => {
                 </div>
                 <MediaCardList
                   cardType={CARD_TYPES.HORIZONTAL}
-                  animes={medias.media}
+                  medias={medias.media}
                 />
               </Fragment>
             )
@@ -58,7 +58,7 @@ const Home = () => {
               <div className={styles.titleContainer} key={medias.title}>
                 <h4 className={styles.title}>{medias.title}</h4>
               </div>
-              <MediaCardList animes={medias.media.slice(0, numberOfCards)} />
+              <MediaCardList medias={medias.media.slice(0, numberOfCards)} />
             </Fragment>
           )
         })}
