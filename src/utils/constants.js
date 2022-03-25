@@ -28,28 +28,14 @@ export const PATHS = {
   }
 }
 
-export const ENUMS = {
-  FORMATS: ["TV", "TV_SHORT", "MOVIE", "SPECIAL", "OVA", "ONA", "MUSIC"],
-  STATUS: ["FINISHED", "RELEASING", "NOT_YET_RELEASED", "CANCELLED"],
-  SEASON: ["WINTER", "SPRING", "SUMMER", "FALL", "UNKNOWN"],
-  DAY: [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  ]
-}
-
 export const CARD_TYPES = {
   DEFAULT: "default",
   SQUARE: "square",
   HORIZONTAL: "horizontal"
 }
 
-export const ANIME_CONSTANTS = {
+// constants used for animes and mangas
+export const MEDIA_CONSTANTS = {
   PARAMETERS: {
     genres: "genre_in",
     formats: "format_in",
@@ -57,31 +43,65 @@ export const ANIME_CONSTANTS = {
     season: "season",
     status: "status",
     search: "search",
-    sort: "sort"
+    sort: "sort",
+    origin: "countryOfOrigin"
   },
-
+  SORTS: [
+    { value: "TITLE_ROMAJI", label: "Title" },
+    { value: "POPULARITY_DESC", label: "Popularity" },
+    { value: "SCORE_DESC", label: "Average Score" },
+    { value: "TRENDING_DESC", label: "Trending" },
+    { value: "FAVOURITES_DESC", label: "Favourites" },
+    { value: "ID_DESC", label: "Date Added" },
+    { value: "START_DATE_DESC", label: "Release Date" }
+  ],
+  ORIGIN: {
+    JP: "Japan",
+    KR: "South Korea",
+    CN: "China",
+    TW: "Taiwan"
+  },
   FORMATS: {
-    TV: "TV Show",
-    TV_SHORT: "TV Short",
-    MOVIE: "Movie",
-    SPECIAL: "Special",
-    OVA: "OVA",
-    ONA: "ONA",
-    MUSIC: "Music"
+    ANIME: {
+      TV: "TV Show",
+      TV_SHORT: "TV Short",
+      MOVIE: "Movie",
+      SPECIAL: "Special",
+      OVA: "OVA",
+      ONA: "ONA",
+      MUSIC: "Music"
+    },
+    MANGA: {
+      MANGA: "Manga",
+      NOVEL: "Light Novel",
+      ONE_SHOT: "One Shot"
+    }
   },
 
   STATUS: {
-    FINISHED: "Finished",
-    RELEASING: "Releasing",
-    NOT_YET_RELEASED: "Not released yet",
-    CANCELLED: "Cancelled"
+    ANIME: {
+      FINISHED: "Finished",
+      RELEASING: "Releasing",
+      NOT_YET_RELEASED: "Not released yet",
+      CANCELLED: "Cancelled"
+    },
+    MANGA: {
+      FINISHED: "Finished",
+      RELEASING: "Releasing",
+      NOT_YET_RELEASED: "Not released yet",
+      HIATUS: "Hiatus",
+      CANCELLED: "Cancelled"
+    }
   },
   SEASON: {
-    WINTER: "Winter",
-    SPRING: "Spring",
-    SUMMER: "Summer",
-    FALL: "Fall"
+    ANIME: {
+      WINTER: "Winter",
+      SPRING: "Spring",
+      SUMMER: "Summer",
+      FALL: "Fall"
+    }
   },
+  LATEST_YEAR: new Date().getFullYear() + 1,
   GENRES: [
     "Action",
     "Adventure",
@@ -350,17 +370,5 @@ export const ANIME_CONSTANTS = {
     "Cute Girls Doing Cute Things",
     "Family Life",
     "Iyashikei"
-  ],
-
-  SORTS: [
-    { value: "TITLE_ROMAJI", label: "Title" },
-    { value: "POPULARITY_DESC", label: "Popularity" },
-    { value: "SCORE_DESC", label: "Average Score" },
-    { value: "TRENDING_DESC", label: "Trending" },
-    { value: "FAVOURITES_DESC", label: "Favourites" },
-    { value: "ID_DESC", label: "Date Added" },
-    { value: "START_DATE_DESC", label: "Release Date" }
-  ],
-
-  LATEST_YEAR: new Date().getFullYear() + 1
+  ]
 }

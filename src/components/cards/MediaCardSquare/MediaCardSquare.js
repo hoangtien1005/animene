@@ -7,10 +7,13 @@ import styles from "./styles.module.scss"
 import Chip from "../../ui/Chip"
 import RatingIcon from "../../ui/RatingIcon"
 
-import { ANIME_CONSTANTS, PATHS } from "../../../utils/constants"
+import { MEDIA_CONSTANTS, PATHS } from "../../../utils/constants"
 
 const MediaCardSquare = ({ data }) => {
-  const { SEASON, FORMATS } = ANIME_CONSTANTS
+  const { SEASON, FORMATS } = MEDIA_CONSTANTS
+
+  const MEDIA_SEASON = SEASON[data.type]
+  const MEDIA_FORMATS = FORMATS[data.type]
 
   const linkTo = `${PATHS[data.type].DETAILS}/${data.id}`
 
@@ -40,7 +43,7 @@ const MediaCardSquare = ({ data }) => {
           <div>
             {data.season && (
               <span className={styles.season}>
-                {SEASON[data.season]} {data.seasonYear}
+                {MEDIA_SEASON[data.season]} {data.seasonYear}
               </span>
             )}
             {!data.season && (
@@ -51,7 +54,7 @@ const MediaCardSquare = ({ data }) => {
             )}
             <div>
               <span className={styles.format}>
-                {FORMATS[data.format] || "Manga"}
+                {MEDIA_FORMATS[data.format]}
               </span>
               <span className={styles.divider}>•</span>
               {data.episodes && (

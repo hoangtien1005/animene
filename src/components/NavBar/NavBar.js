@@ -21,7 +21,7 @@ const Component = ({ isMobile }) => {
     return (
       <>
         {items.map((item) => (
-          <MenuItem>
+          <MenuItem key={item.label}>
             <Link to={item.linkTo} className={styles.link}>
               <IconButton size="large" aria-label={item.label} color="inherit">
                 <item.Icon />
@@ -39,7 +39,11 @@ const Component = ({ isMobile }) => {
   return (
     <>
       {items.map((item) => (
-        <Link to={item.linkTo} className={clsx(styles.item, styles.link)}>
+        <Link
+          to={item.linkTo}
+          className={clsx(styles.item, styles.link)}
+          key={item.label}
+        >
           <IconButton size="large" aria-label={item.label} color="inherit">
             <item.Icon />
             <p className={styles.label}>{item.label}</p>

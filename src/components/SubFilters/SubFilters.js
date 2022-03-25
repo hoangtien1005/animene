@@ -12,7 +12,7 @@ import { useHistory, useLocation } from "react-router-dom"
 import styles from "./styles.module.scss"
 import clsx from "clsx"
 
-import { ANIME_CONSTANTS, CARD_TYPES } from "../../utils/constants"
+import { MEDIA_CONSTANTS, CARD_TYPES } from "../../utils/constants"
 
 const customTextStyles = {
   fontSize: "14px",
@@ -75,7 +75,7 @@ const customStyles = {
 const SubFilters = ({ cardType, handleViewChange }) => {
   const history = useHistory()
   const location = useLocation()
-  const { SORTS } = ANIME_CONSTANTS
+  const { SORTS } = MEDIA_CONSTANTS
 
   const params = useMemo(() => {
     return new URLSearchParams(location.search)

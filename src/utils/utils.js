@@ -1,6 +1,6 @@
-import { ANIME_CONSTANTS } from "./constants"
+import { MEDIA_CONSTANTS } from "./constants"
 
-const { SEASON } = ANIME_CONSTANTS
+const { SEASON } = MEDIA_CONSTANTS
 
 // get the current season
 export const getCurrentSeason = (d = new Date()) => {
@@ -53,8 +53,8 @@ export const getCurrentSeason = (d = new Date()) => {
 export const getNextSeason = () => {
   const { value: currentSeason } = getCurrentSeason()
 
-  const seasons = Object.keys(SEASON).map((key, idx) => {
-    return { value: key, label: SEASON[key], idx }
+  const seasons = Object.keys(SEASON.ANIME).map((key, idx) => {
+    return { value: key, label: SEASON.ANIME[key], idx }
   })
   return seasons[
     seasons.find((season) => season.value === currentSeason).idx + 1

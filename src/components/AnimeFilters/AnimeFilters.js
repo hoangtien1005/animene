@@ -8,7 +8,7 @@ import Filter from "../Filter"
 import SearchBar from "../SearchBar"
 import FilterAltIcon from "@mui/icons-material/FilterAlt"
 
-import { ANIME_CONSTANTS } from "../../utils/constants"
+import { MEDIA_CONSTANTS } from "../../utils/constants"
 
 const AnimeFilters = () => {
   const [showFilters, setShowFilters] = useState(true)
@@ -18,18 +18,29 @@ const AnimeFilters = () => {
   }, [])
 
   const [genres, formats, ...filters] = useMemo(() => {
-    const { SEASON, FORMATS, STATUS, GENRES, LATEST_YEAR } = ANIME_CONSTANTS
+    const {
+      SEASON: { ANIME: ANIME_SEASON },
+      FORMATS: { ANIME: ANIME_FORMATS },
+      STATUS: { ANIME: ANIME_STATUS },
+      GENRES,
+      ORIGIN,
+      LATEST_YEAR
+    } = MEDIA_CONSTANTS
 
-    const seasons = Object.keys(SEASON).map((key) => ({
-      label: SEASON[key],
+    const seasons = Object.keys(ANIME_SEASON).map((key) => ({
+      label: ANIME_SEASON[key],
       value: key
     }))
-    const formats = Object.keys(FORMATS).map((key) => ({
-      label: FORMATS[key],
+    const formats = Object.keys(ANIME_FORMATS).map((key) => ({
+      label: ANIME_FORMATS[key],
       value: key
     }))
-    const statuses = Object.keys(STATUS).map((key) => ({
-      label: STATUS[key],
+    const statuses = Object.keys(ANIME_STATUS).map((key) => ({
+      label: ANIME_STATUS[key],
+      value: key
+    }))
+    const origins = Object.keys(ORIGIN).map((key) => ({
+      label: ORIGIN[key],
       value: key
     }))
     const years = [...Array(LATEST_YEAR - 1940 + 1).keys()]
@@ -43,7 +54,13 @@ const AnimeFilters = () => {
       { title: "Format", type: "formats", options: formats, multiple: true },
       { title: "Year", type: "year", options: years, multiple: false },
       { title: "Season", type: "season", options: seasons, multiple: false },
-      { title: "Status", type: "status", options: statuses, multiple: false }
+      { title: "Status", type: "status", options: statuses, multiple: false },
+      {
+        title: "Country Of Origin",
+        type: "origin",
+        options: origins,
+        multiple: false
+      }
     ]
     return filters
   }, [])
@@ -66,7 +83,7 @@ const AnimeFilters = () => {
       </Grid>
       {showFilters &&
         [genres, formats].map((filter) => (
-          <Grid item xs={12} sm={6} key={filter.type}>
+          <Grid item xs={6} key={filter.type}>
             <h5 className={styles.filterTitle}>{filter.title}</h5>
             <Filter dataType="ANIME" {...filter} />
           </Grid>
@@ -74,7 +91,7 @@ const AnimeFilters = () => {
 
       {showFilters &&
         filters.map((filter) => (
-          <Grid item xs={12} sm={4} key={filter.type}>
+          <Grid item xs={6} sm={3} key={filter.type}>
             <h5 className={styles.filterTitle}>{filter.title}</h5>
             <Filter dataType="ANIME" {...filter} />
           </Grid>

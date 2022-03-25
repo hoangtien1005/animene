@@ -10,7 +10,7 @@ import MediaCardSquare from "../cards/MediaCardSquare"
 import GridContainer from "../ui/GridContainer"
 import CardSkeleton from "../ui/CardSkeleton"
 
-const MediaCardList = ({ animes, cardType }) => {
+const MediaCardList = ({ medias, cardType }) => {
   const isLarge = useMediaQuery("(min-width:1200px)")
   const isMedium = useMediaQuery("(min-width:950px)")
   const isSmall = useMediaQuery("(min-width:600px)")
@@ -29,13 +29,13 @@ const MediaCardList = ({ animes, cardType }) => {
   }
   return (
     <GridContainer spacing={spacing}>
-      {animes.map((anime) => (
+      {medias.map((media) => (
         <Grid
           item
           xs={breakpoints.xs}
           sm={breakpoints.sm}
           md={breakpoints.md}
-          key={anime.id}
+          key={media.id}
         >
           <Lazyload
             key={cardType}
@@ -43,7 +43,7 @@ const MediaCardList = ({ animes, cardType }) => {
             offset={50}
             placeholder={<CardSkeleton type={cardType} />}
           >
-            <Card data={anime} />
+            <Card data={media} />
           </Lazyload>
         </Grid>
       ))}
