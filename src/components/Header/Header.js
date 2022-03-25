@@ -14,10 +14,12 @@ import Badge from "@mui/material/Badge"
 import MenuItem from "@mui/material/MenuItem"
 import Menu from "@mui/material/Menu"
 import MenuIcon from "@mui/icons-material/Menu"
-import AccountCircle from "@mui/icons-material/AccountCircle"
-import MailIcon from "@mui/icons-material/Mail"
 import NotificationsIcon from "@mui/icons-material/Notifications"
-import MoreIcon from "@mui/icons-material/MoreVert"
+import AutoStoriesIcon from "@mui/icons-material/AutoStories"
+import AccountBoxIcon from "@mui/icons-material/AccountBox"
+import PersonIcon from "@mui/icons-material/Person"
+import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded"
+import NavBar from "../NavBar"
 
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -82,15 +84,8 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
+      <NavBar isMobile />
+      {/* <MenuItem>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
@@ -110,10 +105,10 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <AutoStoriesIcon />
         </IconButton>
         <p>Profile</p>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem onClick={handleProfileMenuOpen}>
         <Button
           href="/register"
@@ -137,27 +132,56 @@ export default function PrimarySearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" className={styles.header}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Link to="/">
             <img style={{ width: "100px" }} src={Logo} alt="Logo" />
           </Link>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              minWidth: "70%",
+              justifyContent: "space-between"
+            }}
+          >
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              <NavBar />
+            </Box>
+            {/* <IconButton
+              size="large"
+              aria-label="Anime"
+              color="inherit"
+            >
+                <PlayArrowRoundedIcon />
+                <p>Anime</p>
+            </IconButton>
             <IconButton
+              size="large"
+              aria-label="Manga"
+              color="inherit"
+            >
+                <AutoStoriesIcon />
+            </IconButton>
+            <IconButton
+              size="large"
+              aria-label="Staff"
+              color="inherit"
+            >
+                <AccountBoxIcon />
+            </IconButton>
+            <IconButton
+              size="large"
+              aria-label="characters"
+              color="inherit"
+            >
+              <PersonIcon />
+            </IconButton> */}
+            {/* <IconButton
               size="large"
               aria-label="show 4 new mails"
               color="inherit"
             >
               <Badge badgeContent={4} color="error">
-                <MailIcon />
+                <PlayArrowRoundedIcon />
               </Badge>
             </IconButton>
             <IconButton
@@ -178,17 +202,19 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
-            </IconButton>
-            <Button
-              href="/register"
-              className={clsx(styles.btnRegister, "btn-outline")}
-            >
-              Register
-            </Button>
-            <Button href="/login" className={styles.btnLogin}>
-              Login
-            </Button>
+              <AutoStoriesIcon />
+            </IconButton> */}
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              <Button
+                href="/register"
+                className={clsx(styles.btnRegister, "btn-outline")}
+              >
+                Register
+              </Button>
+              <Button href="/login" className={styles.btnLogin}>
+                Login
+              </Button>
+            </Box>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -199,7 +225,7 @@ export default function PrimarySearchAppBar() {
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
-              <MoreIcon />
+              <MenuIcon />
             </IconButton>
           </Box>
         </Toolbar>

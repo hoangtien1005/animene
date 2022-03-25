@@ -69,6 +69,7 @@ export const ANIME_CONSTANTS = {
     ONA: "ONA",
     MUSIC: "Music"
   },
+
   STATUS: {
     FINISHED: "Finished",
     RELEASING: "Releasing",
