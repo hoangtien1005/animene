@@ -107,10 +107,10 @@ export default function PrimarySearchAppBar() {
       </MenuItem> */}
       <MenuItem onClick={handleProfileMenuOpen}>
         <Button
-          href="/register"
-          className={clsx(styles.btnRegister, styles.btnMobile, "btn-outline")}
+          href="/signup"
+          className={clsx(styles.btnSignUp, styles.btnMobile, "btn-outline")}
         >
-          Register
+          Sign Up
         </Button>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
@@ -202,10 +202,10 @@ export default function PrimarySearchAppBar() {
             </IconButton> */}
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <Button
-                href="/register"
-                className={clsx(styles.btnRegister, "btn-outline")}
+                href="/signup"
+                className={clsx(styles.btnSignUp, "btn-outline")}
               >
-                Register
+                Sign Up
               </Button>
               <Button href="/login" className={styles.btnLogin}>
                 Login

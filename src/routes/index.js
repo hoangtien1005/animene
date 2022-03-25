@@ -1,5 +1,8 @@
 import { PATHS } from "../utils/constants"
 import Home from "../containers/HomeTemplate/Home"
+import SignUp from "../containers/HomeTemplate/SignUp"
+import Login from "../containers/HomeTemplate/Login"
+import ForgotPassword from "../containers/HomeTemplate/ForgotPassword"
 import AnimeList from "../containers/HomeTemplate/AnimeList"
 import Anime from "../containers/HomeTemplate/Anime"
 import MangaList from "../containers/HomeTemplate/MangaList"
@@ -51,6 +54,21 @@ const routeHome = [
     exact: false,
     path: `${PATHS.CHARACTER.DETAILS}/:id`,
     component: Anime
+  },
+  {
+    exact: true,
+    path: "/signup",
+    component: SignUp
+  },
+  {
+    exact: true,
+    path: "/login",
+    component: Login
+  },
+  {
+    exact: true,
+    path: "/forgot-password",
+    component: ForgotPassword
   }
 ]
 
