@@ -1,4 +1,4 @@
-import { useMemo, memo } from "react"
+import { useMemo, memo, useCallback } from "react"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import Select from "react-select"
 import { useHistory, useLocation } from "react-router-dom"
@@ -63,7 +63,7 @@ const customStyles = {
   })
 }
 
-const Component = ({ title, options, type, multiple, dataType }) => {
+const Component = ({ options, type, multiple, dataType }) => {
   const location = useLocation()
   const history = useHistory()
   const isMedium = useMediaQuery("(min-width:600px)")
@@ -100,6 +100,7 @@ const Component = ({ title, options, type, multiple, dataType }) => {
       search: params.toString()
     })
   }
+
   return (
     <Select
       isClearable
