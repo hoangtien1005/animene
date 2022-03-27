@@ -1,10 +1,14 @@
 import { PATHS } from "../utils/constants"
 import Home from "../containers/HomeTemplate/Home"
+import SignUp from "../containers/HomeTemplate/SignUp"
+import Login from "../containers/HomeTemplate/Login"
+import ForgotPassword from "../containers/HomeTemplate/ForgotPassword"
 import AnimeList from "../containers/HomeTemplate/AnimeList"
 import Anime from "../containers/HomeTemplate/Anime"
 import MangaList from "../containers/HomeTemplate/MangaList"
 import StaffList from "../containers/HomeTemplate/StaffList"
 import CharacterList from "../containers/HomeTemplate/CharacterList"
+import ComingSoon from "../containers/HomeTemplate/ComingSoon"
 
 const routeHome = [
   {
@@ -20,7 +24,7 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.ANIME.DETAILS}/:id`,
-    component: Anime
+    component: ComingSoon
   },
   {
     exact: false,
@@ -30,7 +34,7 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.MANGA.DETAILS}/:id`,
-    component: Anime
+    component: ComingSoon
   },
   {
     exact: false,
@@ -40,7 +44,7 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.STAFF.DETAILS}/:id`,
-    component: Anime
+    component: ComingSoon
   },
   {
     exact: false,
@@ -50,7 +54,22 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.CHARACTER.DETAILS}/:id`,
-    component: Anime
+    component: ComingSoon
+  },
+  {
+    exact: true,
+    path: "/signup",
+    component: SignUp
+  },
+  {
+    exact: true,
+    path: "/login",
+    component: Login
+  },
+  {
+    exact: true,
+    path: "/forgot-password",
+    component: ForgotPassword
   }
 ]
 

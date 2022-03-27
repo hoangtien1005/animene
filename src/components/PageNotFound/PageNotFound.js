@@ -5,7 +5,7 @@ const PageNotFound = () => {
   return (
     <div className={styles.container}>
       <Button className={styles.btnGoHome} href="/">
-        Go Home
+        Back To Home
       </Button>
     </div>
   )
