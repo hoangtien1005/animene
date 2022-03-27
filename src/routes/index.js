@@ -8,6 +8,7 @@ import Anime from "../containers/HomeTemplate/Anime"
 import MangaList from "../containers/HomeTemplate/MangaList"
 import StaffList from "../containers/HomeTemplate/StaffList"
 import CharacterList from "../containers/HomeTemplate/CharacterList"
+import ComingSoon from "../containers/HomeTemplate/ComingSoon"
 
 const routeHome = [
   {
@@ -23,7 +24,7 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.ANIME.DETAILS}/:id`,
-    component: Anime
+    component: ComingSoon
   },
   {
     exact: false,
@@ -33,7 +34,7 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.MANGA.DETAILS}/:id`,
-    component: Anime
+    component: ComingSoon
   },
   {
     exact: false,
@@ -43,7 +44,7 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.STAFF.DETAILS}/:id`,
-    component: Anime
+    component: ComingSoon
   },
   {
     exact: false,
@@ -53,7 +54,7 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.CHARACTER.DETAILS}/:id`,
-    component: Anime
+    component: ComingSoon
   },
   {
     exact: true,

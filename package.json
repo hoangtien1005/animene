@@ -27,6 +27,7 @@
     "react-select": "^5.2.2",
     "sass": "^1.49.9",
     "swiper": "^6.8.4",
+    "typewriter-effect": "^2.18.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
