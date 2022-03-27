@@ -1,4 +1,5 @@
 import { useMemo, memo } from "react"
+import useMediaQuery from "@mui/material/useMediaQuery"
 import Select from "react-select"
 import { useHistory, useLocation } from "react-router-dom"
 
@@ -65,6 +66,7 @@ const customStyles = {
 const Component = ({ title, options, type, multiple, dataType }) => {
   const location = useLocation()
   const history = useHistory()
+  const isMedium = useMediaQuery("(min-width:600px)")
   const params = useMemo(() => {
     return new URLSearchParams(location.search)
   }, [location.search])
@@ -101,7 +103,7 @@ const Component = ({ title, options, type, multiple, dataType }) => {
   return (
     <Select
       isClearable
-      isSearchable
+      isSearchable={isMedium}
       closeMenuOnSelect={!multiple}
       onChange={handleChange}
       hideSelectedOptions={false}

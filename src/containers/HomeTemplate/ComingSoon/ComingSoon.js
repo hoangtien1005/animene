@@ -1,5 +1,4 @@
 import styles from "./styles.module.scss"
-import LoadingBar from "../../../assets/img/loading.gif"
 import Button from "../../../components/ui/Button"
 
 import Typewriter from "typewriter-effect"
