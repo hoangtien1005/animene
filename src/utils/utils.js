@@ -83,6 +83,7 @@ export const checkPassword = (value) => {
 }
 
 export const checkConfirmPassword = (password, confirmPassword) => {
+  if (confirmPassword.trim().length === 0) return "Confirm password is required"
   if (confirmPassword !== password)
     return "Please make sure your passwords match"
 }
