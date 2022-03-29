@@ -1,11 +1,15 @@
+import * as React from "react"
+import { Link } from "react-router-dom"
+
 import styles from "./styles.module.scss"
 import clsx from "clsx"
 
 import Button from "../ui/Button"
-import Logo from "../../assets/img/logo3x.png"
+import { PATHS } from "../../routes"
 
-import * as React from "react"
-import { Link } from "react-router-dom"
+import NavBar from "../NavBar"
+import Drawer from "../Drawer"
+
 import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
@@ -13,10 +17,10 @@ import IconButton from "@mui/material/IconButton"
 import Badge from "@mui/material/Badge"
 import MenuItem from "@mui/material/MenuItem"
 import Menu from "@mui/material/Menu"
+
 import MenuIcon from "@mui/icons-material/Menu"
+import Logo from "../../assets/img/logo3x.png"
 import NotificationsIcon from "@mui/icons-material/Notifications"
-import NavBar from "../NavBar"
-import Drawer from "../Drawer"
 import ForumIcon from "@mui/icons-material/Forum"
 import SettingsIcon from "@mui/icons-material/Settings"
 import AutoStoriesIcon from "@mui/icons-material/AutoStories"
@@ -25,7 +29,6 @@ import PersonIcon from "@mui/icons-material/Person"
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded"
 import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined"
 import LogoutIcon from "@mui/icons-material/Logout"
-import { PATHS } from "../../routes"
 
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -108,7 +111,7 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       {userItems.map((item) => (
-        <MenuItem component={Link} to={item.linkTo}>
+        <MenuItem component={Link} to={item.linkTo} key={item.label}>
           {item.label}
         </MenuItem>
       ))}

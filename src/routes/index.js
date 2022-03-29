@@ -31,6 +31,7 @@ const PATHS = {
     SEARCH: "/search/staff",
     DETAILS: "/staff"
   },
+  FORUM: "/forum",
   SIGNUP: "/signup",
   LOGIN: "/login",
   FORGOT_PASSWORD: "/forgot-password",
@@ -54,7 +55,7 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.ANIME.DETAILS}/:id`,
-    component: ComingSoon
+    component: Anime
   },
   {
     exact: false,
@@ -84,6 +85,11 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.CHARACTER.DETAILS}/:id`,
+    component: ComingSoon
+  },
+  {
+    exact: false,
+    path: PATHS.FORUM,
     component: ComingSoon
   },
   {
