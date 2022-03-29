@@ -4,30 +4,6 @@ export const SERVER_BASE_URL =
   process.env.REACT_APP_SERVER_BASE_URL || "http://localhost:5000"
 export const ANILIST_BASE_URL = process.env.REACT_APP_ANILIST_BASE_URL
 
-// endpoints of the site
-export const PATHS = {
-  ANIME: {
-    SEARCH: "/search/anime",
-    DETAILS: "/anime"
-  },
-  MANGA: {
-    SEARCH: "/search/manga",
-    DETAILS: "/manga"
-  },
-  CHARACTER: {
-    SEARCH: "/search/characters",
-    DETAILS: "/character"
-  },
-  CHARACTERS: {
-    SEARCH: "/search/characters",
-    DETAILS: "/character"
-  },
-  STAFF: {
-    SEARCH: "/search/staff",
-    DETAILS: "/staff"
-  }
-}
-
 export const CARD_TYPES = {
   DEFAULT: "default",
   SQUARE: "square",

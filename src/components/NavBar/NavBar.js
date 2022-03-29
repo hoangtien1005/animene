@@ -1,22 +1,11 @@
 import IconButton from "@mui/material/IconButton"
-import AutoStoriesIcon from "@mui/icons-material/AutoStories"
-import AccountBoxIcon from "@mui/icons-material/AccountBox"
-import PersonIcon from "@mui/icons-material/Person"
-import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded"
 import MenuItem from "@mui/material/MenuItem"
 import clsx from "clsx"
 import { Link } from "react-router-dom"
-import { PATHS } from "../../utils/constants"
 
 import styles from "./styles.module.scss"
 
-const Component = ({ isMobile }) => {
-  const items = [
-    { Icon: PlayArrowRoundedIcon, label: "Anime", linkTo: PATHS.ANIME.SEARCH },
-    { Icon: AutoStoriesIcon, label: "Manga", linkTo: PATHS.MANGA.SEARCH },
-    { Icon: AccountBoxIcon, label: "Staff", linkTo: PATHS.STAFF.SEARCH },
-    { Icon: PersonIcon, label: "Characters", linkTo: PATHS.CHARACTER.SEARCH }
-  ]
+const Component = ({ isMobile, items }) => {
   if (isMobile) {
     return (
       <>

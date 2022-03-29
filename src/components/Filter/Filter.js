@@ -1,9 +1,9 @@
-import { useMemo, memo, useCallback } from "react"
+import { useMemo, memo } from "react"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import Select from "react-select"
 import { useHistory, useLocation } from "react-router-dom"
 
-import { PATHS } from "../../utils/constants"
+import { PATHS } from "../../routes"
 
 const customTextStyles = {
   fontSize: "15px",

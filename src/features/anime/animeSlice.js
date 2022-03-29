@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { callAnimeApi, callAnilistApi } from "../../utils/callApi"
-import { ANIME_DETAILS_QUERY } from "../../utils/queries"
-// import { GET_HOME_DATA } from '../../utils/queries'
+import { ANIME_DETAILS_QUERY } from "../../queries/anime"
 
 const initialState = {
   loading: null,
