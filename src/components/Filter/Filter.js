@@ -3,7 +3,7 @@ import useMediaQuery from "@mui/material/useMediaQuery"
 import Select from "react-select"
 import { useHistory, useLocation } from "react-router-dom"
 
-import { PATHS } from "../../utils/constants"
+import { PATHS } from "../../routes"
 
 const customTextStyles = {
   fontSize: "15px",
@@ -63,7 +63,7 @@ const customStyles = {
   })
 }
 
-const Component = ({ title, options, type, multiple, dataType }) => {
+const Component = ({ options, type, multiple, dataType }) => {
   const location = useLocation()
   const history = useHistory()
   const isMedium = useMediaQuery("(min-width:600px)")
@@ -100,6 +100,7 @@ const Component = ({ title, options, type, multiple, dataType }) => {
       search: params.toString()
     })
   }
+
   return (
     <Select
       isClearable

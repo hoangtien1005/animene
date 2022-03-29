@@ -9,6 +9,7 @@ import AnimeFilters from "../../../components/AnimeFilters"
 import SubFilters from "../../../components/SubFilters"
 import ResultNotFound from "../../../components/ResultNotFound"
 import Loading from "../../../components/Loading"
+import Tags from "../../../components/Tags"
 import LoadingCardSkeleton from "../../../components/LoadingCardSkeleton"
 import GridContainer from "../../../components/ui/GridContainer"
 import { CARD_TYPES } from "../../../utils/constants"
@@ -48,6 +49,7 @@ const AnimeList = () => {
       <GridContainer>
         <AnimeFilters />
         <SubFilters cardType={cardType} handleViewChange={handleViewChange} />
+        <Tags />
         {loading && (
           <>
             <Loading />

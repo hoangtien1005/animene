@@ -3,7 +3,7 @@ import { callAnilistApi } from "../../utils/callApi"
 import {
   CHARACTER_HOME_DATA_QUERY,
   SEARCH_CHARACTERS_QUERY
-} from "../../utils/queries"
+} from "../../queries/character"
 import { MEDIA_CONSTANTS } from "../../utils/constants"
 
 // fetch all required data for homepage

@@ -3,7 +3,8 @@ import styles from "./styles.module.scss"
 
 import Chip from "../../ui/Chip"
 import RatingIcon from "../../ui/RatingIcon"
-import { MEDIA_CONSTANTS, PATHS } from "../../../utils/constants"
+import { MEDIA_CONSTANTS } from "../../../utils/constants"
+import { PATHS } from "../../../routes"
 
 const MediaCardHorizontal = ({ data }) => {
   const { STATUS, SEASON, FORMATS } = MEDIA_CONSTANTS

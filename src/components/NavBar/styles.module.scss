@@ -7,7 +7,7 @@
 .item {
     opacity: 0.8;
     transition: all 0.3s;
-    margin: 0 6px;
+    margin: 0 4px;
     &:hover,
     &.active {
         color: $color-pr-1;
@@ -16,6 +16,6 @@
     .label {
         font-size: $fs-sm;
         font-weight: 600;
-        margin-left: 4px;
+        margin-left: 2px;
     }
 }

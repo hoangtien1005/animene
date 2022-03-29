@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import { Link } from "react-router-dom"
-import { PATHS } from "../../../utils/constants"
+import { PATHS } from "../../../routes"
 import "./styles.scss"
 
 const Chip = ({ children, className, type, ...props }) => {

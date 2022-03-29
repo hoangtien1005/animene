@@ -8,6 +8,7 @@ import MediaCardList from "../../../components/MediaCardList"
 import InfiniteCardList from "../../../components/InfiniteCardList"
 import MangaFilters from "../../../components/MangaFilters"
 import SubFilters from "../../../components/SubFilters"
+import Tags from "../../../components/Tags"
 import ResultNotFound from "../../../components/ResultNotFound"
 import Loading from "../../../components/Loading"
 import LoadingCardSkeleton from "../../../components/LoadingCardSkeleton"
@@ -104,6 +105,7 @@ const MangaList = () => {
               cardType={cardType}
               handleViewChange={handleViewChange}
             />
+            <Tags />
             {loading && (
               <>
                 <Loading />

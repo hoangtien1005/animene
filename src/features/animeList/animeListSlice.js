@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { callAnilistApi } from "../../utils/callApi"
-import { SEARCH_ANIMES_QUERY } from "../../utils/queries"
+import { SEARCH_ANIMES_QUERY } from "../../queries/anime"
 import { MEDIA_CONSTANTS } from "../../utils/constants"
 
 const initialState = {

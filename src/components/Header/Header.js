@@ -16,28 +16,77 @@ import Menu from "@mui/material/Menu"
 import MenuIcon from "@mui/icons-material/Menu"
 import NotificationsIcon from "@mui/icons-material/Notifications"
 import NavBar from "../NavBar"
+import Drawer from "../Drawer"
+import ForumIcon from "@mui/icons-material/Forum"
+import SettingsIcon from "@mui/icons-material/Settings"
+import AutoStoriesIcon from "@mui/icons-material/AutoStories"
+import AccountBoxIcon from "@mui/icons-material/AccountBox"
+import PersonIcon from "@mui/icons-material/Person"
+import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded"
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined"
+import LogoutIcon from "@mui/icons-material/Logout"
+import { PATHS } from "../../routes"
 
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
   const isMenuOpen = Boolean(anchorEl)
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
+  const isMobileDrawerOpen = Boolean(mobileMoreAnchorEl)
+
+  // fake user state
+  const [user, setUser] = React.useState(false)
+
+  const browseItems = [
+    { Icon: PlayArrowRoundedIcon, label: "Anime", linkTo: PATHS.ANIME.SEARCH },
+    { Icon: AutoStoriesIcon, label: "Manga", linkTo: PATHS.MANGA.SEARCH },
+    { Icon: AccountBoxIcon, label: "Staff", linkTo: PATHS.STAFF.SEARCH },
+    {
+      Icon: AccountBoxOutlinedIcon,
+      label: "Characters",
+      linkTo: PATHS.CHARACTER.SEARCH
+    },
+    { Icon: ForumIcon, label: "Forum", linkTo: PATHS.FORUM }
+  ]
+
+  const userItems = [
+    { Icon: PersonIcon, label: "Profile", linkTo: PATHS.PROFILE },
+    {
+      Icon: NotificationsIcon,
+      label: "Notifications",
+      linkTo: PATHS.NOTIFICATIONS
+    },
+    { Icon: SettingsIcon, label: "Settings", linkTo: PATHS.SETTINGS },
+    { Icon: LogoutIcon, label: "Logout", linkTo: PATHS.LOGOUT }
+  ]
+
+  const buttons = [
+    {
+      className: clsx(styles.btnLogin, "btn-outline"),
+      label: "Login",
+      href: PATHS.LOGIN
+    },
+    {
+      className: clsx(styles.btnSignUp),
+      label: "Sign Up",
+      href: PATHS.SIGNUP
+    }
+  ]
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleMobileMenuClose = () => {
+  const handleMobileDrawerClose = () => {
     setMobileMoreAnchorEl(null)
   }
 
   const handleMenuClose = () => {
     setAnchorEl(null)
-    handleMobileMenuClose()
+    handleMobileDrawerClose()
   }
 
-  const handleMobileMenuOpen = (event) => {
+  const handleMobileDrawerOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget)
   }
 
@@ -58,70 +107,24 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {userItems.map((item) => (
+        <MenuItem component={Link} to={item.linkTo}>
+          {item.label}
+        </MenuItem>
+      ))}
     </Menu>
   )
 
-  const mobileMenuId = "primary-search-account-menu-mobile"
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right"
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right"
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <NavBar isMobile />
-      {/* <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AutoStoriesIcon />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem> */}
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <Button
-          href="/signup"
-          className={clsx(styles.btnSignUp, styles.btnMobile, "btn-outline")}
-        >
-          Sign Up
-        </Button>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <Button
-          href="/login"
-          className={clsx(styles.btnLogin, styles.btnMobile)}
-        >
-          Login
-        </Button>
-      </MenuItem>
-    </Menu>
+  const mobileDrawerId = "mobile drawer"
+  const renderMobileDrawer = (
+    <Drawer
+      browseItems={browseItems}
+      buttons={buttons}
+      user={user}
+      userItems={userItems}
+      open={isMobileDrawerOpen}
+      onClose={handleMobileDrawerClose}
+    />
   )
 
   return (
@@ -135,90 +138,46 @@ export default function PrimarySearchAppBar() {
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
-              minWidth: "70%",
+              flexGrow: 1,
               justifyContent: "space-between"
             }}
           >
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <NavBar />
+              <NavBar items={browseItems} />
             </Box>
-            {/* <IconButton
-              size="large"
-              aria-label="Anime"
-              color="inherit"
-            >
-                <PlayArrowRoundedIcon />
-                <p>Anime</p>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="Manga"
-              color="inherit"
-            >
-                <AutoStoriesIcon />
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="Staff"
-              color="inherit"
-            >
-                <AccountBoxIcon />
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="characters"
-              color="inherit"
-            >
-              <PersonIcon />
-            </IconButton> */}
-            {/* <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <PlayArrowRoundedIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AutoStoriesIcon />
-            </IconButton> */}
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <Button
-                href="/signup"
-                className={clsx(styles.btnSignUp, "btn-outline")}
-              >
-                Sign Up
-              </Button>
-              <Button href="/login" className={styles.btnLogin}>
-                Login
-              </Button>
+              {user ? (
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <PersonIcon />
+                </IconButton>
+              ) : (
+                buttons.map((button) => (
+                  <Button
+                    href={button.href}
+                    className={button.className}
+                    key={button.label}
+                  >
+                    {button.label}
+                  </Button>
+                ))
+              )}
             </Box>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="show more"
-              aria-controls={mobileMenuId}
+              aria-controls={mobileDrawerId}
               aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
+              onClick={handleMobileDrawerOpen}
               color="inherit"
             >
               <MenuIcon />
@@ -226,7 +185,7 @@ export default function PrimarySearchAppBar() {
           </Box>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
+      {renderMobileDrawer}
       {renderMenu}
     </Box>
   )
