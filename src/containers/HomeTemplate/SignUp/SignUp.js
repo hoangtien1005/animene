@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { Formik, Form, Field, ErrorMessage } from "formik"
-
+import { PATHS } from "../../../routes"
 import clsx from "clsx"
 
 import styles from "./styles.module.scss"
@@ -80,7 +80,7 @@ const SignUp = () => (
             Sign Up
           </Button>
           <div className={styles.forgotPassword}>
-            <Link to="/forgot-password">Forgot password?</Link>
+            <Link to={PATHS.FORGOT_PASSWORD}>Forgot password?</Link>
           </div>
         </Form>
       )}
@@ -88,7 +88,7 @@ const SignUp = () => (
 
     <div className={styles.otherOptionContainer}>
       Already have an account?
-      <Link to="/login" className={styles.otherOption}>
+      <Link to={PATHS.LOGIN} className={styles.otherOption}>
         Login
       </Link>
     </div>

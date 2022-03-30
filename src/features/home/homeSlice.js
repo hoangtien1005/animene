@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { callAnilistApi } from "../../utils/callApi"
-import { HOME_DATA_QUERY } from "../../utils/queries"
+import { HOME_DATA_QUERY } from "../../queries/anime"
 import {
   getCurrentSeason,
   getCurrentYear,

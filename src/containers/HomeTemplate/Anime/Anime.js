@@ -3,8 +3,10 @@ import { useEffect, useState, useCallback } from "react"
 import { useLocation, useParams } from "react-router-dom"
 
 import styles from "./styles.module.scss"
-
 import Loading from "../../../components/Loading"
+import ResultNotFound from "../../../components/ResultNotFound"
+import LoadingDetailsPage from "../../../components/LoadingDetailsPage"
+import MediaDetailsPage from "../../../components/MediaDetailsPage"
 
 import { selectAnime, fetchAnimeById } from "../../../features/anime/animeSlice"
 
@@ -12,26 +14,25 @@ const Component = ({}) => {
   const { loading, data, error } = useSelector(selectAnime)
 
   const location = useLocation()
-  const { anime_id } = useParams()
+  const { id } = useParams()
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchAnimeById(anime_id))
+    dispatch(fetchAnimeById(id))
     window.scrollTo(0, 0)
-  }, [dispatch, anime_id])
+  }, [dispatch, id])
 
   return (
     <>
-      {/* {loading && <Loading single />}
-      <div className={styles.bannerSpacer}></div>
-      {data && data.status_code === 200 && (
-        <div
-          className={styles.banner}
-          style={{ backgroundImage: `url(${data.data.banner_image})` }}
-        ></div>
-      )} */}
-      {console.log(data)}
+      {loading && (
+        <>
+          <Loading />
+          <LoadingDetailsPage />
+        </>
+      )}
+      {data && data.data && <MediaDetailsPage data={data} />}
+      {error && <ResultNotFound message={error.message} />}
     </>
   )
 }

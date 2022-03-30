@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { callAnilistApi } from "../../utils/callApi"
-import { MANGA_HOME_DATA_QUERY, SEARCH_MANGAS_QUERY } from "../../utils/queries"
+import { MANGA_HOME_DATA_QUERY, SEARCH_MANGAS_QUERY } from "../../queries/manga"
 import { MEDIA_CONSTANTS } from "../../utils/constants"
 
 // fetch all required data for homepage

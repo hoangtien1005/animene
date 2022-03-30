@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { callAnilistApi } from "../../utils/callApi"
-import { STAFF_HOME_DATA_QUERY, SEARCH_STAFFS_QUERY } from "../../utils/queries"
+import { STAFF_HOME_DATA_QUERY, SEARCH_STAFFS_QUERY } from "../../queries/staff"
 import { MEDIA_CONSTANTS } from "../../utils/constants"
 
 // fetch all required data for homepage

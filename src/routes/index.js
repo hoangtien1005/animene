@@ -1,14 +1,48 @@
-import { PATHS } from "../utils/constants"
 import Home from "../containers/HomeTemplate/Home"
 import SignUp from "../containers/HomeTemplate/SignUp"
 import Login from "../containers/HomeTemplate/Login"
 import ForgotPassword from "../containers/HomeTemplate/ForgotPassword"
 import AnimeList from "../containers/HomeTemplate/AnimeList"
 import Anime from "../containers/HomeTemplate/Anime"
+import Character from "../containers/HomeTemplate/Character"
+import Staff from "../containers/HomeTemplate/Staff"
+import Manga from "../containers/HomeTemplate/Manga"
 import MangaList from "../containers/HomeTemplate/MangaList"
 import StaffList from "../containers/HomeTemplate/StaffList"
 import CharacterList from "../containers/HomeTemplate/CharacterList"
 import ComingSoon from "../containers/HomeTemplate/ComingSoon"
+
+// all endpoints
+const PATHS = {
+  ANIME: {
+    SEARCH: "/search/anime",
+    DETAILS: "/anime"
+  },
+  MANGA: {
+    SEARCH: "/search/manga",
+    DETAILS: "/manga"
+  },
+  CHARACTER: {
+    SEARCH: "/search/characters",
+    DETAILS: "/character"
+  },
+  CHARACTERS: {
+    SEARCH: "/search/characters",
+    DETAILS: "/character"
+  },
+  STAFF: {
+    SEARCH: "/search/staff",
+    DETAILS: "/staff"
+  },
+  FORUM: "/forum",
+  SIGNUP: "/signup",
+  LOGIN: "/login",
+  FORGOT_PASSWORD: "/forgot-password",
+  PROFILE: "/profile",
+  NOTIFICATIONS: "/notifications",
+  SETTINGS: "/settings",
+  LOGOUT: "/logout"
+}
 
 const routeHome = [
   {
@@ -24,7 +58,7 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.ANIME.DETAILS}/:id`,
-    component: ComingSoon
+    component: Anime
   },
   {
     exact: false,
@@ -34,7 +68,7 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.MANGA.DETAILS}/:id`,
-    component: ComingSoon
+    component: Manga
   },
   {
     exact: false,
@@ -44,7 +78,7 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.STAFF.DETAILS}/:id`,
-    component: ComingSoon
+    component: Staff
   },
   {
     exact: false,
@@ -54,23 +88,48 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.CHARACTER.DETAILS}/:id`,
+    component: Character
+  },
+  {
+    exact: false,
+    path: PATHS.FORUM,
     component: ComingSoon
   },
   {
     exact: true,
-    path: "/signup",
+    path: PATHS.SIGNUP,
     component: SignUp
   },
   {
     exact: true,
-    path: "/login",
+    path: PATHS.LOGIN,
     component: Login
   },
   {
     exact: true,
-    path: "/forgot-password",
+    path: PATHS.FORGOT_PASSWORD,
     component: ForgotPassword
+  },
+  {
+    exact: true,
+    path: PATHS.PROFILE,
+    component: ComingSoon
+  },
+  {
+    exact: true,
+    path: PATHS.NOTIFICATIONS,
+    component: ComingSoon
+  },
+  {
+    exact: true,
+    path: PATHS.SETTINGS,
+    component: ComingSoon
+  },
+  {
+    exact: true,
+    path: PATHS.LOGOUT,
+    component: ComingSoon
   }
 ]
 
-export { routeHome }
+export { routeHome, PATHS }

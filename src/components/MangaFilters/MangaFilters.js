@@ -11,7 +11,7 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt"
 import { MEDIA_CONSTANTS } from "../../utils/constants"
 
 const MangaFilters = () => {
-  const [showFilters, setShowFilters] = useState(true)
+  const [showFilters, setShowFilters] = useState(false)
 
   const handleShowFilters = useCallback(() => {
     setShowFilters((prevState) => !prevState)

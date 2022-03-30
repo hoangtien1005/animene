@@ -1,6 +1,5 @@
 import Grid from "@mui/material/Grid"
 import { useMemo, useState, useCallback, memo } from "react"
-
 import styles from "./styles.module.scss"
 import clsx from "clsx"
 
@@ -11,7 +10,7 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt"
 import { MEDIA_CONSTANTS } from "../../utils/constants"
 
 const AnimeFilters = () => {
-  const [showFilters, setShowFilters] = useState(true)
+  const [showFilters, setShowFilters] = useState(false)
 
   const handleShowFilters = useCallback(() => {
     setShowFilters((prevState) => !prevState)
