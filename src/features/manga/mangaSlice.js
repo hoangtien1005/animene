@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import { callAnimeApi, callAnilistApi } from "../../utils/callApi"
+import { callMangaApi, callAnilistApi } from "../../utils/callApi"
 import { MEDIA_CONSTANTS } from "../../utils/constants"
 import { generateDate } from "../../utils/utils"
-import { ANIME_DETAILS_QUERY } from "../../queries/anime"
+import { MANGA_DETAILS_QUERY } from "../../queries/manga"
 
-const extractSubInfo = (animeInfo, studios, producers) => {
+const extractSubInfo = (mangaInfo, studios, producers) => {
   const results = []
   const {
     averageScore,
@@ -19,11 +19,11 @@ const extractSubInfo = (animeInfo, studios, producers) => {
     title,
     synonyms,
     episodes
-  } = animeInfo
+  } = mangaInfo
 
   results.push({
     type: "Format",
-    value: MEDIA_CONSTANTS.FORMATS[animeInfo.type][format]
+    value: MEDIA_CONSTANTS.FORMATS[mangaInfo.type][format]
   })
   results.push({ type: "Episodes", value: episodes || "unknown" })
   results.push({
@@ -32,7 +32,7 @@ const extractSubInfo = (animeInfo, studios, producers) => {
   })
   results.push({
     type: "Status",
-    value: MEDIA_CONSTANTS.STATUS[animeInfo.type][status]
+    value: MEDIA_CONSTANTS.STATUS[mangaInfo.type][status]
   })
   results.push({
     type: "Start date",
@@ -84,7 +84,7 @@ const extractSubInfo = (animeInfo, studios, producers) => {
   return results
 }
 
-const refactorAnimeDetails = (animeInfo) => {
+const refactorMangaDetails = (mangaInfo) => {
   const {
     characters,
     recommendations,
@@ -92,7 +92,7 @@ const refactorAnimeDetails = (animeInfo) => {
     staff,
     streamingEpisodes,
     ...rest
-  } = animeInfo.data.Media
+  } = mangaInfo.data.Media
   let transformedCharacters = []
   let transformedRecommendations = []
   let transformedRelations = []
@@ -156,29 +156,30 @@ const initialState = {
   data: null
 }
 
-export const fetchAnimeById = createAsyncThunk("anime", async (anime_id) => {
-  const res = await callAnilistApi(ANIME_DETAILS_QUERY, { id: anime_id })
-  const data = refactorAnimeDetails(res)
+export const fetchMangaById = createAsyncThunk("manga", async (manga_id) => {
+  const res = await callAnilistApi(MANGA_DETAILS_QUERY, { id: manga_id })
+  console.log(res)
+  const data = refactorMangaDetails(res)
   return { data }
 })
 
-const animeSlice = createSlice({
-  name: "anime",
+const mangaSlice = createSlice({
+  name: "manga",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAnimeById.pending, (state) => {
+      .addCase(fetchMangaById.pending, (state) => {
         state.loading = true
         state.data = null
         state.error = null
       })
-      .addCase(fetchAnimeById.fulfilled, (state, action) => {
+      .addCase(fetchMangaById.fulfilled, (state, action) => {
         state.loading = null
         state.data = action.payload.data
         state.error = null
       })
-      .addCase(fetchAnimeById.rejected, (state, action) => {
+      .addCase(fetchMangaById.rejected, (state, action) => {
         state.loading = null
         state.data = null
         state.error = action.error
@@ -186,6 +187,6 @@ const animeSlice = createSlice({
   }
 })
 
-export const animeActions = animeSlice.actions
-export const selectAnime = (state) => state.anime
-export default animeSlice.reducer
+export const mangaActions = mangaSlice.actions
+export const selectManga = (state) => state.manga
+export default mangaSlice.reducer

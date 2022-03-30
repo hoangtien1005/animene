@@ -7,10 +7,10 @@ import Loading from "../../../components/Loading"
 import LoadingDetailsPage from "../../../components/LoadingDetailsPage"
 import MediaDetailsPage from "../../../components/MediaDetailsPage"
 
-import { selectAnime, fetchAnimeById } from "../../../features/anime/animeSlice"
+import { selectManga, fetchMangaById } from "../../../features/manga/mangaSlice"
 
 const Component = ({}) => {
-  const { loading, data, error } = useSelector(selectAnime)
+  const { loading, data, error } = useSelector(selectManga)
 
   const location = useLocation()
   const { id } = useParams()
@@ -19,7 +19,7 @@ const Component = ({}) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchAnimeById(id))
+    dispatch(fetchMangaById(id))
     window.scrollTo(0, 0)
   }, [dispatch, id])
 

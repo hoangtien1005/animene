@@ -181,3 +181,179 @@ query(${SEARCH_MANGAS_QUERY_VARIABLES}) {
   }
 }
 `
+
+export const MANGA_DETAILS_QUERY = `
+  query($id: Int) {
+    Media(id: $id, type: MANGA) {
+      trailer {
+        id
+        site
+      }
+      recommendations {
+        edges {
+          node {
+            id
+            mediaRecommendation {
+              title {
+                romaji
+              }
+              coverImage {
+                extraLarge
+                large
+                medium
+                color
+              }
+              id
+              type
+            }
+          }
+        }
+      }
+      streamingEpisodes {
+        title
+        thumbnail
+        url
+        site
+      }
+      stats{
+        scoreDistribution {
+          score
+          amount
+        }
+        statusDistribution {
+          status
+          amount
+        }
+      }
+      staff {
+        edges{
+          node {
+            image {
+              large
+              medium
+            }
+            name {
+              first
+              last
+              full
+              native
+            }
+            id
+          }
+          role
+          id
+        }
+      }
+      characters(sort: ID){
+        edges {
+          voiceActors(language: JAPANESE){
+            image {
+              medium
+            }
+            language
+            name {
+              full
+              native
+            }
+            id
+          }
+          role
+          node {
+            image {
+              medium
+            }
+            name {
+              first
+              last
+              full
+              native
+            }
+            id
+          }
+          id
+        }
+      }
+      id
+      bannerImage
+      description(asHtml: true)
+      coverImage {
+        extraLarge
+        large
+        medium
+        color
+      }
+      title {
+        english
+        romaji
+        native
+      }
+      relations {
+        edges {
+          relationType
+          node {
+            coverImage {
+              extraLarge
+              large
+              medium
+              color
+            }
+            title {
+              romaji
+              english
+              native
+              userPreferred
+            }
+            id
+            type
+          }
+          id
+        }
+      }
+      genres
+      meanScore
+      averageScore
+      type
+      popularity
+      format
+      episodes
+      duration
+      startDate {
+        year
+        month
+        day
+      }
+      endDate {
+        year
+        month
+        day
+      }
+      season
+      seasonYear
+      status
+      hashtag
+      studios {
+        edges {
+          node {
+            id
+            name
+            isAnimationStudio
+          }
+        }
+      }
+      source
+      synonyms
+      favourites
+      tags {
+        name
+        isMediaSpoiler
+        id
+        rank
+      }
+      externalLinks {
+        id
+        site
+        url
+      }
+    }
+  }
+`

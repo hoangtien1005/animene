@@ -230,22 +230,6 @@ export const SEARCH_ANIMES_QUERY = `
 export const ANIME_DETAILS_QUERY = `
   query($id: Int) {
     Media(id: $id, type: ANIME) {
-      reviews {
-        edges {
-          node {
-            id
-            summary
-            rating
-            user {
-              id
-              avatar {
-                large
-                medium
-              }
-            }
-          }
-        }
-      }
       trailer {
         id
         site
@@ -264,6 +248,8 @@ export const ANIME_DETAILS_QUERY = `
                 medium
                 color
               }
+              id
+              type
             }
           }
         }
@@ -363,6 +349,7 @@ export const ANIME_DETAILS_QUERY = `
               userPreferred
             }
             id
+            type
           }
           id
         }
@@ -400,7 +387,7 @@ export const ANIME_DETAILS_QUERY = `
       }
       source
       synonyms
-      favorites
+      favourites
       tags {
         name
         isMediaSpoiler

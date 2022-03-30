@@ -65,6 +65,22 @@ export const getCurrentYear = () => {
   return new Date().getFullYear()
 }
 
+export const generateDate = ({ day, month, year }) => {
+  if (!day && !month && !year) return "unknown"
+
+  let res = ""
+  if (day) {
+    res += day < 10 ? `0${day}` : day
+    res += "-"
+  }
+  if (month) {
+    res += month < 10 ? `0${month}` : month
+    res += "-"
+  }
+  if (year) res += year
+  return res
+}
+
 export const checkEmail = (value) => {
   if (value.trim().length === 0) return "Email is required"
   if (

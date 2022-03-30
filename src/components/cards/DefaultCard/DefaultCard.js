@@ -9,9 +9,10 @@ import MediaDialog from "../../MediaDialog"
 
 import styles from "./styles.module.scss"
 
-const Component = ({ data }) => {
+const Component = ({ data, noDialog }) => {
   const [showDialog, setShowDialog] = useState(false)
-  const hasDialog = data.type === "ANIME" || data.type === "MANGA"
+  const hasDialog =
+    !noDialog && (data.type === "ANIME" || data.type === "MANGA")
   const windowWidth =
     window.innerWidth ||
     document.documentElement.clientWidth ||
