@@ -4,6 +4,7 @@ import Login from "../containers/HomeTemplate/Login"
 import ForgotPassword from "../containers/HomeTemplate/ForgotPassword"
 import AnimeList from "../containers/HomeTemplate/AnimeList"
 import Anime from "../containers/HomeTemplate/Anime"
+import Manga from "../containers/HomeTemplate/Manga"
 import MangaList from "../containers/HomeTemplate/MangaList"
 import StaffList from "../containers/HomeTemplate/StaffList"
 import CharacterList from "../containers/HomeTemplate/CharacterList"
@@ -65,7 +66,7 @@ const routeHome = [
   {
     exact: false,
     path: `${PATHS.MANGA.DETAILS}/:id`,
-    component: ComingSoon
+    component: Manga
   },
   {
     exact: false,

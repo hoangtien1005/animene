@@ -109,14 +109,18 @@ const MediaDetailsPage = ({ data }) => {
         </Grid>
         <Grid item xs={12} md={9.6}>
           <GridContainer>
-            <Grid className={styles.section} item xs={12}>
-              <h5 className={styles.sectionTitle}>Relations</h5>
-            </Grid>
-            {data.relations.map((relation) => (
-              <Grid item xs={4} sm={2.4} md={3} lg={2.4} key={relation.id}>
-                <DefaultCard noDialog data={relation} />
-              </Grid>
-            ))}
+            {data.relations.length > 0 && (
+              <>
+                <Grid className={styles.section} item xs={12}>
+                  <h5 className={styles.sectionTitle}>Relations</h5>
+                </Grid>
+                {data.relations.map((relation) => (
+                  <Grid item xs={4} sm={2.4} md={3} lg={2.4} key={relation.id}>
+                    <DefaultCard noDialog data={relation} />
+                  </Grid>
+                ))}
+              </>
+            )}
             <Grid className={styles.section} item xs={12}>
               <h5 className={styles.sectionTitle}>Characters</h5>
             </Grid>
@@ -143,7 +147,7 @@ const MediaDetailsPage = ({ data }) => {
                 <Grid className={styles.section} item xs={12}>
                   <h5 className={styles.sectionTitle}>Recommendations</h5>
                 </Grid>
-                {data.recommendations.map((recommendation) => (
+                {data.recommendations.slice(0, 5).map((recommendation) => (
                   <Grid
                     item
                     xs={4}
