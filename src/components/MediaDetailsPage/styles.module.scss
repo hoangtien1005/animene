@@ -9,13 +9,16 @@
     z-index: -1;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
+    animation: opacity 0.3s;
+    filter: brightness(80%);
     
     @include breakpoint(md) {
         height: 400px;
     }
 }
 
-.coverImageContainer {
+.mainTitleContainer {
     display: flex;
     height: 180px;
     
@@ -30,6 +33,7 @@
     flex: 3;
     width: 100%;
     background-repeat: no-repeat;
+    animation: opacity 0.3s;
     background-size: cover;
     @include breakpoint(md) {
         background-size: contain;
@@ -38,11 +42,11 @@
 }
 
 
-.descContainer {
+.subContainer {
     flex: 9;
     padding: 18px;
     border-radius: 3px;
-    overflow-y: scroll;
+    
 
     .mediaTitle {
         margin-bottom: 12px;
@@ -51,9 +55,19 @@
         font-weight: 400;
     }
 
+    .descContainer {
+        height: 85%;
+    }
+
     .description {
-        font-size: $fs-sm;
+        font-size: $fs-xs-sm;
         color: $color-text-md;
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        overflow: scroll;
+        height: 100%;
+        transition: all .5s;
+        -webkit-box-orient: vertical;
     }
 }
 .space {
@@ -63,13 +77,14 @@
     }
 }
 
+.section {
+    margin-top: 16px !important;
+    margin-bottom: -16px !important;
+}
 
-
-.mainTitle {
+.sectionTitle {
     color: $color-text-bold;
-    margin-bottom: 10px;
     font-size: $fs-sm;
-
 }
 
 .subInfoContainer {
@@ -87,7 +102,7 @@
 
     .subInfoItem {
         margin-bottom: 12px;
-        margin-right: 12px;
+        margin-right: 16px;
     
         .subInfoType {
             color: $color-text-md;
@@ -101,6 +116,11 @@
             color: $color-text-light;
             font-size: 13px;
             width: max-content;
+
+            @include breakpoint(md) {
+                margin-right: 0;
+                width: fit-content;
+            }
         }
     }
 }
@@ -149,3 +169,9 @@
     }
 }
 
+
+.trailer{
+    height: auto;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}

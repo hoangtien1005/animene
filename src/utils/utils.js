@@ -66,12 +66,18 @@ export const getCurrentYear = () => {
 }
 
 export const generateDate = ({ day, month, year }) => {
+  if (!day && !month && !year) return "unknown"
+
   let res = ""
-  res += day < 10 ? `0${day}` : day
-  res += "-"
-  res += month < 10 ? `0${month}` : month
-  res += "-"
-  res += year
+  if (day) {
+    res += day < 10 ? `0${day}` : day
+    res += "-"
+  }
+  if (month) {
+    res += month < 10 ? `0${month}` : month
+    res += "-"
+  }
+  if (year) res += year
   return res
 }
 

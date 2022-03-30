@@ -25,10 +25,10 @@ const extractSubInfo = (animeInfo, studios, producers) => {
     type: "Format",
     value: MEDIA_CONSTANTS.FORMATS[animeInfo.type][format]
   })
-  results.push({ type: "Episodes", value: episodes })
+  results.push({ type: "Episodes", value: episodes || "unknown" })
   results.push({
     type: "Duration",
-    value: duration + " mins"
+    value: duration ? duration + " mins" : "unknown"
   })
   results.push({
     type: "Status",
@@ -48,7 +48,7 @@ const extractSubInfo = (animeInfo, studios, producers) => {
   })
   results.push({
     type: "Average Score",
-    value: averageScore + "%"
+    value: averageScore ? averageScore + "%" : "unknown"
   })
   if (studios.length > 0)
     results.push({
