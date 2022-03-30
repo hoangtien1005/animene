@@ -49,6 +49,7 @@
 
 
 .subContainer {
+    height: 100%;
     padding: 18px;
     border-radius: 3px;
     @include breakpoint(md) {
