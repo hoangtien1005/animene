@@ -71,13 +71,15 @@ export const generateDate = ({ day, month, year }) => {
   let res = ""
   if (day) {
     res += day < 10 ? `0${day}` : day
-    res += "-"
   }
   if (month) {
-    res += month < 10 ? `0${month}` : month
     res += "-"
+    res += month < 10 ? `0${month}` : month
   }
-  if (year) res += year
+  if (year) {
+    res += "-"
+    res += year
+  }
   return res
 }
 

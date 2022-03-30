@@ -4,14 +4,16 @@ import { useLocation, useParams } from "react-router-dom"
 
 import styles from "./styles.module.scss"
 import Loading from "../../../components/Loading"
-import ResultNotFound from "../../../components/ResultNotFound"
 import LoadingDetailsPage from "../../../components/LoadingDetailsPage"
-import MediaDetailsPage from "../../../components/MediaDetailsPage"
-
-import { selectAnime, fetchAnimeById } from "../../../features/anime/animeSlice"
+import PersonDetailsPage from "../../../components/PersonDetailsPage"
+import ResultNotFound from "../../../components/ResultNotFound"
+import {
+  selectCharacter,
+  fetchCharacterById
+} from "../../../features/character/characterSlice"
 
 const Component = ({}) => {
-  const { loading, data, error } = useSelector(selectAnime)
+  const { loading, data, error } = useSelector(selectCharacter)
 
   const location = useLocation()
   const { id } = useParams()
@@ -19,7 +21,7 @@ const Component = ({}) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchAnimeById(id))
+    dispatch(fetchCharacterById(id))
     window.scrollTo(0, 0)
   }, [dispatch, id])
 
@@ -31,7 +33,7 @@ const Component = ({}) => {
           <LoadingDetailsPage />
         </>
       )}
-      {data && data.data && <MediaDetailsPage data={data} />}
+      {data && data.person && <PersonDetailsPage data={data} />}
       {error && <ResultNotFound message={error.message} />}
     </>
   )

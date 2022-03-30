@@ -96,7 +96,7 @@ const MediaDetailsPage = ({ data }) => {
                     External & Streaming Links
                   </h4>
                   {media.externalLinks.map((link) => (
-                    <div className={styles.externalLinks} key={link.site}>
+                    <div className={styles.externalLinks} key={`${link.url}`}>
                       <a href={link.url} target="_blank" rel="noreferrer">
                         {link.site}
                       </a>
@@ -180,7 +180,6 @@ const MediaDetailsPage = ({ data }) => {
           </GridContainer>
         </Grid>
       </GridContainer>
-      {console.log(data)}
     </>
   )
 }

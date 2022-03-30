@@ -158,7 +158,6 @@ const initialState = {
 
 export const fetchMangaById = createAsyncThunk("manga", async (manga_id) => {
   const res = await callAnilistApi(MANGA_DETAILS_QUERY, { id: manga_id })
-  console.log(res)
   const data = refactorMangaDetails(res)
   return { data }
 })

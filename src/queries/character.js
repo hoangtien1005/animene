@@ -82,3 +82,50 @@ query($search: String, $page: Int) {
   }
 }
 `
+
+export const CHARACTER_DETAILS_QUERY = `
+  query($id: Int) {
+    Character(id: $id) {
+      id
+      name {
+        first
+        middle
+        last
+        full
+        native
+        userPreferred
+      }
+      image {
+        large
+        medium
+      }
+      description
+      gender
+      dateOfBirth {
+        year
+        month
+        day
+      }
+      age
+      bloodType
+      siteUrl
+      media {
+        edges {
+          node {
+            id
+            type
+            coverImage {
+              large
+              medium
+            }
+            title {
+              romaji
+              english
+              native
+            }
+          }
+        }
+      }
+    }
+  }
+`

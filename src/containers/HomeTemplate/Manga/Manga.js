@@ -4,6 +4,7 @@ import { useLocation, useParams } from "react-router-dom"
 
 import styles from "./styles.module.scss"
 import Loading from "../../../components/Loading"
+import ResultNotFound from "../../../components/ResultNotFound"
 import LoadingDetailsPage from "../../../components/LoadingDetailsPage"
 import MediaDetailsPage from "../../../components/MediaDetailsPage"
 
@@ -14,7 +15,6 @@ const Component = ({}) => {
 
   const location = useLocation()
   const { id } = useParams()
-  console.log(loading)
 
   const dispatch = useDispatch()
 
@@ -32,6 +32,7 @@ const Component = ({}) => {
         </>
       )}
       {data && data.data && <MediaDetailsPage data={data} />}
+      {error && <ResultNotFound message={error.message} />}
     </>
   )
 }
