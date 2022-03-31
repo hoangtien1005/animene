@@ -239,17 +239,50 @@ export const ANIME_DETAILS_QUERY = `
           node {
             id
             mediaRecommendation {
-              title {
-                romaji
-              }
               coverImage {
                 extraLarge
                 large
                 medium
                 color
               }
+              title {
+                romaji
+                english
+                native
+                userPreferred
+              }
               id
               type
+              genres
+              meanScore
+              averageScore
+              studios {
+                edges {
+                  node {
+                    id
+                    name
+                    isAnimationStudio
+                  }
+                }
+              }
+              type
+              popularity
+              format
+              episodes
+              chapters
+              season
+              seasonYear
+              status
+              startDate {
+                day
+                month
+                year
+              }
+              endDate {
+                day
+                month
+                year
+              }
             }
           }
         }
@@ -350,6 +383,36 @@ export const ANIME_DETAILS_QUERY = `
             }
             id
             type
+            genres
+            meanScore
+            averageScore
+            studios {
+              edges {
+                node {
+                  id
+                  name
+                  isAnimationStudio
+                }
+              }
+            }
+            type
+            popularity
+            format
+            episodes
+            chapters
+            season
+            seasonYear
+            status
+            startDate {
+              day
+              month
+              year
+            }
+            endDate {
+              day
+              month
+              year
+            }
           }
           id
         }

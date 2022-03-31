@@ -34,7 +34,12 @@ const Component = ({}) => {
         </>
       )}
       {data && data.person && <PersonDetailsPage data={data} />}
-      {error && <ResultNotFound message={error.message} />}
+      {error && (
+        <>
+          <div style={{ marginTop: "140px" }}></div>
+          <ResultNotFound />
+        </>
+      )}
     </>
   )
 }

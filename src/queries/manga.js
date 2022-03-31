@@ -194,26 +194,53 @@ export const MANGA_DETAILS_QUERY = `
           node {
             id
             mediaRecommendation {
-              title {
-                romaji
-              }
               coverImage {
                 extraLarge
                 large
                 medium
                 color
               }
+              title {
+                romaji
+                english
+                native
+                userPreferred
+              }
               id
               type
+              genres
+              meanScore
+              averageScore
+              studios {
+                edges {
+                  node {
+                    id
+                    name
+                    isAnimationStudio
+                  }
+                }
+              }
+              type
+              popularity
+              format
+              episodes
+              chapters
+              season
+              seasonYear
+              status
+              startDate {
+                day
+                month
+                year
+              }
+              endDate {
+                day
+                month
+                year
+              }
             }
           }
         }
-      }
-      streamingEpisodes {
-        title
-        thumbnail
-        url
-        site
       }
       stats{
         scoreDistribution {
@@ -305,6 +332,36 @@ export const MANGA_DETAILS_QUERY = `
             }
             id
             type
+            genres
+            meanScore
+            averageScore
+            studios {
+              edges {
+                node {
+                  id
+                  name
+                  isAnimationStudio
+                }
+              }
+            }
+            type
+            popularity
+            format
+            episodes
+            chapters
+            season
+            seasonYear
+            status
+            startDate {
+              day
+              month
+              year
+            }
+            endDate {
+              day
+              month
+              year
+            }
           }
           id
         }
@@ -316,6 +373,7 @@ export const MANGA_DETAILS_QUERY = `
       popularity
       format
       episodes
+      chapters
       duration
       startDate {
         year
@@ -327,8 +385,6 @@ export const MANGA_DETAILS_QUERY = `
         month
         day
       }
-      season
-      seasonYear
       status
       hashtag
       studios {

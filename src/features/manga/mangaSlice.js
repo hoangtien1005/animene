@@ -8,28 +8,21 @@ const extractSubInfo = (mangaInfo, studios, producers) => {
   const results = []
   const {
     averageScore,
-    duration,
     startDate,
     endDate,
     format,
     genres,
-    season,
-    seasonYear,
     status,
     title,
     synonyms,
-    episodes
+    chapters
   } = mangaInfo
 
   results.push({
     type: "Format",
     value: MEDIA_CONSTANTS.FORMATS[mangaInfo.type][format]
   })
-  results.push({ type: "Episodes", value: episodes || "unknown" })
-  results.push({
-    type: "Duration",
-    value: duration ? duration + " mins" : "unknown"
-  })
+  results.push({ type: "Chapters", value: chapters || "unknown" })
   results.push({
     type: "Status",
     value: MEDIA_CONSTANTS.STATUS[mangaInfo.type][status]
@@ -41,10 +34,6 @@ const extractSubInfo = (mangaInfo, studios, producers) => {
   results.push({
     type: "End date",
     value: generateDate(endDate)
-  })
-  results.push({
-    type: "Season",
-    value: MEDIA_CONSTANTS.SEASON.ANIME[season] + " " + seasonYear
   })
   results.push({
     type: "Average Score",

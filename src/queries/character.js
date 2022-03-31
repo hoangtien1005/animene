@@ -114,6 +114,24 @@ export const CHARACTER_DETAILS_QUERY = `
           node {
             id
             type
+            genres
+            averageScore
+            popularity
+            format
+            episodes
+            season
+            seasonYear
+            status
+            startDate {
+              day
+              month
+              year
+            }
+            endDate {
+              day
+              month
+              year
+            }
             coverImage {
               large
               medium
@@ -122,6 +140,13 @@ export const CHARACTER_DETAILS_QUERY = `
               romaji
               english
               native
+            }
+            studios {
+              nodes {
+                id
+                name
+                isAnimationStudio
+              }
             }
           }
         }

@@ -116,7 +116,7 @@ const MediaDetailsPage = ({ data }) => {
                 </Grid>
                 {data.relations.map((relation) => (
                   <Grid item xs={4} sm={2.4} md={3} lg={2.4} key={relation.id}>
-                    <DefaultCard noDialog data={relation} />
+                    <DefaultCard data={relation} />
                   </Grid>
                 ))}
               </>
@@ -156,7 +156,7 @@ const MediaDetailsPage = ({ data }) => {
                     lg={2.4}
                     key={recommendation.id}
                   >
-                    <DefaultCard noDialog data={recommendation} />
+                    <DefaultCard data={recommendation} />
                   </Grid>
                 ))}
               </>

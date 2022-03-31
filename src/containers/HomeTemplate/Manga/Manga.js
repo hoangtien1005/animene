@@ -32,7 +32,12 @@ const Component = ({}) => {
         </>
       )}
       {data && data.data && <MediaDetailsPage data={data} />}
-      {error && <ResultNotFound message={error.message} />}
+      {error && (
+        <>
+          <div style={{ marginTop: "140px" }}></div>
+          <ResultNotFound />
+        </>
+      )}
     </>
   )
 }
