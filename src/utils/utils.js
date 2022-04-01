@@ -68,19 +68,18 @@ export const getCurrentYear = () => {
 export const generateDate = ({ day, month, year }) => {
   if (!day && !month && !year) return "unknown"
 
-  let res = ""
+  const res = []
+
   if (day) {
-    res += day < 10 ? `0${day}` : day
+    res.push(day < 10 ? `0${day}` : day)
   }
   if (month) {
-    res += "-"
-    res += month < 10 ? `0${month}` : month
+    res.push(month < 10 ? `0${month}` : month)
   }
   if (year) {
-    res += "-"
-    res += year
+    res.push(year)
   }
-  return res
+  return res.join("-")
 }
 
 export const checkEmail = (value) => {

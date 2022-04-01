@@ -29,7 +29,7 @@ const Component = () => {
           pathname: PATHS[dataType].SEARCH,
           search: params.toString()
         })
-      }, 500)
+      }, 1000)
       return () => clearTimeout(timer)
     } else {
       params.delete("search")
