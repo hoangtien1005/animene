@@ -47,6 +47,16 @@
     }
 }
 
+.section {
+    margin-top: 28px !important;
+    margin-bottom: 8px !important;
+}
+
+.sectionTitle {
+    color: $color-text-bold;
+    font-size: $fs-sm;
+}
+
 
 .subContainer {
     height: 100%;
@@ -92,15 +102,8 @@
     }
 }
 
-.section {
-    margin-top: 16px !important;
-    margin-bottom: -16px !important;
-}
 
-.sectionTitle {
-    color: $color-text-bold;
-    font-size: $fs-sm;
-}
+
 
 .subInfoContainer {
     background-color: $color-white;

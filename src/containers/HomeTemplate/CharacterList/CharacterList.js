@@ -42,20 +42,21 @@ const CharacterList = () => {
     <>
       {isDefault && (
         <>
-          <div style={{ marginTop: "40px", width: "100%" }}></div>
+          <div className="space-top-40"></div>
           <GridContainer>
             <Grid item xs={12}>
               <h2 className={styles.mainTitle}>Search Character</h2>
               <h5 className={styles.filterTitle}>Search</h5>
               <SearchBar />
             </Grid>
-            {loading && (
-              <>
-                <Loading />
-                <LoadingCardSkeleton />
-              </>
-            )}
           </GridContainer>
+          {loading && (
+            <>
+              <Loading />
+              <div className="space-top-60"></div>
+              <LoadingCardSkeleton />
+            </>
+          )}
           {data &&
             Object.values(data).map((medias) => {
               return (
@@ -75,21 +76,21 @@ const CharacterList = () => {
       )}
       {!isDefault && (
         <>
-          <div style={{ marginTop: "40px", width: "100%" }}></div>
+          <div className="space-top-40"></div>
           <GridContainer>
             <Grid item xs={12}>
               <h2 className={styles.mainTitle}>Search Character</h2>
               <h5 className={styles.filterTitle}>Search</h5>
               <SearchBar />
             </Grid>
-            {loading && (
-              <>
-                <Loading />
-                <LoadingCardSkeleton type={CARD_TYPES.DEFAULT} />
-              </>
-            )}
           </GridContainer>
-          <div style={{ marginTop: "28px", width: "100%" }}></div>
+          <div className="space-top-40"></div>
+          {loading && (
+            <>
+              <Loading />
+              <LoadingCardSkeleton type={CARD_TYPES.DEFAULT} />
+            </>
+          )}
           {data && data.length > 0 && (
             <>
               <InfiniteCardList

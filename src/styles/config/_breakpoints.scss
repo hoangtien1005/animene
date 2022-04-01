@@ -11,6 +11,9 @@
     @else if $point == sm {
       @media (min-width: 600px)  { @content ; }
    }
+   @else if $point == xs-sm {
+      @media (min-width: 450px)  { @content ; }
+   }
    @else if $point == xs {
       @media (min-width: 0)  { @content ; }
  

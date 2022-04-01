@@ -39,9 +39,10 @@
 
 .image {
     width: 54px;
+    height: 100%;
     vertical-align: middle;
-
-    animation: opacity 0.3s linear;
+    
+    animation: opacity 0.3s;
 
     @include breakpoint(md) {
        width: 48px;

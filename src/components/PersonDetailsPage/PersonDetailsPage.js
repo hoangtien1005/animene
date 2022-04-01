@@ -1,11 +1,10 @@
 import styles from "./styles.module.scss"
 import Grid from "@mui/material/Grid"
 import GridContainer from "../ui/GridContainer"
-import DefaultCard from "../cards/DefaultCard"
 import ReactMarkdown from "react-markdown"
+import MediaCardList from "../MediaCardList"
 const PersonDetailsPage = ({ data }) => {
   const { person, medias } = data
-
   return (
     <>
       <GridContainer spacing={3}>
@@ -13,7 +12,11 @@ const PersonDetailsPage = ({ data }) => {
           <div className={styles.mainTitleContainer}>
             <div
               className={styles.coverImage}
-              style={{ backgroundImage: `url(${person.image.large})` }}
+              style={{
+                backgroundImage: `url(${
+                  person.image.large || person.image.medium
+                })`
+              }}
             ></div>
             <div className={styles.subContainer}>
               <div>
@@ -45,15 +48,9 @@ const PersonDetailsPage = ({ data }) => {
             </div>
           </div>
         </Grid>
-        <Grid className={styles.section} item xs={12}>
-          <h5 className={styles.sectionTitle}>Relations</h5>
-        </Grid>
-        {medias.map((media) => (
-          <Grid item xs={4} sm={3} md={2.4} key={media.id}>
-            <DefaultCard data={media} noDialog />
-          </Grid>
-        ))}
       </GridContainer>
+      <div className="space-top-20"></div>
+      <MediaCardList medias={medias} />
     </>
   )
 }

@@ -1,5 +1,12 @@
 @import './config';
 
+@for $i from 10 through 200 {
+  .space-top-#{$i} {
+      margin-top: #{$i}px;
+      width: 100%;
+  }
+}
+
 
 .MuiPaginationItem-root.Mui-selected {
   color: $color-white !important;

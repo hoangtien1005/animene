@@ -22,6 +22,7 @@
 
     .filterIcon {
         box-sizing: content-box;
+        box-shadow: 0 14px 30px rgba($color-box-shadow,.1),0 4px 4px rgba($color-box-shadow,.04);
         background-color: $color-white;
         padding: 8px;
         border-radius: 3px;
@@ -36,4 +37,8 @@
         }
 
     }
+}
+
+.filter {
+    animation: slideFromTop 0.15s;
 }

@@ -1,3 +1,5 @@
+import useCardMediaQuery from "../../hooks/useCardMediaQuery"
+
 import Grid from "@mui/material/Grid"
 import Lazyload from "react-lazyload"
 import InfiniteScroll from "react-infinite-scroll-component"
@@ -9,21 +11,18 @@ import DefaultCard from "../cards/DefaultCard"
 import MediaCardHorizontal from "../cards/MediaCardHorizontal"
 import MediaCardSquare from "../cards/MediaCardSquare"
 import LoadingCardSkeleton from "../LoadingCardSkeleton"
-import GridContainer from "../ui/GridContainer"
 import CardSkeleton from "../ui/CardSkeleton"
 
 const InfiniteCardList = ({ data, cardType, fetchMoreData, allLoaded }) => {
+  const [spacing, cardGridSize] = useCardMediaQuery(cardType)
+
   let Card
-  let breakpoints
   if (cardType === CARD_TYPES.HORIZONTAL) {
     Card = MediaCardHorizontal
-    breakpoints = { xs: 12, sm: 12, md: 12 }
   } else if (cardType === CARD_TYPES.SQUARE) {
     Card = MediaCardSquare
-    breakpoints = { xs: 12, sm: 12, md: 6 }
   } else {
     Card = DefaultCard
-    breakpoints = { xs: 4, sm: 3, md: 2.4 }
   }
 
   return (
@@ -34,19 +33,21 @@ const InfiniteCardList = ({ data, cardType, fetchMoreData, allLoaded }) => {
       hasMore={!allLoaded}
       scrollThreshold="600px"
       loader={
-        <GridContainer>
-          <div style={{ marginTop: "28px", width: "100%" }}></div>
+        <>
+          <div className="space-top-28"></div>
           <LoadingCardSkeleton type={cardType} />
-        </GridContainer>
+        </>
       }
     >
       {data.map((dataItem) => (
         <Grid
           className={styles.infiniteScrollItem}
           item
-          xs={breakpoints.xs}
-          sm={breakpoints.sm}
-          md={breakpoints.md}
+          xs={cardGridSize.xs}
+          xsm={cardGridSize.xsm}
+          sm={cardGridSize.sm}
+          md={cardGridSize.md}
+          lg={cardGridSize.lg}
           key={dataItem.id}
         >
           <Lazyload

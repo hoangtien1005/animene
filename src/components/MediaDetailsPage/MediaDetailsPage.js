@@ -1,10 +1,10 @@
 import styles from "./styles.module.scss"
 import Grid from "@mui/material/Grid"
 import GridContainer from "../ui/GridContainer"
-import DefaultCard from "../cards/DefaultCard"
 import CardHorizontal from "./CardHorizontal"
 import BannerPlaceholder from "../../assets/img/banner_placeholder.jpg"
 import useMediaQuery from "@mui/material/useMediaQuery"
+import MediaCardList from "../MediaCardList"
 const MediaDetailsPage = ({ data }) => {
   const media = data.data
   const subInfo = data.subInfo
@@ -71,7 +71,7 @@ const MediaDetailsPage = ({ data }) => {
                   </div>
                 ))}
               </div>
-              {isMedium && (
+              {isMedium && media?.tags.length > 0 && (
                 <div className={styles.tagsContainer}>
                   <h4
                     style={{ marginBottom: "10px" }}
@@ -87,13 +87,13 @@ const MediaDetailsPage = ({ data }) => {
                   ))}
                 </div>
               )}
-              {isMedium && (
+              {isMedium && media?.externalLinks.length > 0 && (
                 <div className={styles.tagsContainer}>
                   <h4
                     style={{ marginBottom: "10px" }}
                     className={styles.sectionTitle}
                   >
-                    External & Streaming Links
+                    External Links
                   </h4>
                   {media.externalLinks.map((link) => (
                     <div className={styles.externalLinks} key={`${link.url}`}>
@@ -108,64 +108,61 @@ const MediaDetailsPage = ({ data }) => {
           </GridContainer>
         </Grid>
         <Grid item xs={12} md={9.6}>
-          <GridContainer>
-            {data.relations.length > 0 && (
-              <>
-                <Grid className={styles.section} item xs={12}>
-                  <h5 className={styles.sectionTitle}>Relations</h5>
-                </Grid>
-                {data.relations.map((relation) => (
-                  <Grid item xs={4} sm={2.4} md={3} lg={2.4} key={relation.id}>
-                    <DefaultCard data={relation} />
+          {data.relations.length > 0 && (
+            <>
+              <Grid className={styles.section} item xs={12}>
+                <h5 className={styles.sectionTitle}>Relations</h5>
+              </Grid>
+              <MediaCardList medias={data.relations} />
+            </>
+          )}
+          {data?.characters.length > 0 && (
+            <>
+              <Grid className={styles.section} item xs={12}>
+                <h5 className={styles.sectionTitle}>Characters</h5>
+              </Grid>
+              <GridContainer>
+                {data.characters.slice(0, 10).map((character) => (
+                  <Grid item xs={12} md={6} key={character.id}>
+                    <CardHorizontal data={character} />
                   </Grid>
                 ))}
-              </>
-            )}
-            <Grid className={styles.section} item xs={12}>
-              <h5 className={styles.sectionTitle}>Characters</h5>
-            </Grid>
-            {data.characters.slice(0, 6).map((character) => (
-              <Grid item xs={12} md={6} key={character.id}>
-                <CardHorizontal data={character} />
+              </GridContainer>
+            </>
+          )}
+          {data?.staff.length > 0 && (
+            <>
+              <Grid className={styles.section} item xs={12}>
+                <h5 className={styles.sectionTitle}>Staff</h5>
               </Grid>
-            ))}
-            <Grid className={styles.section} item xs={12}>
-              <h5 className={styles.sectionTitle}>Staff</h5>
-            </Grid>
-            {data.staff.slice(0, 6).map((staffItem) => (
-              <Grid
-                item
-                xs={12}
-                md={6}
-                key={`${staffItem.id} ${staffItem.role}`}
-              >
-                <CardHorizontal data={staffItem} />
-              </Grid>
-            ))}
-            {data.recommendations.length > 0 && (
-              <>
-                <Grid className={styles.section} item xs={12}>
-                  <h5 className={styles.sectionTitle}>Recommendations</h5>
-                </Grid>
-                {data.recommendations.slice(0, 5).map((recommendation) => (
+              <GridContainer>
+                {data.staff.slice(0, 10).map((staffItem) => (
                   <Grid
                     item
-                    xs={4}
-                    sm={2.4}
-                    md={3}
-                    lg={2.4}
-                    key={recommendation.id}
+                    xs={12}
+                    md={6}
+                    key={`${staffItem.id} ${staffItem.role}`}
                   >
-                    <DefaultCard data={recommendation} />
+                    <CardHorizontal data={staffItem} />
                   </Grid>
                 ))}
-              </>
-            )}
-            {media.trailer && (
-              <>
-                <Grid className={styles.section} item xs={12}>
-                  <h5 className={styles.sectionTitle}>Trailer</h5>
-                </Grid>
+              </GridContainer>
+            </>
+          )}
+          {data.recommendations.length > 0 && (
+            <>
+              <Grid className={styles.section} item xs={12}>
+                <h5 className={styles.sectionTitle}>Recommendations</h5>
+              </Grid>
+              <MediaCardList medias={data.recommendations.slice(0, 10)} />
+            </>
+          )}
+          {media.trailer && (
+            <>
+              <Grid className={styles.section} item xs={12}>
+                <h5 className={styles.sectionTitle}>Trailer</h5>
+              </Grid>
+              <GridContainer>
                 <Grid item xs={12}>
                   <iframe
                     className={styles.trailer}
@@ -175,9 +172,9 @@ const MediaDetailsPage = ({ data }) => {
                     allowFullScreen
                   />
                 </Grid>
-              </>
-            )}
-          </GridContainer>
+              </GridContainer>
+            </>
+          )}
         </Grid>
       </GridContainer>
     </>

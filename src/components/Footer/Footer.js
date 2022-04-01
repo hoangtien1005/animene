@@ -6,6 +6,9 @@ import Container from "@mui/material/Container"
 import { Link } from "react-router-dom"
 
 import Logo from "../../assets/img/logo3x.png"
+import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled"
+import EmailIcon from "@mui/icons-material/Email"
+import HomeWorkIcon from "@mui/icons-material/HomeWork"
 
 import styles from "./styles.module.scss"
 
@@ -50,16 +53,26 @@ const Footer = () => {
                 <Link to="/">
                   <img style={{ width: "100px" }} src={Logo} alt="Logo" />
                 </Link>
-                <p>
-                  Phone Number: <a href="tel:+84776775284">0776775284</a>
-                </p>
-                <p>
-                  Gmail:{" "}
-                  <a href="mailto:nguyenhoangtien100501@gmail.com">
-                    nguyenhoangtien100501@gmail.com
-                  </a>
-                </p>
-                <p>Address: Thu Duc District, Ho Chi Minh city, VN</p>
+                <a className={styles.personalLink} href="tel:+84776775284">
+                  <PhoneEnabledIcon className={styles.personalIcon} />
+                  <span>0776775284</span>
+                </a>
+                <a
+                  className={styles.personalLink}
+                  href="mailto:nguyenhoangtien100501@gmail.com"
+                >
+                  <EmailIcon className={styles.personalIcon} />
+                  <span>nguyenhoangtien100501@gmail.com</span>
+                </a>
+                <a
+                  className={styles.personalLink}
+                  href="https://goo.gl/maps/LDZn2GkJv6dcbuYg6"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <HomeWorkIcon className={styles.personalIcon} />
+                  <span>Thu Duc District, Ho Chi Minh city</span>
+                </a>
               </Stack>
             </Grid>
             {footers.map((row, idx) => (

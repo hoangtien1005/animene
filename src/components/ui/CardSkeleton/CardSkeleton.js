@@ -2,7 +2,6 @@ import Skeleton from "@mui/material/Skeleton"
 import Stack from "@mui/material/Stack"
 
 import { CARD_TYPES } from "../../../utils/constants"
-
 import "./styles.scss"
 
 const Component = ({ children, className, type, ...props }) => {
@@ -52,7 +51,7 @@ const Component = ({ children, className, type, ...props }) => {
 
   return (
     <Stack className="card-default">
-      <Skeleton variant="rectangular" height={240} />
+      <Skeleton variant="rectangular" height={220} />
       <Skeleton variant="text" />
     </Stack>
   )

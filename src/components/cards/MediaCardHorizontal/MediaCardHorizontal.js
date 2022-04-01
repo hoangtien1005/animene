@@ -45,8 +45,12 @@ const MediaCardHorizontal = ({ data }) => {
         </div>
         <div className={styles.infoContainer}>
           <div className={styles.ratingContainer}>
-            <RatingIcon score={data.averageScore} />
-            <span className={styles.score}>{data.averageScore}%</span>
+            {data.averageScore && (
+              <>
+                <RatingIcon score={data.averageScore} />
+                <span className={styles.score}>{data.averageScore}%</span>
+              </>
+            )}
           </div>
           <div className={styles.subInfoContainer}>
             <span className={styles.textBold}>

@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState, useCallback } from "react"
 import { useLocation } from "react-router-dom"
+import useMediaQuery from "@mui/material/useMediaQuery"
 
 import styles from "./styles.module.scss"
-
 import InfiniteCardList from "../../../components/InfiniteCardList"
 import AnimeFilters from "../../../components/AnimeFilters"
 import SubFilters from "../../../components/SubFilters"
@@ -26,13 +26,22 @@ const AnimeList = () => {
   const [cardType, setCardType] = useState(CARD_TYPES.DEFAULT)
   const location = useLocation()
 
+  const isSmall = useMediaQuery("(max-width:600px)")
+
   const dispatch = useDispatch()
 
   useEffect(() => {
-    setCardType(localStorage.getItem("cardType") || CARD_TYPES.DEFAULT)
     dispatch(fetchAllAnimes({ searchString: location.search }))
     window.scrollTo(0, 0)
   }, [dispatch, location.search])
+
+  useEffect(() => {
+    setCardType(
+      isSmall
+        ? CARD_TYPES.DEFAULT
+        : localStorage.getItem("cardType") || CARD_TYPES.DEFAULT
+    )
+  }, [isSmall])
 
   const handleViewChange = useCallback((option) => {
     setCardType(option)
@@ -45,19 +54,19 @@ const AnimeList = () => {
 
   return (
     <>
-      <div style={{ marginTop: "80px", width: "100%" }}></div>
+      <div className="space-top-80"></div>
       <GridContainer>
         <AnimeFilters />
         <SubFilters cardType={cardType} handleViewChange={handleViewChange} />
         <Tags />
-        {loading && (
-          <>
-            <Loading />
-            <LoadingCardSkeleton type={cardType} />
-          </>
-        )}
       </GridContainer>
-      <div style={{ marginTop: "28px", width: "100%" }}></div>
+      <div className="space-top-28"></div>
+      {loading && (
+        <>
+          <Loading />
+          <LoadingCardSkeleton type={cardType} />
+        </>
+      )}
       {data && data.length > 0 && (
         <>
           <InfiniteCardList

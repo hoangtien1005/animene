@@ -66,7 +66,7 @@ export const fetchHomeMangas = createAsyncThunk("mangaHome", async () => {
   data.trendingNow.title = "TRENDING NOW"
   data.mostPopularManhwa.title = "POPULAR MANHWA"
   data.mostPopular.title = "ALL TIME POPULAR"
-  data.topScore.title = "TOP 100 MANGA"
+  data.topScore.title = "TOP 10 MANGA"
   return { data }
 })
 

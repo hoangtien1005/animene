@@ -50,10 +50,17 @@ const MediaDialog = ({ data }) => {
           </span>
         </div>
       </div>
-      {data.studios?.edges[0]?.node?.name && (
+      {data.studios?.edges?.[0]?.node?.name && (
         <div className={styles.infoContainer}>
           <span className={styles.studio}>
             {data.studios?.edges[0]?.node?.name}
+          </span>
+        </div>
+      )}
+      {data.studios?.nodes?.[0]?.name && (
+        <div className={styles.infoContainer}>
+          <span className={styles.studio}>
+            {data.studios?.nodes?.[0]?.name}
           </span>
         </div>
       )}
