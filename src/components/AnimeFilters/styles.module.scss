@@ -28,6 +28,7 @@
         cursor: pointer;
         color: $color-text-super-light;
         transition: all 0.15s linear;
+        box-shadow: 0 14px 30px rgba($color-box-shadow,.1),0 4px 4px rgba($color-box-shadow,.04);
         &:hover {
             color: $color-pr-1;
         }
@@ -36,4 +37,8 @@
         }
 
     }
+}
+
+.filter {
+    animation: slideFromTop 0.15s;
 }

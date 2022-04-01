@@ -55,7 +55,7 @@ const AnimeFilters = () => {
       { title: "Season", type: "season", options: seasons, multiple: false },
       { title: "Status", type: "status", options: statuses, multiple: false },
       {
-        title: "Country Of Origin",
+        title: "Origin",
         type: "origin",
         options: origins,
         multiple: false
@@ -82,7 +82,13 @@ const AnimeFilters = () => {
       </Grid>
       {showFilters &&
         [genres, formats].map((filter) => (
-          <Grid item xs={6} key={filter.type}>
+          <Grid
+            className={styles.filter}
+            item
+            xs={12}
+            xsm={6}
+            key={filter.type}
+          >
             <h5 className={styles.filterTitle}>{filter.title}</h5>
             <Filter dataType="ANIME" {...filter} />
           </Grid>
@@ -90,7 +96,7 @@ const AnimeFilters = () => {
 
       {showFilters &&
         filters.map((filter) => (
-          <Grid item xs={6} sm={3} key={filter.type}>
+          <Grid className={styles.filter} item xs={6} sm={3} key={filter.type}>
             <h5 className={styles.filterTitle}>{filter.title}</h5>
             <Filter dataType="ANIME" {...filter} />
           </Grid>

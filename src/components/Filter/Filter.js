@@ -3,6 +3,7 @@ import useMediaQuery from "@mui/material/useMediaQuery"
 import Select from "react-select"
 import { useHistory, useLocation } from "react-router-dom"
 
+import styles from "./styles.module.scss"
 import { PATHS } from "../../routes"
 
 const customTextStyles = {
@@ -13,6 +14,11 @@ const customTextStyles = {
 const colorPrimary = "#18c1f0"
 
 const customStyles = {
+  container: (provided) => ({
+    ...provided,
+    boxShadow:
+      "0 14px 30px rgba(103,132,187,.1),0 4px 4px rgba(103,132,187,.04)"
+  }),
   placeholder: (provided) => ({
     ...provided,
     color: "#8ba0b2",
@@ -32,7 +38,6 @@ const customStyles = {
   indicatorSeparator: (provided) => ({
     display: "none"
   }),
-
   option: (provided, state) => {
     let color = state.isSelected ? colorPrimary : "#748899"
     let backgroundColor = provided.backgroundColor
@@ -40,6 +45,11 @@ const customStyles = {
     if (state.isFocused) color = colorPrimary
     return { ...provided, color, backgroundColor, ...customTextStyles }
   },
+  menu: (provided) => ({
+    ...provided,
+    border: "none",
+    animation: "slideFromTop 0.15s"
+  }),
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1
     const transition = "opacity 300ms"
@@ -55,11 +65,11 @@ const customStyles = {
     ...provided,
     backgroundColor: colorPrimary,
     borderRadius: "6px",
-    color: "#fff"
+    color: "#fbfbfb"
   }),
   multiValueLabel: (provided) => ({
     ...provided,
-    color: "#fff"
+    color: "#fbfbfb"
   })
 }
 

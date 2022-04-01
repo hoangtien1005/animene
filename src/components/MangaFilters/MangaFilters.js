@@ -45,7 +45,7 @@ const MangaFilters = () => {
       { title: "Format", type: "formats", options: formats, multiple: true },
       { title: "Status", type: "status", options: statuses, multiple: false },
       {
-        title: "Country Of Origin",
+        title: "Origin",
         type: "origin",
         options: origins,
         multiple: false
@@ -72,7 +72,14 @@ const MangaFilters = () => {
       </Grid>
       {showFilters &&
         filters.map((filter) => (
-          <Grid item xs={6} sm={3} key={filter.type}>
+          <Grid
+            className={styles.filter}
+            item
+            xs={12}
+            xsm={6}
+            sm={3}
+            key={filter.type}
+          >
             <h5 className={styles.filterTitle}>{filter.title}</h5>
             <Filter dataType="MANGA" {...filter} />
           </Grid>

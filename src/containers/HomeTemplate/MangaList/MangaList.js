@@ -24,13 +24,12 @@ import {
 
 const MangaList = () => {
   const location = useLocation()
-  const [cardType, setCardType] = useState(
-    localStorage.getItem("cardType") || CARD_TYPES.DEFAULT
-  )
+  const [cardType, setCardType] = useState(CARD_TYPES.DEFAULT)
   const { loading, data, error, page, allLoaded, isDefault } =
     useSelector(selectMangaList)
-  const isMedium = useMediaQuery("(min-width:900px)")
-  const numberOfCards = isMedium ? 5 : 6
+  const md = useMediaQuery("(max-width:900px)")
+  const sm = useMediaQuery("(max-width:600px)")
+  const numberOfCards = sm ? 6 : md ? 4 : 5
 
   const dispatch = useDispatch()
 
@@ -40,6 +39,14 @@ const MangaList = () => {
       dispatch(fetchAllMangas({ searchString: location.search }))
     window.scrollTo(0, 0)
   }, [dispatch, location.search])
+
+  useEffect(() => {
+    setCardType(
+      sm
+        ? CARD_TYPES.DEFAULT
+        : localStorage.getItem("cardType") || CARD_TYPES.DEFAULT
+    )
+  }, [sm])
 
   const handleViewChange = useCallback((option) => {
     setCardType(option)
@@ -54,26 +61,27 @@ const MangaList = () => {
     <>
       {isDefault && (
         <>
-          <div style={{ marginTop: "80px", width: "100%" }}></div>
+          <div className="space-top-80"></div>
           <GridContainer>
             <MangaFilters />
-            {loading && (
-              <>
-                <Loading />
-                <LoadingCardSkeleton />
-              </>
-            )}
           </GridContainer>
+          {loading && (
+            <>
+              <Loading />
+              <div className="space-top-60"></div>
+              <LoadingCardSkeleton />
+            </>
+          )}
           {data &&
             Object.values(data).map((medias) => {
-              if (medias.title.includes("TOP 100")) {
+              if (medias.title.includes("TOP 10")) {
                 return (
                   <Fragment key={medias.title}>
                     <div className={styles.titleContainer}>
                       <h4 className={styles.title}>{medias.title}</h4>
                     </div>
                     <MediaCardList
-                      cardType={CARD_TYPES.HORIZONTAL}
+                      cardType={sm ? CARD_TYPES.DEFAULT : CARD_TYPES.HORIZONTAL}
                       medias={medias.media}
                     />
                   </Fragment>
@@ -98,7 +106,7 @@ const MangaList = () => {
       )}
       {!isDefault && (
         <>
-          <div style={{ marginTop: "80px", width: "100%" }}></div>
+          <div className="space-top-80"></div>
           <GridContainer>
             <MangaFilters />
             <SubFilters
@@ -106,14 +114,14 @@ const MangaList = () => {
               handleViewChange={handleViewChange}
             />
             <Tags />
-            {loading && (
-              <>
-                <Loading />
-                <LoadingCardSkeleton type={cardType} />
-              </>
-            )}
           </GridContainer>
-          <div style={{ marginTop: "28px", width: "100%" }}></div>
+          <div className="space-top-28"></div>
+          {loading && (
+            <>
+              <Loading />
+              <LoadingCardSkeleton type={cardType} />
+            </>
+          )}
           {data && data.length > 0 && (
             <>
               <InfiniteCardList

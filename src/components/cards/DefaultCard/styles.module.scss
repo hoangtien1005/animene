@@ -19,7 +19,8 @@
 
     .cardImage {
         height: 196px;
-        animation: opacity 0.3s linear;
+        animation: opacity 0.3s;
+        box-shadow: 0 14px 30px rgba($color-box-shadow,.15),0 4px 4px rgba($color-box-shadow,.05);
         @include breakpoint(md) {
             height: 265px;
         }

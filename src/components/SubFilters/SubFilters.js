@@ -8,6 +8,7 @@ import VerticalSplitIcon from "@mui/icons-material/VerticalSplit"
 
 import { memo, useMemo } from "react"
 import { useHistory, useLocation } from "react-router-dom"
+import useMediaQuery from "@mui/material/useMediaQuery"
 
 import styles from "./styles.module.scss"
 import clsx from "clsx"
@@ -75,6 +76,7 @@ const customStyles = {
 const SubFilters = ({ cardType, handleViewChange }) => {
   const history = useHistory()
   const location = useLocation()
+  const isSmall = useMediaQuery("(max-width:600px)")
   const { SORTS } = MEDIA_CONSTANTS
 
   const params = useMemo(() => {
@@ -113,27 +115,31 @@ const SubFilters = ({ cardType, handleViewChange }) => {
           options={SORTS}
           defaultValue={defaultValue || SORTS[2]}
         />
-        <Divider orientation="vertical" variant="middle" flexItem />
-        <Stack direction="row" spacing={1} alignItems="center">
-          <ViewComfyIcon
-            onClick={() => handleViewChange(CARD_TYPES.DEFAULT)}
-            className={clsx(styles.icon, {
-              [styles.active]: cardType === CARD_TYPES.DEFAULT
-            })}
-          />
-          <GridViewSharpIcon
-            onClick={() => handleViewChange(CARD_TYPES.SQUARE)}
-            className={clsx(styles.icon, {
-              [styles.active]: cardType === CARD_TYPES.SQUARE
-            })}
-          />
-          <VerticalSplitIcon
-            onClick={() => handleViewChange(CARD_TYPES.HORIZONTAL)}
-            className={clsx(styles.icon, {
-              [styles.active]: cardType === CARD_TYPES.HORIZONTAL
-            })}
-          />
-        </Stack>
+        {!isSmall && (
+          <>
+            <Divider orientation="vertical" variant="middle" flexItem />
+            <Stack direction="row" spacing={1} alignItems="center">
+              <ViewComfyIcon
+                onClick={() => handleViewChange(CARD_TYPES.DEFAULT)}
+                className={clsx(styles.icon, {
+                  [styles.active]: cardType === CARD_TYPES.DEFAULT
+                })}
+              />
+              <GridViewSharpIcon
+                onClick={() => handleViewChange(CARD_TYPES.SQUARE)}
+                className={clsx(styles.icon, {
+                  [styles.active]: cardType === CARD_TYPES.SQUARE
+                })}
+              />
+              <VerticalSplitIcon
+                onClick={() => handleViewChange(CARD_TYPES.HORIZONTAL)}
+                className={clsx(styles.icon, {
+                  [styles.active]: cardType === CARD_TYPES.HORIZONTAL
+                })}
+              />
+            </Stack>
+          </>
+        )}
       </Stack>
     </Grid>
   )

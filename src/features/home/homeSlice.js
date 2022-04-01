@@ -45,7 +45,7 @@ export const fetchHomeAnimes = createAsyncThunk("home", async () => {
     data.mostPopularThisSeason.title = "POPULAR THIS SEASON"
     data.mostPopularNextSeason.title = "UPCOMING NEXT SEASON"
     data.mostPopular.title = "ALL TIME POPULAR"
-    data.topScore.title = "TOP 100 ANIME"
+    data.topScore.title = "TOP 10 ANIME"
     const newHomeStorage = await { expired: tomorrow, data: data }
     localStorage.setItem("homeStorage", JSON.stringify(newHomeStorage))
   } else {
