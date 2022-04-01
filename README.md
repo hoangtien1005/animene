@@ -6,7 +6,7 @@ A platform for anime lovers
   <img alt="Stars" src="https://badgen.net/github/stars/hoangtien1005/animene">
   <img alt="Forks" src="https://badgen.net/github/forks/hoangtien1005/animene">
   <img alt="Issues" src="https://badgen.net/github/issues/hoangtien1005/animene">
-  <img alt="Commits" src="https://badgen.net/github/commits/hoangtien1005/animene">
+  <img alt="Commits" src="https://badgen.net/github/license/hoangtien1005/animene">
 </p>
 
 ## Live demo
@@ -32,6 +32,7 @@ website: [animene.vercel.app](https://animene.vercel.app)
 - :white_check_mark: Discover details (relations, genres, trailer, ...) of anime, manga, character and staff
 
 Will be developed in the future:
+- :x: Watch anime
 - :x: Sign up, login 
 - :x: Add anime, manga to favourite list
 - :x: Social page for user posts and comments 
