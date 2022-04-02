@@ -10,8 +10,9 @@
 }
 
 .card {
-    padding: 8px;
+    padding: 10px;
     border-radius: 3px;
+    min-height: 80px;
     display: flex;
     justify-content: space-between;
     background-color: $color-white;
@@ -38,21 +39,21 @@
 }
 
 .coverImage {
-    width: 54px;
+    width: 60px;
+    height: 100%;
     vertical-align: middle;
 
     animation: opacity 0.3s linear;
 
     @include breakpoint(md) {
-       width: 48px;
+       width: 40px;
     }
 }
 
 .titleGenresContainer {
     display: flex;
-    flex: 1;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 
     @include breakpoint(md) {
         flex: 5;
@@ -62,11 +63,16 @@
     .title {
         color: $color-text-bold;
         font-weight: 500;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
         font-size: $fs-sm;
 
         text-decoration: none;
-        display: block;
+        display: block; /* Fallback for non-webkit */
+        display: -webkit-box;
+        -webkit-line-clamp: 1; /* if you change this, make sure to change the fallback line-height and height */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         &:hover {
             color: $color-pr-5;
@@ -84,7 +90,6 @@
 
 
 .infoContainer {
-    flex: 1;
     display: flex;
     align-items: center;
 

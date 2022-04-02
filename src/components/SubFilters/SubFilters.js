@@ -42,7 +42,11 @@ const customStyles = {
   indicatorSeparator: (provided) => ({
     display: "none"
   }),
-
+  menu: (provided) => ({
+    ...provided,
+    border: "none",
+    animation: "slideFromTop 0.15s"
+  }),
   option: (provided, state) => {
     let color = state.isSelected ? colorPrimary : "#748899"
     let backgroundColor = provided.backgroundColor

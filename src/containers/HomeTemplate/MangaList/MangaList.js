@@ -132,7 +132,9 @@ const MangaList = () => {
               />
             </>
           )}
-          {data && data.length === 0 && <ResultNotFound message="No Results" />}
+          {!loading && data && data.length === 0 && (
+            <ResultNotFound message="No Results" />
+          )}
           {error && <ResultNotFound message={error.message} />}
         </>
       )}
