@@ -1,5 +1,6 @@
 import Home from "../containers/HomeTemplate/Home"
 import SignUp from "../containers/HomeTemplate/SignUp"
+import Logout from "../containers/HomeTemplate/Logout"
 import Login from "../containers/HomeTemplate/Login"
 import ForgotPassword from "../containers/HomeTemplate/ForgotPassword"
 import AnimeList from "../containers/HomeTemplate/AnimeList"
@@ -128,7 +129,7 @@ const routeHome = [
   {
     exact: true,
     path: PATHS.LOGOUT,
-    component: ComingSoon
+    component: Logout
   }
 ]
 

@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 
 import styles from "./styles.module.scss"
 import clsx from "clsx"
@@ -30,7 +31,11 @@ import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded"
 import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined"
 import LogoutIcon from "@mui/icons-material/Logout"
 
+import { selectAuth } from "../../features/auth/authSlice"
+
 export default function PrimarySearchAppBar() {
+  const { data } = useSelector(selectAuth)
+
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
@@ -38,7 +43,7 @@ export default function PrimarySearchAppBar() {
   const isMobileDrawerOpen = Boolean(mobileMoreAnchorEl)
 
   // fake user state
-  const [user, setUser] = React.useState(false)
+  const [user, setUser] = React.useState(data?.user)
 
   const browseItems = [
     { Icon: PlayArrowRoundedIcon, label: "Anime", linkTo: PATHS.ANIME.SEARCH },

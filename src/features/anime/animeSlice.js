@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import { callAnimeApi, callAnilistApi } from "../../utils/callApi"
+import { callAnilistApi } from "../../utils/callApi"
 import { MEDIA_CONSTANTS } from "../../utils/constants"
 import { generateDate } from "../../utils/utils"
 import { ANIME_DETAILS_QUERY } from "../../queries/anime"

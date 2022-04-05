@@ -8,7 +8,7 @@ import homeReducer from "./home/homeSlice"
 import mangaListReducer from "./mangaList/mangaListSlice"
 import staffListReducer from "./staffList/staffListSlice"
 import characterListReducer from "./characterList/characterListSlice"
-
+import authReducer from "./auth/authSlice"
 const store = configureStore({
   reducer: {
     anime: animeReducer,
@@ -19,7 +19,8 @@ const store = configureStore({
     home: homeReducer,
     mangaList: mangaListReducer,
     staffList: staffListReducer,
-    characterList: characterListReducer
+    characterList: characterListReducer,
+    auth: authReducer
   }
 })
 
