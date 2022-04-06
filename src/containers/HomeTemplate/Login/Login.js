@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, useHistory, Redirect } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { PATHS } from "../../../routes"
 import clsx from "clsx"
@@ -41,7 +41,6 @@ const Component = () => {
           }}
           onSubmit={(values, { setSubmitting }) => {
             dispatch(Login(values)).then((res) => {
-              console.log(res)
               if (res.error) {
                 setTimeout(() => {
                   dispatch(Reset())

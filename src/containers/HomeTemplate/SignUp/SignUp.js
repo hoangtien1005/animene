@@ -23,7 +23,7 @@ import {
 const Component = () => {
   const { Reset } = authActions
 
-  const { loading, data, error } = useSelector(selectAuth)
+  const { loading, data, error, success } = useSelector(selectAuth)
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -31,7 +31,7 @@ const Component = () => {
     <>
       {loading && <Loading />}
       {error && <Alert severity="error" message={error.message} />}
-      {data && <Alert message="Sign up successfully, redirecting..." />}
+      {success && <Alert message="Sign up successfully, redirecting..." />}
       <FormContainer>
         <h1 className={styles.formTitle}>Sign Up Now</h1>
         <Formik
