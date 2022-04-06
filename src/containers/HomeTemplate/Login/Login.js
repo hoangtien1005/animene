@@ -19,14 +19,14 @@ import { authActions } from "../../../features/auth/authSlice"
 const Component = () => {
   const { Reset } = authActions
 
-  const { loading, data, error } = useSelector(selectAuth)
+  const { loading, success, error } = useSelector(selectAuth)
   const dispatch = useDispatch()
   const history = useHistory()
   return (
     <>
       {loading && <Loading />}
       {error && <Alert severity="error" message={error.message} />}
-      {data && <Alert message="Login successfully, redirecting..." />}
+      {success && <Alert message="Login successfully, redirecting..." />}
       <FormContainer>
         <h1 className={styles.formTitle}>Login</h1>
         <Formik

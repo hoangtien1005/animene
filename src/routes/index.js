@@ -45,92 +45,193 @@ const PATHS = {
   LOGOUT: "/logout"
 }
 
-const routeHome = [
-  {
-    exact: true,
-    path: "/",
-    component: Home
-  },
-  {
-    exact: false,
-    path: PATHS.ANIME.SEARCH,
-    component: AnimeList
-  },
-  {
-    exact: false,
-    path: `${PATHS.ANIME.DETAILS}/:id`,
-    component: Anime
-  },
-  {
-    exact: false,
-    path: PATHS.MANGA.SEARCH,
-    component: MangaList
-  },
-  {
-    exact: false,
-    path: `${PATHS.MANGA.DETAILS}/:id`,
-    component: Manga
-  },
-  {
-    exact: false,
-    path: PATHS.STAFF.SEARCH,
-    component: StaffList
-  },
-  {
-    exact: false,
-    path: `${PATHS.STAFF.DETAILS}/:id`,
-    component: Staff
-  },
-  {
-    exact: false,
-    path: PATHS.CHARACTER.SEARCH,
-    component: CharacterList
-  },
-  {
-    exact: false,
-    path: `${PATHS.CHARACTER.DETAILS}/:id`,
-    component: Character
-  },
-  {
-    exact: false,
-    path: PATHS.FORUM,
-    component: ComingSoon
-  },
-  {
-    exact: true,
-    path: PATHS.SIGNUP,
-    component: SignUp
-  },
-  {
-    exact: true,
-    path: PATHS.LOGIN,
-    component: Login
-  },
-  {
-    exact: true,
-    path: PATHS.FORGOT_PASSWORD,
-    component: ForgotPassword
-  },
-  {
-    exact: true,
-    path: PATHS.PROFILE,
-    component: ComingSoon
-  },
-  {
-    exact: true,
-    path: PATHS.NOTIFICATIONS,
-    component: ComingSoon
-  },
-  {
-    exact: true,
-    path: PATHS.SETTINGS,
-    component: ComingSoon
-  },
-  {
-    exact: true,
-    path: PATHS.LOGOUT,
-    component: Logout
-  }
-]
+export const ALLOWS = {
+  ALL: "all",
+  NONE_USER: -1,
+  USER: 1,
+  ADMIN: 0
+}
+
+const routeHome = {
+  normalRoutes: [
+    {
+      exact: true,
+      path: "/",
+      component: Home
+    },
+    {
+      exact: false,
+      path: PATHS.ANIME.SEARCH,
+      component: AnimeList
+    },
+    {
+      exact: false,
+      path: `${PATHS.ANIME.DETAILS}/:id`,
+      component: Anime
+    },
+    {
+      exact: false,
+      path: PATHS.MANGA.SEARCH,
+      component: MangaList
+    },
+    {
+      exact: false,
+      path: `${PATHS.MANGA.DETAILS}/:id`,
+      component: Manga
+    },
+    {
+      exact: false,
+      path: PATHS.STAFF.SEARCH,
+      component: StaffList
+    },
+    {
+      exact: false,
+      path: `${PATHS.STAFF.DETAILS}/:id`,
+      component: Staff
+    },
+    {
+      exact: false,
+      path: PATHS.CHARACTER.SEARCH,
+      component: CharacterList
+    },
+    {
+      exact: false,
+      path: `${PATHS.CHARACTER.DETAILS}/:id`,
+      component: Character
+    },
+    {
+      exact: false,
+      path: PATHS.FORUM,
+      component: ComingSoon
+    }
+  ],
+  userRoutes: [
+    {
+      exact: true,
+      path: PATHS.PROFILE,
+      component: ComingSoon
+    },
+    {
+      exact: true,
+      path: PATHS.NOTIFICATIONS,
+      component: ComingSoon
+    },
+    {
+      exact: true,
+      path: PATHS.SETTINGS,
+      component: ComingSoon
+    },
+    {
+      exact: true,
+      path: PATHS.LOGOUT,
+      component: Logout
+    }
+  ],
+  authRoutes: [
+    {
+      exact: true,
+      path: PATHS.SIGNUP,
+      component: SignUp
+    },
+    {
+      exact: true,
+      path: PATHS.LOGIN,
+      component: Login
+    },
+    {
+      exact: true,
+      path: PATHS.FORGOT_PASSWORD,
+      component: ForgotPassword
+    }
+  ]
+}
+
+// const routeHome = [
+//   {
+//     exact: true,
+//     path: "/",
+//     component: Home
+//   },
+//   {
+//     exact: false,
+//     path: PATHS.ANIME.SEARCH,
+//     component: AnimeList
+//   },
+//   {
+//     exact: false,
+//     path: `${PATHS.ANIME.DETAILS}/:id`,
+//     component: Anime
+//   },
+//   {
+//     exact: false,
+//     path: PATHS.MANGA.SEARCH,
+//     component: MangaList
+//   },
+//   {
+//     exact: false,
+//     path: `${PATHS.MANGA.DETAILS}/:id`,
+//     component: Manga
+//   },
+//   {
+//     exact: false,
+//     path: PATHS.STAFF.SEARCH,
+//     component: StaffList
+//   },
+//   {
+//     exact: false,
+//     path: `${PATHS.STAFF.DETAILS}/:id`,
+//     component: Staff
+//   },
+//   {
+//     exact: false,
+//     path: PATHS.CHARACTER.SEARCH,
+//     component: CharacterList
+//   },
+//   {
+//     exact: false,
+//     path: `${PATHS.CHARACTER.DETAILS}/:id`,
+//     component: Character
+//   },
+//   {
+//     exact: false,
+//     path: PATHS.FORUM,
+//     component: ComingSoon
+//   },
+//   {
+//     exact: true,
+//     path: PATHS.SIGNUP,
+//     component: SignUp
+//   },
+//   {
+//     exact: true,
+//     path: PATHS.LOGIN,
+//     component: Login
+//   },
+//   {
+//     exact: true,
+//     path: PATHS.FORGOT_PASSWORD,
+//     component: ForgotPassword
+//   },
+//   {
+//     exact: true,
+//     path: PATHS.PROFILE,
+//     component: ComingSoon
+//   },
+//   {
+//     exact: true,
+//     path: PATHS.NOTIFICATIONS,
+//     component: ComingSoon
+//   },
+//   {
+//     exact: true,
+//     path: PATHS.SETTINGS,
+//     component: ComingSoon
+//   },
+//   {
+//     exact: true,
+//     path: PATHS.LOGOUT,
+//     component: Logout
+//   }
+// ]
 
 export { routeHome, PATHS }

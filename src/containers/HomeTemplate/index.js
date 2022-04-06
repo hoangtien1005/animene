@@ -5,16 +5,12 @@ import Header from "../../components/Header"
 import LandingSlider from "../../components/LandingSlider"
 import Footer from "../../components/Footer"
 import ScrollToTop from "../../components/ScrollToTop"
+import ProtectedRoutes from "../../components/ProtectedRoutes"
 
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 
 const LayoutHome = (props) => {
-  //   let isLogin = false;
-  //   if (localStorage.getItem("User")) {
-  //     isLogin = true;
-  //   }
-
   return (
     <>
       <Header />
@@ -28,7 +24,7 @@ const LayoutHome = (props) => {
   )
 }
 
-const HomeTemplate = ({ Component, ...props }) => {
+const HomeTemplate = ({ Component, allow, ...props }) => {
   return (
     <Route
       {...props}
@@ -40,6 +36,11 @@ const HomeTemplate = ({ Component, ...props }) => {
         )
       }}
     />
+    // <ProtectedRoutes allow={allow} {...props}>
+    //   <LayoutHome>
+    //     <Component />
+    //   </LayoutHome>
+    // </ProtectedRoutes>
   )
 }
 
