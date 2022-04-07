@@ -1,3 +1,7 @@
+### The local version of the project, clone this branch if you want to build your own back-end server or use locally without auth and social pages 
+
+<br>
+
 # Animene
 
 A platform for anime lovers
