@@ -3,6 +3,7 @@ import SignUp from "../containers/HomeTemplate/SignUp"
 import Logout from "../containers/HomeTemplate/Logout"
 import Login from "../containers/HomeTemplate/Login"
 import ForgotPassword from "../containers/HomeTemplate/ForgotPassword"
+import Settings from "../containers/HomeTemplate/Settings"
 import AnimeList from "../containers/HomeTemplate/AnimeList"
 import Anime from "../containers/HomeTemplate/Anime"
 import Character from "../containers/HomeTemplate/Character"
@@ -119,7 +120,7 @@ const routeHome = {
     {
       exact: true,
       path: PATHS.SETTINGS,
-      component: ComingSoon
+      component: Settings
     },
     {
       exact: true,
