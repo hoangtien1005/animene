@@ -15,7 +15,7 @@ import styles from "./styles.module.scss"
 const Footer = () => {
   const footers = [
     [
-      { label: "Linkedin", link: "https://www.linkedin.com/in/hoangtien1005" },
+      { label: "LinkedIn", link: "https://www.linkedin.com/in/hoangtien1005" },
       { label: "Facebook", link: "https://www.facebook.com/hoangtien1005" },
       {
         label: "HackerRank",
