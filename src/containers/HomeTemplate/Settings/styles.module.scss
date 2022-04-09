@@ -6,6 +6,8 @@
     margin-top: 40px;
     padding: 20px;
 
+    @include formMixin;
+
     .section {
         margin-bottom: 32px;
     }
@@ -13,6 +15,29 @@
     .title {
         color: $color-text-bold;
         font-size: $fs-md-sm;
+        margin-bottom: 8px;
+    }
+
+    .avatar {
+        margin-top: 8px;
+        width: 200px;
+        height: 200px;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 4px;
+    }
+
+    .button {
+        margin-top: 8px;
+        animation: scaleUpCenter 0.3s;
+        @include breakpoint(xsm) {
+            width: max-content;
+        }
+    }
+
+    .deleteBtn {
+
     }
 }
 
