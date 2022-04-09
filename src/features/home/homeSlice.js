@@ -33,7 +33,7 @@ const initialState = {
 export const fetchHomeAnimes = createAsyncThunk("home", async () => {
   let data
   const homeStorage = JSON.parse(localStorage.getItem("homeStorage"))
-  const isExpired = homeStorage?.expired <= new Date()
+  const isExpired = homeStorage?.expired <= new Date().toISOString()
   if (!homeStorage || isExpired) {
     let tomorrow = new Date()
     tomorrow.setHours(7)
